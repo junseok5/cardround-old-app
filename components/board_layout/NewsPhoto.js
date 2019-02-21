@@ -1,12 +1,10 @@
 import React from "react"
 import styled from "styled-components"
-import { ScrollView } from 'react-native'
+import Section from "../Section"
 
 const Container = styled.View`
     padding-left: 10px;
 `
-
-// const ScrollView = styled.ScrollView
 
 const ItemContainer = styled.View`
     margin-right: 10px;
@@ -39,16 +37,13 @@ const Item = () => {
 const NewsPhoto = () => {
     return (
         <Container>
-            <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-            >
+            <Section>
                 <Item />
                 <Item />
                 <Item />
                 <Item />
                 <Item />
-            </ScrollView>
+            </Section>
         </Container>
     )
 }

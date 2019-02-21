@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Colors from "../constants/Colors"
 import { Button } from "react-native"
 import NewsPhoto from "./board_layout/NewsPhoto";
+import Chart from "./board_layout/Chart";
 
 const Container = styled.View`
     margin-top: 15px;
@@ -64,7 +65,7 @@ const PreviewBoard = () => {
                 />
             </Header>
             <Main>
-                <NewsPhoto />
+                <Chart />
             </Main>
         </Container>
     )
