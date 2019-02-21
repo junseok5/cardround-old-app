@@ -2,10 +2,11 @@ import React from "react"
 import {} from "react-native"
 import styled from "styled-components"
 import PreviewBoard from "../components/PreviewBoard";
+import Section from "../components/Section";
 
 const Container = styled.View`
     padding-top: 40px;
-    padding-bottom: 15px;
+    padding-bottom: 50px;
 `
 
 const HContainer = styled.View`
@@ -34,9 +35,11 @@ export default class HomeScreen extends React.Component {
                 <HContainer>
                     <PageTitle>팔로우 보드</PageTitle>
                 </HContainer>
-                <MainContainer>
+                <Section horizontal={false}>
                   <PreviewBoard />
-                </MainContainer>
+                  <PreviewBoard />
+                  <PreviewBoard />
+                </Section>
             </Container>
         )
     }

@@ -57,7 +57,7 @@ const Item = () => {
 const Chart = () => {
     return (
         <Container>
-            <Section>
+            <Section horizontal={true}>
                 <Item />
                 <Item />
                 <Item />
