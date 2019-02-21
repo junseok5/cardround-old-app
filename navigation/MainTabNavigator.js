@@ -4,11 +4,17 @@ import {
     createStackNavigator,
     createBottomTabNavigator
 } from "react-navigation"
+import { mainColor } from '../constants/Colors'
 
 import TabBarIcon from "../components/TabBarIcon"
 import HomeScreen from "../screens/HomeScreen"
 import LinksScreen from "../screens/LinksScreen"
 import ProfileScreen from "../screens/ProfileScreen"
+
+const tabBarOptions = {
+  activeTintColor: '#000',
+  inactiveTintColor: '#ccc'
+}
 
 const HomeStack = createStackNavigator({
     Home: HomeScreen
@@ -16,7 +22,8 @@ const HomeStack = createStackNavigator({
 
 HomeStack.navigationOptions = {
     tabBarLabel: "홈",
-    tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="home" />
+    tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="home" />,
+    tabBarOptions
 }
 
 const LinksStack = createStackNavigator({
@@ -25,7 +32,8 @@ const LinksStack = createStackNavigator({
 
 LinksStack.navigationOptions = {
     tabBarLabel: "웹사이트",
-    tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="chrome" />
+    tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="chrome" />,
+    tabBarOptions
 }
 
 const ProfileStack = createStackNavigator({
@@ -34,7 +42,8 @@ const ProfileStack = createStackNavigator({
 
 ProfileStack.navigationOptions = {
     tabBarLabel: "프로필",
-    tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="user" />
+    tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="user" />,
+    tabBarOptions
 }
 
 export default createBottomTabNavigator({

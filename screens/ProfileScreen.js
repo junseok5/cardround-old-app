@@ -5,8 +5,8 @@ import Colors from "../constants/Colors"
 
 const Container = styled.View`
     flex: 1;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     background: #fff;
 `
 
@@ -44,10 +44,12 @@ const ListContainer = styled.View``
 
 const ListItem = styled.View`
     padding: 20px;
-    border-bottom-width: 0.5;
-    border-bottom-color: #ccc;
     flex-direction: row;
     justify-content: space-between;
+`
+
+const ListTextContainer = styled.View`
+    width: 100%;
 `
 
 const ListText = styled.Text`
@@ -91,21 +93,21 @@ export default class ProfileScreen extends React.Component {
                             value={true}
                         />
                     </ListItem>
-                    <ListItem>
-                        <TouchableOpacity>
+                    <TouchableOpacity>
+                        <ListItem>
                             <ListText>문의하기</ListText>
-                        </TouchableOpacity>
-                    </ListItem>
-                    <ListItem>
-                        <TouchableOpacity>
+                        </ListItem>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <ListItem>
                             <ListText>이용약관</ListText>
-                        </TouchableOpacity>
-                    </ListItem>
-                    <ListItem>
-                        <TouchableOpacity>
+                        </ListItem>
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <ListItem>
                             <ListText>개인정보처리방침</ListText>
-                        </TouchableOpacity>
-                    </ListItem>
+                        </ListItem>
+                    </TouchableOpacity>
                 </ListContainer>
             </Container>
         )
