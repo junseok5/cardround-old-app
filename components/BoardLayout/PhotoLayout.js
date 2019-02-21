@@ -19,7 +19,7 @@ const ItemPhoto = styled.Image`
 
 const ItemRank = styled.View`
     width: ${props => props.layoutWidth};
-    height: ${props => props.layoutHeight};
+    height: 20px;
     margin-bottom: 5px;
     background: #e74c3c;
     flex-direction: row;
@@ -76,7 +76,7 @@ const Item = ({
                 }}
             />
             {isRank && (
-                <ItemRank layoutWidth={layoutWidth} layoutHeight={layoutHeight}>
+                <ItemRank layoutWidth={layoutWidth}>
                     <ItemRankText>No.1</ItemRankText>
                 </ItemRank>
             )}

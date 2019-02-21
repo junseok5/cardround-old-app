@@ -1,12 +1,12 @@
 import React from "react"
 import {} from "react-native"
 import styled from "styled-components"
-import PreviewBoard from "../components/PreviewBoard";
-import Section from "../components/Section";
+import PreviewBoard from "../components/PreviewBoard"
+import Section from "../components/Section"
 
 const Container = styled.View`
     padding-top: 40px;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
 `
 
 const HContainer = styled.View`
@@ -20,10 +20,6 @@ const PageTitle = styled.Text`
     font-weight: bold;
 `
 
-const MainContainer = styled.View`
-
-`
-
 export default class HomeScreen extends React.Component {
     static navigationOptions = {
         header: null
@@ -32,13 +28,13 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
             <Container>
-                <HContainer>
-                    <PageTitle>팔로우 보드</PageTitle>
-                </HContainer>
                 <Section horizontal={false}>
-                  <PreviewBoard />
-                  <PreviewBoard />
-                  <PreviewBoard />
+                    <HContainer>
+                        <PageTitle>팔로우 보드</PageTitle>
+                    </HContainer>
+                    <PreviewBoard />
+                    <PreviewBoard />
+                    <PreviewBoard />
                 </Section>
             </Container>
         )

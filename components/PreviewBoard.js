@@ -2,10 +2,11 @@ import React from "react"
 import styled from "styled-components"
 import Colors from "../constants/Colors"
 import { Button } from "react-native"
-import NewsPhoto from "./BoardLayout/NewsPhoto";
-import Chart from "./BoardLayout/Chart";
-import ShopPhoto from "./BoardLayout/ShopPhoto";
-import PhotoLayout from "./BoardLayout/PhotoLayout";
+import NewsPhoto from "./BoardLayout/NewsPhoto"
+import Chart from "./BoardLayout/Chart"
+import ShopPhoto from "./BoardLayout/ShopPhoto"
+import PhotoLayout from "./BoardLayout/PhotoLayout"
+import TextLayout from "./BoardLayout/TextLayout"
 
 const Container = styled.View`
     margin-top: 15px;
@@ -42,9 +43,7 @@ const WebsiteName = styled.Text`
     font-size: 14px;
 `
 
-const Main = styled.View`
-
-`
+const Main = styled.View``
 
 const PreviewBoard = () => {
     return (
@@ -67,7 +66,11 @@ const PreviewBoard = () => {
                 />
             </Header>
             <Main>
-                <NewsPhoto />
+                <TextLayout
+                    title="졸업논문 작성방법 안내!!"
+                    firstAddedInfo="2019.02.22"
+                    secondAddedInfo="224"
+                />
             </Main>
         </Container>
     )
