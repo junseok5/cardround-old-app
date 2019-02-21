@@ -7,6 +7,7 @@ import Chart from "./BoardLayout/Chart"
 import ShopPhoto from "./BoardLayout/ShopPhoto"
 import PhotoLayout from "./BoardLayout/PhotoLayout"
 import TextLayout from "./BoardLayout/TextLayout"
+import OldBoard from "./BoardLayout/OldBoard"
 
 const Container = styled.View`
     margin-top: 15px;
@@ -45,7 +46,7 @@ const WebsiteName = styled.Text`
 
 const Main = styled.View``
 
-const PreviewBoard = () => {
+const PreviewBoard = ({ layoutType }) => {
     return (
         <Container>
             <Header>
@@ -66,11 +67,10 @@ const PreviewBoard = () => {
                 />
             </Header>
             <Main>
-                <TextLayout
-                    title="졸업논문 작성방법 안내!!"
-                    firstAddedInfo="2019.02.22"
-                    secondAddedInfo="224"
-                />
+                {layoutType === "NEWS_PHOTO" && <NewsPhoto />}
+                {layoutType === "CHART" && <Chart />}
+                {layoutType === "OLD_BOARD" && <OldBoard />}
+                {layoutType === "SHOP_PHOTO" && <ShopPhoto />}
             </Main>
         </Container>
     )

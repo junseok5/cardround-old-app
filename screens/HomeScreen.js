@@ -32,9 +32,10 @@ export default class HomeScreen extends React.Component {
                     <HContainer>
                         <PageTitle>팔로우 보드</PageTitle>
                     </HContainer>
-                    <PreviewBoard />
-                    <PreviewBoard />
-                    <PreviewBoard />
+                    <PreviewBoard layoutType="NEWS_PHOTO" />
+                    <PreviewBoard layoutType="CHART" />
+                    <PreviewBoard layoutType="OLD_BOARD" />
+                    <PreviewBoard layoutType="SHOP_PHOTO" />
                 </Section>
             </Container>
         )
