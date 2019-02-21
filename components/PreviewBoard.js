@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import Colors from "../constants/Colors"
 import { Button } from "react-native"
+import NewsPhoto from "./board_layout/NewsPhoto";
 
 const Container = styled.View`
     margin-top: 15px;
@@ -11,6 +12,7 @@ const Container = styled.View`
 const Header = styled.View`
     padding-left: 15px;
     padding-right: 15px;
+    margin-bottom: 15px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -37,6 +39,10 @@ const WebsiteName = styled.Text`
     font-size: 14px;
 `
 
+const Main = styled.View`
+
+`
+
 const PreviewBoard = () => {
     return (
         <Container>
@@ -57,6 +63,9 @@ const PreviewBoard = () => {
                     onPress={() => {}}
                 />
             </Header>
+            <Main>
+                <NewsPhoto />
+            </Main>
         </Container>
     )
 }
