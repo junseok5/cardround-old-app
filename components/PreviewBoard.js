@@ -5,13 +5,11 @@ import { Button } from "react-native"
 import NewsPhoto from "./BoardLayout/NewsPhoto"
 import Chart from "./BoardLayout/Chart"
 import ShopPhoto from "./BoardLayout/ShopPhoto"
-import PhotoLayout from "./BoardLayout/PhotoLayout"
-import TextLayout from "./BoardLayout/TextLayout"
 import OldBoard from "./BoardLayout/OldBoard"
 
 const Container = styled.View`
     margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 60px;
 `
 
 const Header = styled.View`

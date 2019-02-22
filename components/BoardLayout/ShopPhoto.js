@@ -1,16 +1,47 @@
 import React from "react"
-import PhotoLayout from "./PhotoLayout";
+import PhotoLayout from "./PhotoLayout"
+
+const testItem = [
+    {
+        code: "1",
+        photoUrl:
+            "http://image.musinsa.com/mfile_s01/_shopstaff/list.staff_5c6ca3779c0bd.png",
+        title: "페이탈리즘 Relax wide crop fit",
+        titleSize: "13px",
+        firstAddedInfo: "96000원",
+        firstAddedInfoWeight: "bold"
+    },
+    {
+        code: "2",
+        photoUrl:
+            "http://image.musinsa.com/mfile_s01/_shopstaff/list.staff_5c6ca3779c0bd.png",
+        title: "페이탈리즘 Relax wide crop fit",
+        titleSize: "13px",
+        firstAddedInfo: "96000원",
+        firstAddedInfoWeight: "bold"
+    },
+    {
+        code: "3",
+        photoUrl:
+            "http://image.musinsa.com/mfile_s01/_shopstaff/list.staff_5c6ca3779c0bd.png",
+        title: "페이탈리즘 Relax wide crop fit",
+        titleSize: "13px",
+        firstAddedInfo: "96000원",
+        firstAddedInfoWeight: "bold"
+    },
+    {
+        code: "4",
+        photoUrl:
+            "http://image.musinsa.com/mfile_s01/_shopstaff/list.staff_5c6ca3779c0bd.png",
+        title: "페이탈리즘 Relax wide crop fit",
+        titleSize: "13px",
+        firstAddedInfo: "96000원",
+        firstAddedInfoWeight: "bold"
+    }
+]
 
 const ShopPhoto = () => {
-    return (
-        <PhotoLayout
-            photoUrl="http://imvely.com/web/product/medium/201902/7363b537029a16a3b17af22cea200292.gif"
-            title="4차 로맨틱무드 알파카가디건"
-            titleSize="13px"
-            firstAddedInfo="89000원"
-            firstAddedInfoWeight="bold"
-        />
-    )
+    return <PhotoLayout data={testItem} />
 }
 
 export default ShopPhoto

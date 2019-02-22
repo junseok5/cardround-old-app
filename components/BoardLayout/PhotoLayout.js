@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import Section from "../Section"
+import { FlatList } from 'react-native'
 
 const Container = styled.View`
     padding-left: 10px;
@@ -49,245 +50,91 @@ const SecondAddedInfo = styled.Text`
     font-size: ${props => props.fontSize};
 `
 
-const Item = ({
-    photoUrl,
-    layoutWidth,
-    layoutHeight,
-    isRank,
-    title,
-    titleWeight,
-    titleSize,
-    firstAddedInfo,
-    firstAddedInfoWeight,
-    firstAddedInfoSize,
-    Link,
-    secondAddedInfo,
-    secondAddedInfoWeight,
-    secondAddedInfoSize
-}) => {
-    return (
-        <ItemContainer layoutWidth={layoutWidth}>
-            <ItemPhoto
-                layoutWidth={layoutWidth}
-                layoutHeight={layoutHeight}
-                isRank={isRank}
-                source={{
-                    uri: photoUrl
-                }}
-            />
-            {isRank && (
-                <ItemRank layoutWidth={layoutWidth}>
-                    <ItemRankText>No.1</ItemRankText>
-                </ItemRank>
-            )}
+class Item extends React.PureComponent {
+    render() {
+        const {
+            photoUrl,
+            layoutWidth = "150px",
+            layoutHeight = "150px",
+            isRank = false,
+            title,
+            titleWeight = "normal",
+            titleSize = "14px",
+            firstAddedInfo,
+            firstAddedInfoWeight = "normal",
+            firstAddedInfoSize = "14px",
+            Link,
+            secondAddedInfo,
+            secondAddedInfoWeight = "normal",
+            secondAddedInfoSize = "14px"
+        } = this.props.card
+        return (
+            <ItemContainer layoutWidth={layoutWidth}>
+                <ItemPhoto
+                    resizeMethod="resize"
+                    layoutWidth={layoutWidth}
+                    layoutHeight={layoutHeight}
+                    isRank={isRank}
+                    source={{
+                        uri: photoUrl
+                    }}
+                />
+                {isRank && (
+                    <ItemRank layoutWidth={layoutWidth}>
+                        <ItemRankText>No.1</ItemRankText>
+                    </ItemRank>
+                )}
 
-            <ItemTitle weight={titleWeight} fontSize={titleSize}>
-                {title}
-            </ItemTitle>
+                <ItemTitle weight={titleWeight} fontSize={titleSize}>
+                    {title}
+                </ItemTitle>
 
-            {firstAddedInfo && (
-                <FirstAddedInfo
-                    weight={firstAddedInfoWeight}
-                    fontSize={firstAddedInfoSize}
-                >
-                    {firstAddedInfo}
-                </FirstAddedInfo>
-            )}
+                {firstAddedInfo && (
+                    <FirstAddedInfo
+                        weight={firstAddedInfoWeight}
+                        fontSize={firstAddedInfoSize}
+                    >
+                        {firstAddedInfo}
+                    </FirstAddedInfo>
+                )}
 
-            {secondAddedInfo && (
-                <SecondAddedInfo
-                    weight={secondAddedInfoWeight}
-                    fontSize={secondAddedInfoSize}
-                >
-                    {secondAddedInfo}
-                </SecondAddedInfo>
-            )}
-        </ItemContainer>
-    )
+                {secondAddedInfo && (
+                    <SecondAddedInfo
+                        weight={secondAddedInfoWeight}
+                        fontSize={secondAddedInfoSize}
+                    >
+                        {secondAddedInfo}
+                    </SecondAddedInfo>
+                )}
+            </ItemContainer>
+        )
+    }
 }
 
-const PhotoLayout = ({
-    photoUrl,
-    layoutWidth = "150px",
-    layoutHeight = "150px",
-    isRank = false,
-    title,
-    titleWeight = "normal",
-    titleSize = "14px",
-    firstAddedInfo,
-    firstAddedInfoWeight = "normal",
-    firstAddedInfoSize = "14px",
-    Link,
-    secondAddedInfo,
-    secondAddedInfoWeight = "normal",
-    secondAddedInfoSize = "14px"
-}) => {
-    return (
-        <Container>
-            <Section horizontal={true}>
-                <Item
-                    photoUrl={photoUrl}
-                    layoutWidth={layoutWidth}
-                    layoutHeight={layoutHeight}
-                    isRank={isRank}
-                    title={title}
-                    titleWeight={titleWeight}
-                    titleSize={titleSize}
-                    firstAddedInfo={firstAddedInfo}
-                    firstAddedInfoWeight={firstAddedInfoWeight}
-                    firstAddedInfoSize={firstAddedInfoSize}
-                    Link={Link}
-                    secondAddedInfo={secondAddedInfo}
-                    secondAddedInfoWeight={secondAddedInfoWeight}
-                    secondAddedInfoSize={secondAddedInfoSize}
-                />
-                <Item
-                    photoUrl={photoUrl}
-                    layoutWidth={layoutWidth}
-                    layoutHeight={layoutHeight}
-                    isRank={isRank}
-                    title={title}
-                    titleWeight={titleWeight}
-                    titleSize={titleSize}
-                    firstAddedInfo={firstAddedInfo}
-                    firstAddedInfoWeight={firstAddedInfoWeight}
-                    firstAddedInfoSize={firstAddedInfoSize}
-                    Link={Link}
-                    secondAddedInfo={secondAddedInfo}
-                    secondAddedInfoWeight={secondAddedInfoWeight}
-                    secondAddedInfoSize={secondAddedInfoSize}
-                />
-                <Item
-                    photoUrl={photoUrl}
-                    layoutWidth={layoutWidth}
-                    layoutHeight={layoutHeight}
-                    isRank={isRank}
-                    title={title}
-                    titleWeight={titleWeight}
-                    titleSize={titleSize}
-                    firstAddedInfo={firstAddedInfo}
-                    firstAddedInfoWeight={firstAddedInfoWeight}
-                    firstAddedInfoSize={firstAddedInfoSize}
-                    Link={Link}
-                    secondAddedInfo={secondAddedInfo}
-                    secondAddedInfoWeight={secondAddedInfoWeight}
-                    secondAddedInfoSize={secondAddedInfoSize}
-                />
-                <Item
-                    photoUrl={photoUrl}
-                    layoutWidth={layoutWidth}
-                    layoutHeight={layoutHeight}
-                    isRank={isRank}
-                    title={title}
-                    titleWeight={titleWeight}
-                    titleSize={titleSize}
-                    firstAddedInfo={firstAddedInfo}
-                    firstAddedInfoWeight={firstAddedInfoWeight}
-                    firstAddedInfoSize={firstAddedInfoSize}
-                    Link={Link}
-                    secondAddedInfo={secondAddedInfo}
-                    secondAddedInfoWeight={secondAddedInfoWeight}
-                    secondAddedInfoSize={secondAddedInfoSize}
-                />
-                <Item
-                    photoUrl={photoUrl}
-                    layoutWidth={layoutWidth}
-                    layoutHeight={layoutHeight}
-                    isRank={isRank}
-                    title={title}
-                    titleWeight={titleWeight}
-                    titleSize={titleSize}
-                    firstAddedInfo={firstAddedInfo}
-                    firstAddedInfoWeight={firstAddedInfoWeight}
-                    firstAddedInfoSize={firstAddedInfoSize}
-                    Link={Link}
-                    secondAddedInfo={secondAddedInfo}
-                    secondAddedInfoWeight={secondAddedInfoWeight}
-                    secondAddedInfoSize={secondAddedInfoSize}
-                />
-                <Item
-                    photoUrl={photoUrl}
-                    layoutWidth={layoutWidth}
-                    layoutHeight={layoutHeight}
-                    isRank={isRank}
-                    title={title}
-                    titleWeight={titleWeight}
-                    titleSize={titleSize}
-                    firstAddedInfo={firstAddedInfo}
-                    firstAddedInfoWeight={firstAddedInfoWeight}
-                    firstAddedInfoSize={firstAddedInfoSize}
-                    Link={Link}
-                    secondAddedInfo={secondAddedInfo}
-                    secondAddedInfoWeight={secondAddedInfoWeight}
-                    secondAddedInfoSize={secondAddedInfoSize}
-                />
-                <Item
-                    photoUrl={photoUrl}
-                    layoutWidth={layoutWidth}
-                    layoutHeight={layoutHeight}
-                    isRank={isRank}
-                    title={title}
-                    titleWeight={titleWeight}
-                    titleSize={titleSize}
-                    firstAddedInfo={firstAddedInfo}
-                    firstAddedInfoWeight={firstAddedInfoWeight}
-                    firstAddedInfoSize={firstAddedInfoSize}
-                    Link={Link}
-                    secondAddedInfo={secondAddedInfo}
-                    secondAddedInfoWeight={secondAddedInfoWeight}
-                    secondAddedInfoSize={secondAddedInfoSize}
-                />
-                <Item
-                    photoUrl={photoUrl}
-                    layoutWidth={layoutWidth}
-                    layoutHeight={layoutHeight}
-                    isRank={isRank}
-                    title={title}
-                    titleWeight={titleWeight}
-                    titleSize={titleSize}
-                    firstAddedInfo={firstAddedInfo}
-                    firstAddedInfoWeight={firstAddedInfoWeight}
-                    firstAddedInfoSize={firstAddedInfoSize}
-                    Link={Link}
-                    secondAddedInfo={secondAddedInfo}
-                    secondAddedInfoWeight={secondAddedInfoWeight}
-                    secondAddedInfoSize={secondAddedInfoSize}
-                />
-                <Item
-                    photoUrl={photoUrl}
-                    layoutWidth={layoutWidth}
-                    layoutHeight={layoutHeight}
-                    isRank={isRank}
-                    title={title}
-                    titleWeight={titleWeight}
-                    titleSize={titleSize}
-                    firstAddedInfo={firstAddedInfo}
-                    firstAddedInfoWeight={firstAddedInfoWeight}
-                    firstAddedInfoSize={firstAddedInfoSize}
-                    Link={Link}
-                    secondAddedInfo={secondAddedInfo}
-                    secondAddedInfoWeight={secondAddedInfoWeight}
-                    secondAddedInfoSize={secondAddedInfoSize}
-                />
-                <Item
-                    photoUrl={photoUrl}
-                    layoutWidth={layoutWidth}
-                    layoutHeight={layoutHeight}
-                    isRank={isRank}
-                    title={title}
-                    titleWeight={titleWeight}
-                    titleSize={titleSize}
-                    firstAddedInfo={firstAddedInfo}
-                    firstAddedInfoWeight={firstAddedInfoWeight}
-                    firstAddedInfoSize={firstAddedInfoSize}
-                    Link={Link}
-                    secondAddedInfo={secondAddedInfo}
-                    secondAddedInfoWeight={secondAddedInfoWeight}
-                    secondAddedInfoSize={secondAddedInfoSize}
-                />
-            </Section>
-        </Container>
+class PhotoLayout extends React.PureComponent {
+    _keyExtractor = (item, index) => item.code
+
+    _renderItem = ({item}) => (
+        <Item
+            card={item}
+        />
     )
+
+    render() {
+        return (
+            <Container>
+                {/* <Section horizontal={true}> */}
+                    <FlatList
+                        data={this.props.data}
+                        renderItem={this._renderItem}
+                        keyExtractor={this._keyExtractor}
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                    />
+                {/* </Section> */}
+            </Container>
+        )
+    }
 }
 
 export default PhotoLayout
