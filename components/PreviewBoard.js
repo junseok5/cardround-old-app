@@ -9,7 +9,7 @@ import OldBoard from "./BoardLayout/OldBoard"
 
 const Container = styled.View`
     margin-top: 15px;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 `
 
 const Header = styled.View`
@@ -44,19 +44,26 @@ const WebsiteName = styled.Text`
 
 const Main = styled.View``
 
-const PreviewBoard = ({ layoutType }) => {
+const PreviewBoard = ({ data }) => {
+    const {
+        _id,
+        name,
+        websiteThumbnail,
+        websiteName,
+        layoutType,
+        cards
+    } = data
     return (
         <Container>
             <Header>
                 <BoardInfo>
                     <BoardThumbnail
                         source={{
-                            uri:
-                                "http://computer.cnu.ac.kr/files/attach/images/15005/dded82bfbb1de1763f4f03aa1604d2ad.png"
+                            uri: websiteThumbnail
                         }}
                     />
-                    <BoardName>학사공지</BoardName>
-                    <WebsiteName> - 충남대 컴퓨터공학과</WebsiteName>
+                    <BoardName>{name}</BoardName>
+                    <WebsiteName> - {websiteName}</WebsiteName>
                 </BoardInfo>
                 <Button
                     title="팔로우"
@@ -65,10 +72,10 @@ const PreviewBoard = ({ layoutType }) => {
                 />
             </Header>
             <Main>
-                {layoutType === "NEWS_PHOTO" && <NewsPhoto />}
-                {layoutType === "CHART" && <Chart />}
-                {layoutType === "OLD_BOARD" && <OldBoard />}
-                {layoutType === "SHOP_PHOTO" && <ShopPhoto />}
+                {layoutType === "NEWS_PHOTO" && <NewsPhoto _id={_id} data={cards} />}
+                {layoutType === "CHART" && <Chart _id={_id} data={cards} />}
+                {layoutType === "OLD_BOARD" && <OldBoard _id={_id} data={cards} />}
+                {layoutType === "SHOP_PHOTO" && <ShopPhoto _id={_id} data={cards} />}
             </Main>
         </Container>
     )

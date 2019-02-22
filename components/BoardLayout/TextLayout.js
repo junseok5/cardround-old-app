@@ -24,57 +24,40 @@ const Text = styled.Text`
 
 const FirstAddedInfo = styled.Text`
     padding-right: 5px;
-    flex: 1.5;
-    text-align: center;
-    color: #747474;
-`
-
-const SecondAddedInfo = styled.Text`
-    padding-right: 10px;
     flex: 1;
     text-align: center;
     color: #747474;
 `
 
-const Item = ({ title, firstAddedInfo, secondAddedInfo }) => {
+const PublishedDate = styled.Text`
+    padding-right: 10px;
+    flex: 1.5;
+    text-align: center;
+    color: #747474;
+`
+
+const Item = ({ card }) => {
     return (
         <ItemContainer>
-            <Text>{title}</Text>
+            <Text>{card.title}</Text>
 
-            {firstAddedInfo && (
-                <FirstAddedInfo>{firstAddedInfo}</FirstAddedInfo>
+            {card.publishedDate && (
+                <PublishedDate>{card.publishedDate}</PublishedDate>
             )}
 
-            {secondAddedInfo && (
-                <SecondAddedInfo>{secondAddedInfo}</SecondAddedInfo>
-            )}
+            {card.firstAddedInfo && (
+                <FirstAddedInfo>{card.firstAddedInfo}</FirstAddedInfo>
+            )}  
         </ItemContainer>
     )
 }
 
-const TextLayout = ({ title, firstAddedInfo, secondAddedInfo }) => {
+const TextLayout = ({ data }) => {
     return (
         <Container>
-            <Item
-                title={title}
-                firstAddedInfo={firstAddedInfo}
-                secondAddedInfo={secondAddedInfo}
-            />
-            <Item
-                title={title}
-                firstAddedInfo={firstAddedInfo}
-                secondAddedInfo={secondAddedInfo}
-            />
-            <Item
-                title={title}
-                firstAddedInfo={firstAddedInfo}
-                secondAddedInfo={secondAddedInfo}
-            />
-            <Item
-                title={title}
-                firstAddedInfo={firstAddedInfo}
-                secondAddedInfo={secondAddedInfo}
-            />
+            {data.map((card, key) => (
+                <Item card={card} key={card.code} />
+            ))}
         </Container>
     )
 }

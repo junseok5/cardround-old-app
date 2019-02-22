@@ -1,7 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 import Section from "../Section"
-import { FlatList } from 'react-native'
+import { FlatList } from "react-native"
+import { LazyloadScrollView, LazyloadImage } from "react-native-lazyload"
 
 const Container = styled.View`
     padding-left: 10px;
@@ -38,46 +39,44 @@ const ItemTitle = styled.Text`
     font-weight: ${props => props.weight};
     font-size: ${props => props.fontSize};
     height: 18px;
+    text-align: center;
 `
 
 const FirstAddedInfo = styled.Text`
     font-weight: ${props => props.weight};
     font-size: ${props => props.fontSize};
+    text-align: center;
 `
 
 const SecondAddedInfo = styled.Text`
     font-weight: ${props => props.weight};
     font-size: ${props => props.fontSize};
+    text-align: center;
 `
 
 class Item extends React.PureComponent {
     render() {
         const {
-            photoUrl,
-            layoutWidth = "150px",
-            layoutHeight = "150px",
-            isRank = false,
-            title,
-            titleWeight = "normal",
-            titleSize = "14px",
-            firstAddedInfo,
-            firstAddedInfoWeight = "normal",
-            firstAddedInfoSize = "14px",
-            Link,
-            secondAddedInfo,
-            secondAddedInfoWeight = "normal",
-            secondAddedInfoSize = "14px"
-        } = this.props.card
+            card,
+            layoutWidth,
+            layoutHeight,
+            isRank,
+            titleWeight,
+            titleSize,
+            firstAddedInfoWeight,
+            firstAddedInfoSize,
+            secondAddedInfoWeight,
+            secondAddedInfoSize
+        } = this.props
         return (
             <ItemContainer layoutWidth={layoutWidth}>
-                <ItemPhoto
-                    resizeMethod="resize"
-                    layoutWidth={layoutWidth}
-                    layoutHeight={layoutHeight}
-                    isRank={isRank}
-                    source={{
-                        uri: photoUrl
+                <LazyloadImage
+                    host="board"
+                    style={{
+                        width: Number(layoutWidth),
+                        height: Number(layoutHeight)
                     }}
+                    source={{ uri: card.thumbnail }}
                 />
                 {isRank && (
                     <ItemRank layoutWidth={layoutWidth}>
@@ -86,24 +85,24 @@ class Item extends React.PureComponent {
                 )}
 
                 <ItemTitle weight={titleWeight} fontSize={titleSize}>
-                    {title}
+                    {card.title}
                 </ItemTitle>
 
-                {firstAddedInfo && (
+                {card.firstAddedInfo && (
                     <FirstAddedInfo
                         weight={firstAddedInfoWeight}
                         fontSize={firstAddedInfoSize}
                     >
-                        {firstAddedInfo}
+                        {card.firstAddedInfo}
                     </FirstAddedInfo>
                 )}
 
-                {secondAddedInfo && (
+                {card.secondAddedInfo && (
                     <SecondAddedInfo
                         weight={secondAddedInfoWeight}
                         fontSize={secondAddedInfoSize}
                     >
-                        {secondAddedInfo}
+                        {card.secondAddedInfo}
                     </SecondAddedInfo>
                 )}
             </ItemContainer>
@@ -112,26 +111,42 @@ class Item extends React.PureComponent {
 }
 
 class PhotoLayout extends React.PureComponent {
-    _keyExtractor = (item, index) => item.code
-
-    _renderItem = ({item}) => (
-        <Item
-            card={item}
-        />
-    )
-
     render() {
+        const {
+            layoutWidth = "150",
+            layoutHeight = "150",
+            isRank = false,
+            titleWeight = "normal",
+            titleSize = "14px",
+            firstAddedInfoWeight = "normal",
+            firstAddedInfoSize = "14px",
+            secondAddedInfoWeight = "normal",
+            secondAddedInfoSize = "14px"
+        } = this.props
         return (
             <Container>
-                {/* <Section horizontal={true}> */}
-                    <FlatList
-                        data={this.props.data}
-                        renderItem={this._renderItem}
-                        keyExtractor={this._keyExtractor}
-                        horizontal={true}
-                        showsHorizontalScrollIndicator={false}
-                    />
-                {/* </Section> */}
+                <LazyloadScrollView
+                    name="card"
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                >
+                    {this.props.data.map(card => (
+                        <Item
+                            card={card}
+                            key={card.code}
+                            layoutWidth={layoutWidth}
+                            layoutHeight={layoutHeight}
+                            isRank={isRank}
+                            titleWeight={titleWeight}
+                            titleSize={titleSize}
+                            firstAddedInfoWeight={firstAddedInfoWeight}
+                            firstAddedInfoSize={firstAddedInfoSize}
+                            secondAddedInfoWeight={secondAddedInfoWeight}
+                            secondAddedInfoSize={secondAddedInfoSize}
+                            key={card.code}
+                        />
+                    ))}
+                </LazyloadScrollView>
             </Container>
         )
     }
