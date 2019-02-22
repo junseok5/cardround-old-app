@@ -6,7 +6,7 @@ import {
 } from "react-navigation"
 import { mainColor } from '../constants/Colors'
 
-import TabBarIcon from "../components/TabBarIcon"
+import TabBarIcon from "../components/common/TabBarIcon"
 import HomeScreen from "../screens/HomeScreen"
 import LinksScreen from "../screens/LinksScreen"
 import ProfileScreen from "../screens/ProfileScreen"
