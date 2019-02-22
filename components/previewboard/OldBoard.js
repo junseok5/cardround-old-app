@@ -1,5 +1,5 @@
 import React from "react"
-import TextLayout from "./TextLayout"
+import TextLayout from "../common/TextLayout"
 
 const OldBoard = ({ data }) => {
     return (

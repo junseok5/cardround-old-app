@@ -1,5 +1,5 @@
 import React from "react"
-import PhotoLayout from "./PhotoLayout"
+import PhotoLayout from "../common/PhotoLayout"
 
 const Chart = ({ data }) => {
     return (
@@ -10,6 +10,7 @@ const Chart = ({ data }) => {
             isRank={true}
             titleSize="14px"
             firstAddedInfoSize="12px"
+            numberOfLines={1}
         />
     )
 }

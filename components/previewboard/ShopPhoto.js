@@ -1,5 +1,5 @@
 import React from "react"
-import PhotoLayout from "./PhotoLayout"
+import PhotoLayout from "../common/PhotoLayout"
 
 const ShopPhoto = ({ data }) => {
     return (

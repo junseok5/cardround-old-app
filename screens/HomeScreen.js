@@ -1,8 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import PreviewBoard from "../components/PreviewBoard"
+import PreviewBoard from "../components/previewboard/PreviewBoard"
 import { LazyloadScrollView } from "react-native-lazyload"
-import { ScrollView } from 'react-native'
 
 const Container = styled.View`
     padding-top: 40px;
@@ -69,7 +68,7 @@ const data = [
             {
                 code: "1",
                 thumbnail:
-                    "http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81616/81616_185.jp",
+                    "http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81616/81616_185.jpg",
                 title: "사바하",
                 firstAddedInfo: "예매율 27.4%",
                 secondAddedInfo: "No.1"
@@ -198,14 +197,14 @@ export default class HomeScreen extends React.Component {
         return (
             <Container>
                 <LazyloadScrollView
-                    name="board"
+                    name="home-scroll"
                     showsHorizontalScrollIndicator={false}
                 >
                     <HContainer>
                         <PageTitle>팔로우 보드</PageTitle>
                     </HContainer>
                     {data.map((previewboard, key) => (
-                        <PreviewBoard data={previewboard} key={key} />
+                        <PreviewBoard previewboardData={previewboard} key={key} />
                     ))}
                 </LazyloadScrollView>
             </Container>
