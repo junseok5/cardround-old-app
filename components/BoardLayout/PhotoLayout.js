@@ -13,10 +13,10 @@ const ItemContainer = styled.View`
     margin-right: 10px;
 `
 
-const ItemPhoto = styled.Image`
+const ImageWrap = styled.View`
     width: ${props => props.layoutWidth};
     height: ${props => props.layoutHeight};
-    margin-bottom: ${props => (!props.isRank ? "5px" : "0px")};
+    background-color: #ecf0f1;
 `
 
 const ItemRank = styled.View`
@@ -70,17 +70,20 @@ class Item extends React.PureComponent {
         } = this.props
         return (
             <ItemContainer layoutWidth={layoutWidth}>
-                <LazyloadImage
-                    host="board"
-                    style={{
-                        width: Number(layoutWidth),
-                        height: Number(layoutHeight)
-                    }}
-                    source={{ uri: card.thumbnail }}
-                />
+                <ImageWrap layoutWidth={layoutWidth} layoutHeight={layoutHeight}>
+                    <LazyloadImage
+                        host="board"
+                        style={{
+                            width: Number(layoutWidth),
+                            height: Number(layoutHeight),
+                            marginBottom: isRank ? 0 : 5
+                        }}
+                        source={{ uri: card.thumbnail }}
+                    />
+                </ImageWrap>
                 {isRank && (
                     <ItemRank layoutWidth={layoutWidth}>
-                        <ItemRankText>No.1</ItemRankText>
+                        <ItemRankText>{card.secondAddedInfo}</ItemRankText>
                     </ItemRank>
                 )}
 
@@ -97,10 +100,10 @@ class Item extends React.PureComponent {
                     </FirstAddedInfo>
                 )}
 
-                {card.secondAddedInfo && (
+                {card.secondAddedInfo && !isRank && (
                     <SecondAddedInfo
                         weight={secondAddedInfoWeight}
-                        fontSize={secondAddedInfoSize}
+                        fontSize={econdAddedInfoSize}
                     >
                         {card.secondAddedInfo}
                     </SecondAddedInfo>

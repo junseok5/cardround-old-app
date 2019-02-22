@@ -8,6 +8,7 @@ const Chart = ({ data }) => {
             layoutWidth="110"
             layoutHeight="160"
             isRank={true}
+            titleSize="14px"
             firstAddedInfoSize="12px"
         />
     )

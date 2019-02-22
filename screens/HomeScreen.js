@@ -69,36 +69,41 @@ const data = [
             {
                 code: "1",
                 thumbnail:
-                    "http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81616/81616_185.jpg",
+                    "http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81616/81616_185.jp",
                 title: "사바하",
-                firstAddedInfo: "예매율 27.4%"
+                firstAddedInfo: "예매율 27.4%",
+                secondAddedInfo: "No.1"
             },
             {
                 code: "2",
                 thumbnail: "http://contents.cgv.co.kr/Upload/Movie/38970/p.gif",
                 title: "해리포터와 비밀의 방",
-                firstAddedInfo: "예매율 16.8%"
+                firstAddedInfo: "예매율 16.8%",
+                secondAddedInfo: "No.2"
             },
             {
                 code: "3",
                 thumbnail:
                     "http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81581/81581_185.jpg",
                 title: "증인",
-                firstAddedInfo: "예매율 13.8%"
+                firstAddedInfo: "예매율 13.8%",
+                secondAddedInfo: "No.3"
             },
             {
                 code: "4",
                 thumbnail:
                     "http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81552/81552_185.jpg",
                 title: "극한직업",
-                firstAddedInfo: "예매율 12.0%"
+                firstAddedInfo: "예매율 12.0%",
+                secondAddedInfo: "No.4"
             },
             {
                 code: "5",
                 thumbnail:
                     "http://img.cgv.co.kr/Movie/Thumbnail/Poster/000081/81585/81585_185.jpg",
                 title: "신데렐라 - 마법 반지의 비밀",
-                firstAddedInfo: "예매율 4.0%"
+                firstAddedInfo: "예매율 4.0%",
+                secondAddedInfo: "No.5"
             }
         ],
         websiteThumbnail: "http://img.cgv.co.kr/R2014/images/title/h1_cgv.png",

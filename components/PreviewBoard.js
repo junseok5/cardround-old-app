@@ -31,6 +31,8 @@ const BoardThumbnail = styled.Image`
     height: 35px;
     margin-right: 10px;
     border-radius: 50;
+    border-color: #ccc;
+    border-width: 0.5px;
 `
 
 const BoardName = styled.Text`
@@ -72,10 +74,10 @@ const PreviewBoard = ({ data }) => {
                 />
             </Header>
             <Main>
-                {layoutType === "NEWS_PHOTO" && <NewsPhoto _id={_id} data={cards} />}
-                {layoutType === "CHART" && <Chart _id={_id} data={cards} />}
-                {layoutType === "OLD_BOARD" && <OldBoard _id={_id} data={cards} />}
-                {layoutType === "SHOP_PHOTO" && <ShopPhoto _id={_id} data={cards} />}
+                {layoutType === "NEWS_PHOTO" && <NewsPhoto data={cards} />}
+                {layoutType === "CHART" && <Chart data={cards} />}
+                {layoutType === "OLD_BOARD" && <OldBoard data={cards} />}
+                {layoutType === "SHOP_PHOTO" && <ShopPhoto data={cards} />}
             </Main>
         </Container>
     )
