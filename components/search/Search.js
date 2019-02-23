@@ -4,8 +4,8 @@ import styled from "styled-components"
 import { Icon } from "expo"
 
 const Container = styled.View`
-    padding-left: 15px;
-    padding-right: 15px;
+    /* padding-left: 15px; */
+    /* padding-right: 15px; */
 `
 
 const SearchWrap = styled.View`

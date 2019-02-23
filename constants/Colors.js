@@ -11,5 +11,6 @@ export default {
     warningBackground: "#EAEB5E",
     warningText: "#666804",
     noticeBackground: mainColor,
-    noticeText: "#fff"
+    noticeText: "#fff",
+    thumbnail: "#ecf0f1"
 }

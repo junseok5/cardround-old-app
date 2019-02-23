@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react"
 import styled from "styled-components"
+import Colors from '../../constants/Colors'
 import { LazyloadImage } from "react-native-lazyload"
 
 const Container = styled.View`
@@ -7,11 +8,11 @@ const Container = styled.View`
     margin-right: 10px;
 `
 
-const ImageWrap = styled.View`
+const Thumbnail = styled.View`
     width: ${props => props.layoutWidth};
     height: ${props => props.layoutHeight};
     margin-bottom: ${props => (props.isRank ? "0" : "5px")};
-    background-color: #ecf0f1;
+    background-color: ${Colors.thumbnail};
 `
 
 const Rank = styled.View`
@@ -67,7 +68,7 @@ class CardPhoto extends PureComponent {
 
         return (
             <Container layoutWidth={layoutWidth}>
-                <ImageWrap
+                <Thumbnail
                     layoutWidth={layoutWidth}
                     layoutHeight={layoutHeight}
                     isRank={isRank}
@@ -80,7 +81,7 @@ class CardPhoto extends PureComponent {
                         }}
                         source={{ uri: card.thumbnail }}
                     />
-                </ImageWrap>
+                </Thumbnail>
                 {isRank && (
                     <Rank layoutWidth={layoutWidth}>
                         <RankText numberOfLines={1}>

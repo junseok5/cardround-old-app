@@ -6,7 +6,7 @@ import Colors from "../../constants/Colors"
 const selected = "최신"
 
 const Container = styled.View`
-    padding: 10px 20px;
+    padding: 10px 5px;
 `
 
 const MenuText = styled.Text`
