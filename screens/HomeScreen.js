@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import PreviewBoard from "../components/previewboard/PreviewBoard"
 import { LazyloadScrollView } from "react-native-lazyload"
-import SearchModal from "../components/common/SearchModal";
+import SearchModal from "../components/search/SearchModal";
 
 const Container = styled.View`
     padding-top: 40px;

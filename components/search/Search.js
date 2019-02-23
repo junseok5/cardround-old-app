@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { TouchableHighlight } from "react-native"
+import { TouchableWithoutFeedback } from "react-native"
 import styled from "styled-components"
 import { Icon } from "expo"
 
@@ -33,7 +33,7 @@ class Search extends Component {
     render() {
         return (
             <Container>
-                <TouchableHighlight>
+                <TouchableWithoutFeedback>
                     <SearchWrap>
                         <SearchButton>
                             <Icon.Feather
@@ -45,7 +45,7 @@ class Search extends Component {
                             <SText>검색</SText>
                         </SearchButton>
                     </SearchWrap>
-                </TouchableHighlight>
+                </TouchableWithoutFeedback>
             </Container>
         )
     }

@@ -80,7 +80,7 @@ const RecentKeyword = styled.Text`
 
 class SearchModal extends Component {
     state = {
-        visible: true
+        visible: false
     }
 
     _closeModal = () => {
