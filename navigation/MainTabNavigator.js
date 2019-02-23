@@ -3,6 +3,7 @@ import {
     createStackNavigator,
     createBottomTabNavigator
 } from "react-navigation"
+import Colors from '../constants/Colors'
 import TabBarIcon from "../components/common/TabBarIcon"
 import HomeScreen from "../screens/HomeScreen"
 import WebsitesScreen from "../screens/WebsitesScreen"
@@ -10,7 +11,7 @@ import ProfileScreen from "../screens/ProfileScreen"
 
 const tabBarOptions = {
     activeTintColor: "#000",
-    inactiveTintColor: "#ccc"
+    inactiveTintColor: Colors.supportColor
 }
 
 const HomeStack = createStackNavigator({

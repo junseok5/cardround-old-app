@@ -21,6 +21,8 @@ const Rank = styled.View`
     height: 20px;
     margin-bottom: 5px;
     background: #e74c3c;
+    border-bottom-left-radius: 4;
+    border-bottom-right-radius: 4;
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -79,7 +81,10 @@ class CardPhoto extends PureComponent {
                         style={{
                             width: Number(layoutWidth),
                             height: Number(layoutHeight),
-                            borderRadius: 4
+                            borderTopLeftRadius: 4,
+                            borderTopRightRadius: 4,
+                            borderBottomLeftRadius: !isRank ? 4 : 0,
+                            borderBottomRightRadius: !isRank ? 4 : 0
                         }}
                         source={{ uri: card.thumbnail }}
                     />
