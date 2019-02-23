@@ -20,7 +20,7 @@ const SearchBox = styled.View`
     padding-right: 15px;
     margin-right: 10px;
     border-radius: 4px;
-    background: #ecf0f1;
+    background: ${Colors.buttonBackground};
     flex-direction: row;
     align-items: center;
 `
@@ -30,7 +30,7 @@ const SearchInput = styled.TextInput`
     height: 40px;
     padding-left: 10px;
     padding-right: 10px;
-    background: #ecf0f1;
+    background: ${Colors.buttonBackground};
     font-size: 17px;
     font-weight: bold;
 `

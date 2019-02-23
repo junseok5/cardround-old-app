@@ -2,10 +2,11 @@ import React, { Component } from "react"
 import styled from "styled-components"
 import { TouchableWithoutFeedback } from "react-native"
 import Search from "../components/search/Search"
-import SearchModal from "../components/search/SearchModal"
+import SearchModal from "../components/modal/SearchModal"
 import Menu from "../components/menu/Menu"
 import { LazyloadScrollView } from "react-native-lazyload"
 import Website from "../components/website/Website"
+import WebRequestModal from "../components/modal/WebRequestModal"
 import Colors from "../constants/Colors"
 import { Icon } from "expo"
 
@@ -127,6 +128,7 @@ class WebsitesScreen extends Component {
                 <Search />
                 <SearchModal />
                 <Menu />
+                <WebRequestModal />
                 <LazyloadScrollView
                     name="website-scroll"
                     showsVerticalScrollIndicator={false}

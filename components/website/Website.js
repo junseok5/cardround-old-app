@@ -11,8 +11,8 @@ const Container = styled.View`
 `
 
 const Thumbnail = styled.View`
-    width: 70px;
-    height: 70px;
+    width: 64px;
+    height: 64px;
     background: ${Colors.thumbnail};
     border-radius: 4;
 `
@@ -22,11 +22,12 @@ const MetaInfo = styled.View`
 `
 
 const Name = styled.Text`
-    font-size: 18px;
+    font-size: 17px;
 `
 
 const Follower = styled.Text`
     color: ${Colors.supportColor};
+    font-size: 13px;
 `
 
 class Website extends Component {
@@ -38,8 +39,8 @@ class Website extends Component {
                     <LazyloadImage
                         host="website-scroll"
                         style={{
-                            width: 70,
-                            height: 70,
+                            width: 64,
+                            height: 64,
                             borderRadius: 4
                         }}
                         source={{ uri: websiteData.thumbnail }}

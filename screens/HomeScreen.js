@@ -203,7 +203,10 @@ export default class HomeScreen extends React.Component {
                         <PageTitle>팔로우 보드</PageTitle>
                     </HContainer>
                     {data.map((previewboard, key) => (
-                        <PreviewBoard previewboardData={previewboard} key={key} />
+                        <PreviewBoard
+                            previewboardData={previewboard}
+                            key={key}
+                        />
                     ))}
                 </LazyloadScrollView>
             </Container>
