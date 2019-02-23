@@ -1,9 +1,9 @@
 const mainColor = "#00b894"
-const shallowGray = "#ecf0f1"
+const shallowGray = "#EFEFEF"
 
 export default {
     mainColor,
-    supportColor: "#7A7A7A",
+    supportColor: "#8E8E8E",
     tabIconDefault: "#ccc",
     tabIconSelected: '#000',
     tabBar: "#fff",
@@ -15,5 +15,5 @@ export default {
     noticeText: "#fff",
     thumbnail: shallowGray,
     borderColor: shallowGray,
-    buttonBorder: "#dcdde1"
+    buttonBackground: shallowGray
 }

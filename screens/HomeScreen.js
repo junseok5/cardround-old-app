@@ -5,7 +5,6 @@ import { LazyloadScrollView } from "react-native-lazyload"
 
 const Container = styled.View`
     padding-top: 40px;
-    padding-bottom: 10px;
 `
 
 const HContainer = styled.View`

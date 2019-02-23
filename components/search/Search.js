@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { TouchableWithoutFeedback } from "react-native"
 import styled from "styled-components"
+import Colors from '../../constants/Colors'
 import { Icon } from "expo"
 
 const Container = styled.View`
@@ -13,7 +14,8 @@ const SearchWrap = styled.View`
     padding-left: 15px;
     padding-right: 15px;
     border-radius: 4px;
-    background: #ecf0f1;
+    /* background: #ecf0f1; */
+    background: ${Colors.buttonBackground};
     flex-direction: row;
     align-items: center;
 `
@@ -26,7 +28,8 @@ const SearchButton = styled.View`
 const SText = styled.Text`
     font-size: 18px;
     font-weight: bold;
-    color: #576574;
+    /* color: #576574; */
+    color: ${Colors.supportColor};
 `
 
 class Search extends Component {
@@ -40,7 +43,7 @@ class Search extends Component {
                                 name="search"
                                 size={20}
                                 style={{ marginRight: 10 }}
-                                color="#576574"
+                                color={Colors.supportColor}
                             />
                             <SText>검색</SText>
                         </SearchButton>

@@ -8,8 +8,6 @@ const Container = styled.View`
     padding-bottom: 5px;
     flex-direction: row;
     align-items: center;
-    /* border-bottom-width: 1px;
-    border-bottom-color: #ecf0f1; */
 `
 
 const Thumbnail = styled.View`
@@ -24,7 +22,7 @@ const MetaInfo = styled.View`
 `
 
 const Name = styled.Text`
-    font-size: 20px;
+    font-size: 18px;
 `
 
 const Follower = styled.Text`
@@ -49,7 +47,7 @@ class Website extends Component {
                 </Thumbnail>
                 <MetaInfo>
                     <Name>{websiteData.name}</Name>
-                    <Follower>팔로워 {websiteData.follower}</Follower>
+                    <Follower>팔로워 {websiteData.follower}명</Follower>
                 </MetaInfo>
             </Container>
         )

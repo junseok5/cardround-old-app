@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import styled from "styled-components"
-import { TouchableOpacity } from "react-native"
+import { TouchableWithoutFeedback } from "react-native"
 import Search from "../components/search/Search"
 import SearchModal from "../components/search/SearchModal"
 import Menu from "../components/menu/Menu"
@@ -93,25 +93,27 @@ const data = [
 ]
 
 const Container = styled.View`
-    padding: 35px 15px 15px 15px;
+    padding: 35px 15px 0px 15px;
     margin-bottom: 80px;
 `
 
 const WebsiteRequest = styled.View`
     flex-direction: row;
     justify-content: center;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding-top: 6px;
+    padding-bottom: 6px;
     margin-top: 10px;
     margin-bottom: 10px;
-    border-width: 1px;
-    border-color: ${Colors.buttonBorder};
+    background: ${Colors.buttonBackground};
     border-radius: 4;
 `
 
 const WRText = styled.Text`
+    font-weight: bold;
     font-size: 17px;
     color: ${Colors.supportColor};
+    /* color: ${Colors.supportColor}; */
+    /* color: #fff; */
 `
 
 class WebsitesScreen extends Component {
@@ -129,7 +131,7 @@ class WebsitesScreen extends Component {
                     name="website-scroll"
                     showsVerticalScrollIndicator={false}
                 >
-                    <TouchableOpacity>
+                    <TouchableWithoutFeedback>
                         <WebsiteRequest>
                             <Icon.Feather
                                 name="edit"
@@ -139,7 +141,7 @@ class WebsitesScreen extends Component {
                             />
                             <WRText>웹사이트 요청하기</WRText>
                         </WebsiteRequest>
-                    </TouchableOpacity>
+                    </TouchableWithoutFeedback>
                     {data.map(website => (
                         <Website websiteData={website} key={website._id} />
                     ))}

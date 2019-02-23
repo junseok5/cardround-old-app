@@ -6,5 +6,6 @@ Cardround react native app. (Android, IOS)
 
 * react
 * react-native
+* expo
 * styled-components
 * redux
