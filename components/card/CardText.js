@@ -1,4 +1,4 @@
-import React from "react"
+import React, { PureComponent } from "react"
 import styled from "styled-components"
 
 const Container = styled.View`
@@ -31,13 +31,9 @@ const PublishedDate = styled.Text`
     color: #747474;
 `
 
-class CardText extends React.PureComponent {
+class CardText extends PureComponent {
     render() {
-        const {
-            title,
-            publishedDate,
-            firstAddedInfo
-        } = this.props.card
+        const { title, publishedDate, firstAddedInfo } = this.props.card
         return (
             <Container>
                 <Title numberOfLines={2}>{title}</Title>

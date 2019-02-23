@@ -48,10 +48,6 @@ const ListItem = styled.View`
     justify-content: space-between;
 `
 
-const ListTextContainer = styled.View`
-    width: 100%;
-`
-
 const ListText = styled.Text`
     font-size: 18px;
     color: #8c8c8c;

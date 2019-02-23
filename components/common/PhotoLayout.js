@@ -1,4 +1,4 @@
-import React from "react"
+import React, { PureComponent } from "react"
 import styled from "styled-components"
 import { LazyloadScrollView } from "react-native-lazyload"
 import CardPhoto from "../card/CardPhoto"
@@ -7,7 +7,7 @@ const Container = styled.View`
     padding-left: 10px;
 `
 
-class PhotoLayout extends React.PureComponent {
+class PhotoLayout extends PureComponent {
     render() {
         const {
             layoutWidth = "150",

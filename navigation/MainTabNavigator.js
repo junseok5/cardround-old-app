@@ -1,19 +1,16 @@
 import React from "react"
-import { Platform } from "react-native"
 import {
     createStackNavigator,
     createBottomTabNavigator
 } from "react-navigation"
-import { mainColor } from '../constants/Colors'
-
 import TabBarIcon from "../components/common/TabBarIcon"
 import HomeScreen from "../screens/HomeScreen"
-import LinksScreen from "../screens/LinksScreen"
+import WebsitesScreen from "../screens/WebsitesScreen"
 import ProfileScreen from "../screens/ProfileScreen"
 
 const tabBarOptions = {
-  activeTintColor: '#000',
-  inactiveTintColor: '#ccc'
+    activeTintColor: "#000",
+    inactiveTintColor: "#ccc"
 }
 
 const HomeStack = createStackNavigator({
@@ -26,11 +23,11 @@ HomeStack.navigationOptions = {
     tabBarOptions
 }
 
-const LinksStack = createStackNavigator({
-    Links: LinksScreen
+const WebsitesStack = createStackNavigator({
+    Websites: WebsitesScreen
 })
 
-LinksStack.navigationOptions = {
+WebsitesStack.navigationOptions = {
     tabBarLabel: "웹사이트",
     tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="chrome" />,
     tabBarOptions
@@ -48,6 +45,6 @@ ProfileStack.navigationOptions = {
 
 export default createBottomTabNavigator({
     HomeStack,
-    LinksStack,
+    WebsitesStack,
     ProfileStack
 })

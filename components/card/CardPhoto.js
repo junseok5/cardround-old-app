@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { PureComponent } from "react"
+import styled from "styled-components"
 import { LazyloadImage } from "react-native-lazyload"
 
 const Container = styled.View`
@@ -10,7 +10,7 @@ const Container = styled.View`
 const ImageWrap = styled.View`
     width: ${props => props.layoutWidth};
     height: ${props => props.layoutHeight};
-    margin-bottom: ${props => props.isRank ? "0" : "5px"};
+    margin-bottom: ${props => (props.isRank ? "0" : "5px")};
     background-color: #ecf0f1;
 `
 
@@ -48,7 +48,7 @@ const SecondAddedInfo = styled.Text`
     text-align: center;
 `
 
-class CardPhoto extends React.PureComponent {
+class CardPhoto extends PureComponent {
     render() {
         const {
             card,
@@ -76,7 +76,7 @@ class CardPhoto extends React.PureComponent {
                         host="home-scroll"
                         style={{
                             width: Number(layoutWidth),
-                            height: Number(layoutHeight),
+                            height: Number(layoutHeight)
                         }}
                         source={{ uri: card.thumbnail }}
                     />

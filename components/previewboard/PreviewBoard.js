@@ -1,4 +1,4 @@
-import React from "react"
+import React, { PureComponent } from "react"
 import styled from "styled-components"
 import Colors from "../../constants/Colors"
 import { Button } from "react-native"
@@ -46,7 +46,7 @@ const WebsiteName = styled.Text`
 
 const Main = styled.View``
 
-class PreviewBoard extends React.Component {
+class PreviewBoard extends PureComponent {
     render() {
         const {
             _id,
