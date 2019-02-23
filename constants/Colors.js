@@ -1,4 +1,5 @@
 const mainColor = "#00b894"
+const shallowGray = "#ecf0f1"
 
 export default {
     mainColor,
@@ -12,5 +13,7 @@ export default {
     warningText: "#666804",
     noticeBackground: mainColor,
     noticeText: "#fff",
-    thumbnail: "#ecf0f1"
+    thumbnail: shallowGray,
+    borderColor: shallowGray,
+    buttonBorder: "#dcdde1"
 }

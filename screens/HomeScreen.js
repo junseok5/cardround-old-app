@@ -2,7 +2,6 @@ import React from "react"
 import styled from "styled-components"
 import PreviewBoard from "../components/previewboard/PreviewBoard"
 import { LazyloadScrollView } from "react-native-lazyload"
-import SearchModal from "../components/search/SearchModal";
 
 const Container = styled.View`
     padding-top: 40px;
@@ -197,8 +196,7 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
             <Container>
-                <SearchModal />
-                {/* <LazyloadScrollView
+                <LazyloadScrollView
                     name="home-scroll"
                     showsHorizontalScrollIndicator={false}
                 >
@@ -208,7 +206,7 @@ export default class HomeScreen extends React.Component {
                     {data.map((previewboard, key) => (
                         <PreviewBoard previewboardData={previewboard} key={key} />
                     ))}
-                </LazyloadScrollView> */}
+                </LazyloadScrollView>
             </Container>
         )
     }

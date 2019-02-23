@@ -1,10 +1,13 @@
 import React, { Component } from "react"
 import styled from "styled-components"
+import { TouchableOpacity } from "react-native"
 import Search from "../components/search/Search"
 import SearchModal from "../components/search/SearchModal"
 import Menu from "../components/menu/Menu"
 import { LazyloadScrollView } from "react-native-lazyload"
 import Website from "../components/website/Website"
+import Colors from "../constants/Colors"
+import { Icon } from "expo"
 
 const data = [
     {
@@ -23,8 +26,7 @@ const data = [
     },
     {
         _id: "3",
-        thumbnail:
-            "http://www.snu.ac.kr/images/common/layout/logo.gif",
+        thumbnail: "http://www.snu.ac.kr/images/common/layout/logo.gif",
         name: "서울대",
         follower: 73650
     },
@@ -44,8 +46,7 @@ const data = [
     },
     {
         _id: "6",
-        thumbnail:
-            "http://www.snu.ac.kr/images/common/layout/logo.gif",
+        thumbnail: "http://www.snu.ac.kr/images/common/layout/logo.gif",
         name: "서울대",
         follower: 73650
     },
@@ -65,8 +66,7 @@ const data = [
     },
     {
         _id: "9",
-        thumbnail:
-            "http://www.snu.ac.kr/images/common/layout/logo.gif",
+        thumbnail: "http://www.snu.ac.kr/images/common/layout/logo.gif",
         name: "서울대",
         follower: 73650
     },
@@ -86,8 +86,7 @@ const data = [
     },
     {
         _id: "12",
-        thumbnail:
-            "http://www.snu.ac.kr/images/common/layout/logo.gif",
+        thumbnail: "http://www.snu.ac.kr/images/common/layout/logo.gif",
         name: "서울대",
         follower: 73650
     }
@@ -96,6 +95,23 @@ const data = [
 const Container = styled.View`
     padding: 35px 15px 15px 15px;
     margin-bottom: 80px;
+`
+
+const WebsiteRequest = styled.View`
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-width: 1px;
+    border-color: ${Colors.buttonBorder};
+    border-radius: 4;
+`
+
+const WRText = styled.Text`
+    font-size: 17px;
+    color: ${Colors.supportColor};
 `
 
 class WebsitesScreen extends Component {
@@ -113,6 +129,17 @@ class WebsitesScreen extends Component {
                     name="website-scroll"
                     showsVerticalScrollIndicator={false}
                 >
+                    <TouchableOpacity>
+                        <WebsiteRequest>
+                            <Icon.Feather
+                                name="edit"
+                                size={20}
+                                style={{ marginRight: 3 }}
+                                color={Colors.supportColor}
+                            />
+                            <WRText>웹사이트 요청하기</WRText>
+                        </WebsiteRequest>
+                    </TouchableOpacity>
                     {data.map(website => (
                         <Website websiteData={website} key={website._id} />
                     ))}

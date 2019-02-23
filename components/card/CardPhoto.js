@@ -13,6 +13,7 @@ const Thumbnail = styled.View`
     height: ${props => props.layoutHeight};
     margin-bottom: ${props => (props.isRank ? "0" : "5px")};
     background-color: ${Colors.thumbnail};
+    border-radius: 4;
 `
 
 const Rank = styled.View`
@@ -77,7 +78,8 @@ class CardPhoto extends PureComponent {
                         host="home-scroll"
                         style={{
                             width: Number(layoutWidth),
-                            height: Number(layoutHeight)
+                            height: Number(layoutHeight),
+                            borderRadius: 4
                         }}
                         source={{ uri: card.thumbnail }}
                     />
