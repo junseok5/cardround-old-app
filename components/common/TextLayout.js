@@ -1,11 +1,12 @@
 import React from "react"
 import styled from "styled-components"
 import CardText from "../card/CardText"
+import Colors from '../../constants/Colors'
 
 const Container = styled.View`
-    background: #fafafa;
+    background: ${Colors.textLayout};
     border-top-width: 1px;
-    border-top-color: #ccc;
+    border-top-color: ${Colors.thickBorder};
 `
 
 const TextLayout = ({ data }) => {

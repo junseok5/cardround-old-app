@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react"
 import styled from "styled-components"
-import { ScrollView, Webview } from "react-native"
+import { ScrollView } from "react-native"
 import CardBamboo from "../card/CardBamboo"
 
 const Container = styled.View``

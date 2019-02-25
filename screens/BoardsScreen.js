@@ -1,7 +1,10 @@
-import React from "react"
+import React, { Component } from "react"
 import styled from "styled-components"
-import PreviewBoard from "../components/previewboard/PreviewBoard"
+import Search from "../components/search/Search"
+import SearchModal from "../components/modal/SearchModal"
+import Menu from "../components/menu/Menu"
 import { LazyloadScrollView } from "react-native-lazyload"
+import PreviewBoard from "../components/previewboard/PreviewBoard"
 
 const data = [
     {
@@ -206,21 +209,18 @@ const data = [
 ]
 
 const Container = styled.View`
-    padding-top: 40px;
+    padding-top: 35px;
+    margin-bottom: 80px;
 `
 
-const HContainer = styled.View`
+const Header = styled.View`
     padding-left: 15px;
     padding-right: 15px;
-    margin-bottom: 15px;
 `
 
-const PageTitle = styled.Text`
-    font-size: 18px;
-    font-weight: bold;
-`
+const menuArr = ["추천", "만화", "영화", "음악", "애니", "요리", "쇼핑", "운동"]
 
-export default class HomeScreen extends React.Component {
+class BoardsScreen extends Component {
     static navigationOptions = {
         header: null
     }
@@ -228,22 +228,26 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
             <Container>
-                {/* <LazyloadScrollView
-                    name="home-scroll"
+                <Header>
+                    <Search />
+                    <SearchModal />
+                    <Menu data={menuArr} />
+                </Header>
+                <LazyloadScrollView
+                    name="boards-scroll"
                     showsVerticalScrollIndicator={false}
                 >
-                    <HContainer>
-                        <PageTitle>팔로우 보드</PageTitle>
-                    </HContainer>
                     {data.map((previewboard, key) => (
                         <PreviewBoard
                             previewboardData={previewboard}
-                            scrollHost="home-scroll"
+                            scrollHost="boards-scroll"
                             key={key}
                         />
                     ))}
-                </LazyloadScrollView> */}
+                </LazyloadScrollView>
             </Container>
         )
     }
 }
+
+export default BoardsScreen

@@ -56,6 +56,7 @@ class CardPhoto extends PureComponent {
     render() {
         const {
             card,
+            scrollHost,
             layoutWidth,
             layoutHeight,
             isRank,
@@ -77,7 +78,7 @@ class CardPhoto extends PureComponent {
                     isRank={isRank}
                 >
                     <LazyloadImage
-                        host="home-scroll"
+                        host={scrollHost}
                         style={{
                             width: Number(layoutWidth),
                             height: Number(layoutHeight),

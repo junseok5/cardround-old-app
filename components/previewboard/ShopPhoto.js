@@ -1,9 +1,14 @@
 import React from "react"
 import PhotoLayout from "../common/PhotoLayout"
 
-const ShopPhoto = ({ data }) => {
+const ShopPhoto = ({ data, scrollHost }) => {
     return (
-        <PhotoLayout data={data} titleSize="13px" firstAddedInfoWeight="bold" />
+        <PhotoLayout
+            data={data}
+            scrollHost={scrollHost}
+            titleSize="13px"
+            firstAddedInfoWeight="bold"
+        />
     )
 }
 

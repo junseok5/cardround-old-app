@@ -6,7 +6,7 @@ import NewsPhoto from "./NewsPhoto"
 import Chart from "./Chart"
 import ShopPhoto from "./ShopPhoto"
 import OldBoard from "./OldBoard"
-import Bamboo from './Bamboo'
+import Bamboo from "./Bamboo"
 
 const Container = styled.View`
     margin-top: 15px;
@@ -49,6 +49,7 @@ const Main = styled.View``
 
 class PreviewBoard extends PureComponent {
     render() {
+        const { previewboardData, scrollHost } = this.props
         const {
             _id,
             name,
@@ -56,7 +57,7 @@ class PreviewBoard extends PureComponent {
             websiteName,
             layoutType,
             cards
-        } = this.props.previewboardData
+        } = previewboardData
 
         return (
             <Container>
@@ -77,10 +78,16 @@ class PreviewBoard extends PureComponent {
                     />
                 </Header>
                 <Main>
-                    {layoutType === "NEWS_PHOTO" && <NewsPhoto data={cards} />}
-                    {layoutType === "CHART" && <Chart data={cards} />}
+                    {layoutType === "NEWS_PHOTO" && (
+                        <NewsPhoto data={cards} scrollHost={scrollHost} />
+                    )}
+                    {layoutType === "CHART" && (
+                        <Chart data={cards} scrollHost={scrollHost} />
+                    )}
                     {layoutType === "OLD_BOARD" && <OldBoard data={cards} />}
-                    {layoutType === "SHOP_PHOTO" && <ShopPhoto data={cards} />}
+                    {layoutType === "SHOP_PHOTO" && (
+                        <ShopPhoto data={cards} scrollHost={scrollHost} />
+                    )}
                     {layoutType === "BAMBOO" && <Bamboo data={cards} />}
                 </Main>
             </Container>

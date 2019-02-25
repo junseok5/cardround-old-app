@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react"
 import styled from "styled-components"
+import Colors from '../../constants/Colors'
 
 const Container = styled.View`
     padding-top: 8px;
@@ -7,7 +8,7 @@ const Container = styled.View`
     flex-direction: row;
     align-items: center;
     border-bottom-width: 1px;
-    border-bottom-color: #ccc;
+    border-bottom-color: ${Colors.thickBorder};
 `
 
 const Title = styled.Text`

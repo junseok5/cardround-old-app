@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react"
 import styled from "styled-components"
 import { Icon } from "expo"
+import Colors from '../../constants/Colors'
 
 const Container = styled.View`
     width: 320px;
@@ -9,9 +10,9 @@ const Container = styled.View`
     margin-left: 10px;
     margin-right: 10px;
     border-width: 1px;
-    border-color: #ccc;
+    border-color: ${Colors.thickBorder};
     border-radius: 4px;
-    background: #fafafa;
+    background: ${Colors.textLayout};
 `
 
 const Title = styled.Text`
@@ -31,17 +32,19 @@ const FbLike = styled.View`
 `
 
 const ThumbsUp = styled.View`
-    /* padding-left: 2px;
-    padding-right: 2px; */
     padding: 2px 4px;
     margin-right: 4px;
-    background: #4080ff;
+    background: ${Colors.fbLikeColor};
     border-radius: 50;
 `
 
-const FbLikeText = styled.Text``
+const FbLikeText = styled.Text`
+    color: ${Colors.fbSupportText};
+`
 
-const FbComments = styled.Text``
+const FbComments = styled.Text`
+    color: ${Colors.fbSupportText};
+`
 
 class CardBamboo extends PureComponent {
     render() {

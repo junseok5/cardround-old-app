@@ -13,18 +13,24 @@ const MenuText = styled.Text`
     margin-right: 15px;
     font-size: 18px;
     font-weight: bold;
-    color: ${props =>
-        props.selected ? "#000" : Colors.supportColor};
+    color: ${props => (props.selected ? "#000" : Colors.supportColor)};
 `
 
-const Menu = () => {
+const Menu = ({ data }) => {
     return (
         <Container>
             <ScrollView
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
             >
-                <TouchableWithoutFeedback>
+                {data.map((item, key) => (
+                    <TouchableWithoutFeedback key={key}>
+                        <MenuText selected={selected === item}>
+                            {item}
+                        </MenuText>
+                    </TouchableWithoutFeedback>
+                ))}
+                {/* <TouchableWithoutFeedback>
                     <MenuText selected={selected === "최신"}>최신</MenuText>
                 </TouchableWithoutFeedback>
                 <TouchableWithoutFeedback>
@@ -46,7 +52,7 @@ const Menu = () => {
                 </TouchableWithoutFeedback>
                 <TouchableWithoutFeedback>
                     <MenuText selected={selected === "쇼핑"}>쇼핑</MenuText>
-                </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback> */}
             </ScrollView>
         </Container>
     )

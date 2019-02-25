@@ -113,9 +113,9 @@ const WRText = styled.Text`
     font-weight: bold;
     font-size: 17px;
     color: ${Colors.supportColor};
-    /* color: ${Colors.supportColor}; */
-    /* color: #fff; */
 `
+
+const menuArr = ["최신", "대학", "영화", "음악", "커뮤니티", "블로그", "쇼핑"]
 
 class WebsitesScreen extends Component {
     static navigationOptions = {
@@ -127,7 +127,7 @@ class WebsitesScreen extends Component {
             <Container>
                 <Search />
                 <SearchModal />
-                <Menu />
+                <Menu data={menuArr} />
                 <WebRequestModal />
                 <LazyloadScrollView
                     name="website-scroll"

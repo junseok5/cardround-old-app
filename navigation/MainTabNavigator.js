@@ -3,9 +3,10 @@ import {
     createStackNavigator,
     createBottomTabNavigator
 } from "react-navigation"
-import Colors from '../constants/Colors'
+import Colors from "../constants/Colors"
 import TabBarIcon from "../components/common/TabBarIcon"
 import HomeScreen from "../screens/HomeScreen"
+import BoardsScreen from "../screens/BoardsScreen"
 import WebsitesScreen from "../screens/WebsitesScreen"
 import ProfileScreen from "../screens/ProfileScreen"
 
@@ -21,6 +22,18 @@ const HomeStack = createStackNavigator({
 HomeStack.navigationOptions = {
     tabBarLabel: "홈",
     tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="home" />,
+    tabBarOptions
+}
+
+const BoardsStack = createStackNavigator({
+    Boards: BoardsScreen
+})
+
+BoardsStack.navigationOptions = {
+    tabBarLabel: "보드",
+    tabBarIcon: ({ focused }) => (
+        <TabBarIcon focused={focused} name="credit-card" />
+    ),
     tabBarOptions
 }
 
@@ -46,6 +59,7 @@ ProfileStack.navigationOptions = {
 
 export default createBottomTabNavigator({
     HomeStack,
+    BoardsStack,
     WebsitesStack,
     ProfileStack
 })

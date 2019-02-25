@@ -8,7 +8,7 @@ export default {
     supportColor: supportColor,
     title: thickColor,
     tabIconDefault: supportColor,
-    tabIconSelected: '#000',
+    tabIconSelected: "#000",
     tabBar: "#fff",
     errorBackground: "red",
     errorText: "#fff",
@@ -18,5 +18,9 @@ export default {
     noticeText: "#fff",
     thumbnail: shallowGray,
     borderColor: shallowGray,
-    buttonBackground: shallowGray
+    thickBorder: "#ccc",
+    buttonBackground: shallowGray,
+    textLayout: "#fafafa",
+    fbSupportText: "#7A7A7A",
+    fbLikeColor: "#4080ff"
 }

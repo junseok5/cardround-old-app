@@ -11,6 +11,7 @@ const Container = styled.View`
 class PhotoLayout extends PureComponent {
     render() {
         const {
+            scrollHost,
             layoutWidth = "150",
             layoutHeight = "150",
             isRank = false,
@@ -34,6 +35,7 @@ class PhotoLayout extends PureComponent {
                         <CardPhoto
                             card={card}
                             key={card.code}
+                            scrollHost={scrollHost}
                             layoutWidth={layoutWidth}
                             layoutHeight={layoutHeight}
                             isRank={isRank}
