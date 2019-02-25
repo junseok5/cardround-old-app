@@ -9,6 +9,8 @@ import HomeScreen from "../screens/HomeScreen"
 import BoardsScreen from "../screens/BoardsScreen"
 import WebsitesScreen from "../screens/WebsitesScreen"
 import ProfileScreen from "../screens/ProfileScreen"
+import DetailWebsite from "../screens/DetailWebsite";
+import DetailBoard from "../screens/DetailBoard";
 
 const tabBarOptions = {
     activeTintColor: "#000",
@@ -16,7 +18,9 @@ const tabBarOptions = {
 }
 
 const HomeStack = createStackNavigator({
-    Home: HomeScreen
+    // Home: HomeScreen
+    // Home: DetailWebsite
+    Home: DetailBoard
 })
 
 HomeStack.navigationOptions = {
