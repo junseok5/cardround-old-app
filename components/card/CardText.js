@@ -33,10 +33,14 @@ const PublishedDate = styled.Text`
 
 class CardText extends PureComponent {
     render() {
-        const { title, publishedDate, firstAddedInfo } = this.props.card
+        const {
+            card,
+            numberOfLines = 2
+        } = this.props
+        const { title, publishedDate, firstAddedInfo } = card
         return (
             <Container>
-                <Title numberOfLines={2}>{title}</Title>
+                <Title numberOfLines={numberOfLines}>{title}</Title>
 
                 {publishedDate && (
                     <PublishedDate>{publishedDate}</PublishedDate>

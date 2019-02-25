@@ -6,6 +6,7 @@ import NewsPhoto from "./NewsPhoto"
 import Chart from "./Chart"
 import ShopPhoto from "./ShopPhoto"
 import OldBoard from "./OldBoard"
+import Bamboo from './Bamboo'
 
 const Container = styled.View`
     margin-top: 15px;
@@ -80,6 +81,7 @@ class PreviewBoard extends PureComponent {
                     {layoutType === "CHART" && <Chart data={cards} />}
                     {layoutType === "OLD_BOARD" && <OldBoard data={cards} />}
                     {layoutType === "SHOP_PHOTO" && <ShopPhoto data={cards} />}
+                    {layoutType === "BAMBOO" && <Bamboo data={cards} />}
                 </Main>
             </Container>
         )

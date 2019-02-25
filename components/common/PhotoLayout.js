@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react"
 import styled from "styled-components"
-import { LazyloadScrollView } from "react-native-lazyload"
+import { ScrollView } from 'react-native'
+// import { LazyloadScrollView } from "react-native-lazyload"
 import CardPhoto from "../card/CardPhoto"
 
 const Container = styled.View`
@@ -24,8 +25,8 @@ class PhotoLayout extends PureComponent {
         } = this.props
         return (
             <Container>
-                <LazyloadScrollView
-                    name="card"
+                <ScrollView
+                    // name="card"
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                 >
@@ -46,7 +47,7 @@ class PhotoLayout extends PureComponent {
                             numberOfLines={numberOfLines}
                         />
                     ))}
-                </LazyloadScrollView>
+                </ScrollView>
             </Container>
         )
     }

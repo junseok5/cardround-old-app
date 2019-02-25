@@ -184,6 +184,39 @@ const data = [
         websiteThumbnail:
             "http://image.musinsa.com/mfile_s01/fb/share_musinsa.png",
         websiteName: "무신사 스토어"
+    },
+    {
+        _id: "5",
+        name: "페이스북",
+        link: "https://www.facebook.com/ChungNamNationalBamboo/",
+        layoutType: "BAMBOO",
+        follower: "22000",
+        cards: [
+            {
+                code: "1",
+                title:
+                    "#충남대숲 81663번째 제보\n2019. 02. 19. 오후 01:39:21\n<불만볶음면>\n**학과 ***회장님 회장하기전부터 말 많던데 올해 **학과 참 걱정되네요. 졸업생 선배분들 대우도 만만치않다던데 졸업식 언제하는지 몇시에하는지 말도 안해주섰다면서요????? ***회장님은 왜 회장 하신거예요...? 졸업생 분들은 이제 학교 떠나니까 신경 안써도되는사람으로 생각하는것인지.. 학부생인 저도 모르는데 졸업생 선배분들은 어떻게 알고가요ㅋㅋㅋㅋㅋㅋ 앞으로의 학교행사에도 이러실건가요?? 다음 행사인 **새터도 신경좀 써주세욬ㅋㅋㅋㅋ",
+                firstAddedInfo: "119명",
+                secondAddedInfo: "댓글 17개"
+            },
+            {
+                code: "2",
+                title:
+                    "##충남대숲 81662번째 제보\n2019. 02. 20. 오전 03:20:53\n<공론화될_수_있는_문제>\n**대학 신입생 학생회비 관련 제보합니다.\n이번 **대학 신입생이 내야할 학생회비에 새터 참가 비용이 포함되어있는데,...\n더 보기",
+                firstAddedInfo: "36명",
+                secondAddedInfo: "댓글 37개"
+            },
+            {
+                code: "3",
+                title:
+                    "#충남대숲 81661번째 제보\n2019. 02. 18. 오후 10:55:39\n<홍보가_기가_막혀>\n안녕하세요! 제 8기 하이트 진로 서포터즈입니다 ! 이번에 저희 하이티스트와 함께할 여러분들을 찾고있습니다 ! 학기중에 시간 많이 빼앗기지 않고 할 수 있는 활동입니다! 많이 참여해주세요!\n-모집인원 : 00명...\n더 보기",
+                firstAddedInfo: "1명",
+                secondAddedInfo: "댓글 2개"
+            }
+        ],
+        websiteThumbnail:
+            "https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/p50x50/16174449_1369479566438381_4274256798739574460_n.jpg?_nc_cat=104&_nc_ht=scontent-icn1-1.xx&oh=471002cf07b472e4a86a0b8f316b7a6e&oe=5CEFE454",
+        websiteName: "충남대 대나무숲"
     }
 ]
 
