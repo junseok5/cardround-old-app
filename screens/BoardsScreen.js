@@ -5,6 +5,7 @@ import SearchModal from "../components/modal/SearchModal"
 import Menu from "../components/menu/Menu"
 import { LazyloadScrollView } from "react-native-lazyload"
 import PreviewBoard from "../components/previewboard/PreviewBoard"
+import Colors from "../constants/Colors";
 
 const data = [
     {
@@ -216,6 +217,8 @@ const Container = styled.View`
 const Header = styled.View`
     padding-left: 15px;
     padding-right: 15px;
+    border-bottom-width: 1px;
+    border-bottom-color: ${Colors.borderColor};
 `
 
 const menuArr = ["추천", "만화", "영화", "음악", "애니", "요리", "쇼핑", "운동"]

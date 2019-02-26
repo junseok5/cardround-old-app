@@ -1,10 +1,11 @@
 import React, { PureComponent } from "react"
 import styled from "styled-components"
 import Colors from '../../constants/Colors'
+import { verticalScale, moderateScale } from 'react-native-size-matters'
 
 const Container = styled.View`
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: ${moderateScale(8)};
+    padding-bottom: ${moderateScale(8)};
     flex-direction: row;
     align-items: center;
     border-bottom-width: 1px;
@@ -13,20 +14,20 @@ const Container = styled.View`
 
 const Title = styled.Text`
     flex: 7;
-    padding-right: 5px;
-    padding-left: 10px;
+    padding-right: ${moderateScale(5)};
+    padding-left: ${moderateScale(10)};
     font-size: 15px;
 `
 
 const FirstAddedInfo = styled.Text`
-    padding-right: 5px;
+    padding-right: ${moderateScale(5)};
     flex: 1;
     text-align: center;
     color: #747474;
 `
 
 const PublishedDate = styled.Text`
-    padding-right: 10px;
+    padding-right: ${moderateScale(10)};
     flex: 1.5;
     text-align: center;
     color: #747474;

@@ -1,14 +1,16 @@
 import React, { PureComponent } from "react"
 import styled from "styled-components"
 import { Icon } from "expo"
-import Colors from '../../constants/Colors'
+import Colors from "../../constants/Colors"
+// import { scale, verticalScale, moderateScale } from "react-native-size-matters"
 
 const Container = styled.View`
-    width: 320px;
+    width: ${props => props.layoutWidth};
     height: 240px;
     padding: 10px 15px;
     margin-left: 10px;
     margin-right: 10px;
+    margin-top: ${props => (!props.horizontal ? "15" : "0")};
     border-width: 1px;
     border-color: ${Colors.thickBorder};
     border-radius: 4px;
@@ -48,10 +50,17 @@ const FbComments = styled.Text`
 
 class CardBamboo extends PureComponent {
     render() {
-        const { card, numberOfLines = 10, isFb = false } = this.props
+        const {
+            card,
+            layoutWidth,
+            layoutHeight,
+            horizontal,
+            numberOfLines = 10,
+            isFb = false
+        } = this.props
         const { title, firstAddedInfo, secondAddedInfo } = card
         return (
-            <Container>
+            <Container layoutWidth={layoutWidth} horizontal={horizontal}>
                 <Title numberOfLines={numberOfLines}>{title}</Title>
 
                 {isFb && (

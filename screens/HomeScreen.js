@@ -228,7 +228,7 @@ export default class HomeScreen extends React.Component {
     render() {
         return (
             <Container>
-                {/* <LazyloadScrollView
+                <LazyloadScrollView
                     name="home-scroll"
                     showsVerticalScrollIndicator={false}
                 >
@@ -242,7 +242,7 @@ export default class HomeScreen extends React.Component {
                             key={key}
                         />
                     ))}
-                </LazyloadScrollView> */}
+                </LazyloadScrollView>
             </Container>
         )
     }

@@ -94,8 +94,20 @@ const data = [
 ]
 
 const Container = styled.View`
-    padding: 35px 15px 0px 15px;
+    padding-top: 35px;
     margin-bottom: 80px;
+`
+
+const Header = styled.View`
+    padding-left: 15px;
+    padding-right: 15px;
+    border-bottom-width: 1px;
+    border-bottom-color: ${Colors.borderColor};
+`
+
+const Main = styled.View`
+    padding-left: 15px;
+    padding-right: 15px;
 `
 
 const WebsiteRequest = styled.View`
@@ -125,29 +137,33 @@ class WebsitesScreen extends Component {
     render() {
         return (
             <Container>
-                <Search />
-                <SearchModal />
-                <Menu data={menuArr} />
-                <WebRequestModal />
-                <LazyloadScrollView
-                    name="website-scroll"
-                    showsVerticalScrollIndicator={false}
-                >
-                    <TouchableWithoutFeedback>
-                        <WebsiteRequest>
-                            <Icon.Feather
-                                name="edit"
-                                size={20}
-                                style={{ marginRight: 3 }}
-                                color={Colors.supportColor}
-                            />
-                            <WRText>웹사이트 요청하기</WRText>
-                        </WebsiteRequest>
-                    </TouchableWithoutFeedback>
-                    {data.map(website => (
-                        <Website websiteData={website} key={website._id} />
-                    ))}
-                </LazyloadScrollView>
+                <Header>
+                    <Search />
+                    <SearchModal />
+                    <Menu data={menuArr} />
+                </Header>
+                <Main>
+                    <WebRequestModal />
+                    <LazyloadScrollView
+                        name="website-scroll"
+                        showsVerticalScrollIndicator={false}
+                    >
+                        <TouchableWithoutFeedback>
+                            <WebsiteRequest>
+                                <Icon.Feather
+                                    name="edit"
+                                    size={20}
+                                    style={{ marginRight: 3 }}
+                                    color={Colors.supportColor}
+                                />
+                                <WRText>웹사이트 요청하기</WRText>
+                            </WebsiteRequest>
+                        </TouchableWithoutFeedback>
+                        {data.map(website => (
+                            <Website websiteData={website} key={website._id} />
+                        ))}
+                    </LazyloadScrollView>
+                </Main>
             </Container>
         )
     }

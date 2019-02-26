@@ -5,7 +5,8 @@ import { LazyloadImage } from "react-native-lazyload"
 
 const Container = styled.View`
     width: ${props => props.layoutWidth};
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
 `
 
 const Thumbnail = styled.View`
@@ -80,8 +81,8 @@ class CardPhoto extends PureComponent {
                     <LazyloadImage
                         host={scrollHost}
                         style={{
-                            width: Number(layoutWidth),
-                            height: Number(layoutHeight),
+                            width: layoutWidth,
+                            height: layoutHeight,
                             borderTopLeftRadius: 4,
                             borderTopRightRadius: 4,
                             borderBottomLeftRadius: !isRank ? 4 : 0,

@@ -13,7 +13,7 @@ const MenuText = styled.Text`
     margin-right: 15px;
     font-size: 18px;
     font-weight: bold;
-    color: ${props => (props.selected ? "#000" : Colors.supportColor)};
+    color: ${props => (props.selected ? Colors.mainColor : Colors.supportColor)};
 `
 
 const Menu = ({ data }) => {

@@ -246,7 +246,14 @@ const Follower = styled.Text``
 
 class DetailWebsite extends Component {
     static navigationOptions = {
-        
+        headerRight: (
+            <Icon.Feather
+                name="external-link"
+                size={25}
+                color={Colors.supportColor}
+                style={{ marginRight: 10 }}
+            />
+        )
     }
 
     render() {
@@ -268,14 +275,14 @@ class DetailWebsite extends Component {
                                 <WebsiteName>쿠팡</WebsiteName>
                                 <Follower>팔로워 22000명</Follower>
                             </Meta>
-                            <TouchableOpacity>
+                            {/* <TouchableOpacity>
                                 <Icon.Feather
                                     name="external-link"
                                     size={25}
                                     color={Colors.supportColor}
                                     // style={{ marginRight: 10 }}
                                 />
-                            </TouchableOpacity>
+                            </TouchableOpacity> */}
                         </MetaWrap>
                     </WebsiteInfo>
                     {data.map((previewboard, key) => (

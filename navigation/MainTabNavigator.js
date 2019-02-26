@@ -18,9 +18,9 @@ const tabBarOptions = {
 }
 
 const HomeStack = createStackNavigator({
-    // Home: HomeScreen
+    Home: HomeScreen
     // Home: DetailWebsite
-    Home: DetailBoard
+    // Home: DetailBoard
 })
 
 HomeStack.navigationOptions = {

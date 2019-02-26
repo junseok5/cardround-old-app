@@ -1,29 +1,36 @@
 import React, { PureComponent } from "react"
-import styled from "styled-components"
+import { View } from 'react-native'
 import { ScrollView } from "react-native"
 import CardBamboo from "../card/CardBamboo"
-
-const Container = styled.View``
+import { scale } from "react-native-size-matters"
 
 class BigTextLayout extends PureComponent {
     render() {
-        const { numberOfLines, isFb } = this.props
+        const {
+            layoutWidth = scale(300),
+            horizontal = true,
+            numberOfLines,
+            isFb
+        } = this.props
         return (
-            <Container>
+            <View>
                 <ScrollView
-                    horizontal={true}
+                    horizontal={horizontal}
                     showsHorizontalScrollIndicator={false}
+                    showsVerticalScrollIndicator={false}
                 >
                     {this.props.data.map(card => (
                         <CardBamboo
                             card={card}
                             key={card.code}
+                            layoutWidth={layoutWidth}
+                            horizontal={horizontal}
                             numberOfLines={numberOfLines}
                             isFb={isFb}
                         />
                     ))}
                 </ScrollView>
-            </Container>
+            </View>
         )
     }
 }
