@@ -5,7 +5,7 @@ import Colors from "../../constants/Colors"
 
 const Container = styled.View`
     width: ${props => props.layoutWidth};
-    height: 240px;
+    height: 250px;
     padding: 10px 15px;
     margin-left: 10px;
     margin-right: 10px;
@@ -17,8 +17,9 @@ const Container = styled.View`
 `
 
 const Title = styled.Text`
-    height: 190px;
-    font-size: 16px;
+    height: 200px;
+    font-size: 16.5px;
+    letter-spacing: 0.5px;
 `
 
 const FbBottom = styled.View`

@@ -1,7 +1,8 @@
 import React, { PureComponent } from "react"
 import styled from "styled-components"
+import { withNavigation } from "react-navigation"
 import Colors from "../../constants/Colors"
-import { Button } from "react-native"
+import { Button, TouchableWithoutFeedback } from "react-native"
 import NewsPhoto from "./NewsPhoto"
 import Chart from "./Chart"
 import ShopPhoto from "./ShopPhoto"
@@ -49,7 +50,7 @@ const Main = styled.View``
 
 class PreviewBoard extends PureComponent {
     render() {
-        const { previewboardData, scrollHost } = this.props
+        const { previewboardData, scrollHost, navigation } = this.props
         const {
             _id,
             name,
@@ -62,15 +63,23 @@ class PreviewBoard extends PureComponent {
         return (
             <Container>
                 <Header>
-                    <BoardInfo>
-                        <BoardThumbnail
-                            source={{
-                                uri: websiteThumbnail
-                            }}
-                        />
-                        <BoardName>{name}</BoardName>
-                        <WebsiteName> - {websiteName}</WebsiteName>
-                    </BoardInfo>
+                    <TouchableWithoutFeedback
+                        onPress={() =>
+                            navigation.navigate({
+                                routeName: "DetailBoard"
+                            })
+                        }
+                    >
+                        <BoardInfo>
+                            <BoardThumbnail
+                                source={{
+                                    uri: websiteThumbnail
+                                }}
+                            />
+                            <BoardName>{name}</BoardName>
+                            <WebsiteName> - {websiteName}</WebsiteName>
+                        </BoardInfo>
+                    </TouchableWithoutFeedback>
                     <Button
                         title="팔로우"
                         color={Colors.mainColor}
@@ -95,4 +104,4 @@ class PreviewBoard extends PureComponent {
     }
 }
 
-export default PreviewBoard
+export default withNavigation(PreviewBoard)

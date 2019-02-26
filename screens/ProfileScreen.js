@@ -53,7 +53,7 @@ const ListText = styled.Text`
     color: #8c8c8c;
 `
 
-export default class ProfileScreen extends React.Component {
+class ProfileScreen extends React.Component {
     static navigationOptions = {
         title: "프로필"
     }
@@ -107,3 +107,5 @@ export default class ProfileScreen extends React.Component {
         )
     }
 }
+
+export default ProfileScreen

@@ -1,20 +1,35 @@
 import React, { PureComponent } from "react"
-import { View } from 'react-native'
-import { ScrollView } from "react-native"
+import { View } from "react-native"
+// import { ScrollView } from "react-native"
+import Layout from "../../constants/Layout"
+import Swiper from "react-native-swiper"
 import CardBamboo from "../card/CardBamboo"
-import { scale } from "react-native-size-matters"
+
+const { width } = Layout.window
+const layoutWidth = width
 
 class BigTextLayout extends PureComponent {
     render() {
-        const {
-            layoutWidth = scale(300),
-            horizontal = true,
-            numberOfLines,
-            isFb
-        } = this.props
+        const { horizontal = true, numberOfLines, isFb } = this.props
         return (
             <View>
-                <ScrollView
+                <Swiper
+                    showsPagination={false}
+                    loop={false}
+                    style={{ width: layoutWidth, height: 250 }}
+                >
+                    {this.props.data.map(card => (
+                        <CardBamboo
+                            card={card}
+                            key={card.code}
+                            layoutWidth={layoutWidth - 20}
+                            horizontal={horizontal}
+                            numberOfLines={numberOfLines}
+                            isFb={isFb}
+                        />
+                    ))}
+                </Swiper>
+                {/* <ScrollView
                     horizontal={horizontal}
                     showsHorizontalScrollIndicator={false}
                     showsVerticalScrollIndicator={false}
@@ -29,7 +44,7 @@ class BigTextLayout extends PureComponent {
                             isFb={isFb}
                         />
                     ))}
-                </ScrollView>
+                </ScrollView> */}
             </View>
         )
     }

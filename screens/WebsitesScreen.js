@@ -108,6 +108,7 @@ const Header = styled.View`
 const Main = styled.View`
     padding-left: 15px;
     padding-right: 15px;
+    /* margin-bottom: 100px; */
 `
 
 const WebsiteRequest = styled.View`
