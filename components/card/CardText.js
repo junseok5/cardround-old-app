@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react"
 import styled from "styled-components"
 import Colors from '../../constants/Colors'
-import { verticalScale, moderateScale } from 'react-native-size-matters'
+import { moderateScale } from 'react-native-size-matters'
 
 const Container = styled.View`
     padding-top: ${moderateScale(8)};

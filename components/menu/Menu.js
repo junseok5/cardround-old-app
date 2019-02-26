@@ -30,29 +30,6 @@ const Menu = ({ data }) => {
                         </MenuText>
                     </TouchableWithoutFeedback>
                 ))}
-                {/* <TouchableWithoutFeedback>
-                    <MenuText selected={selected === "최신"}>최신</MenuText>
-                </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback>
-                    <MenuText selected={selected === "대학"}>대학</MenuText>
-                </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback>
-                    <MenuText selected={selected === "영화"}>영화</MenuText>
-                </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback>
-                    <MenuText selected={selected === "음악"}>음악</MenuText>
-                </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback>
-                    <MenuText selected={selected === "커뮤니티"}>
-                        커뮤니티
-                    </MenuText>
-                </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback>
-                    <MenuText selected={selected === "블로그"}>블로그</MenuText>
-                </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback>
-                    <MenuText selected={selected === "쇼핑"}>쇼핑</MenuText>
-                </TouchableWithoutFeedback> */}
             </ScrollView>
         </Container>
     )

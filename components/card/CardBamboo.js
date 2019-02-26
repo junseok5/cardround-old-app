@@ -2,7 +2,6 @@ import React, { PureComponent } from "react"
 import styled from "styled-components"
 import { Icon } from "expo"
 import Colors from "../../constants/Colors"
-// import { scale, verticalScale, moderateScale } from "react-native-size-matters"
 
 const Container = styled.View`
     width: ${props => props.layoutWidth};

@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import styled from "styled-components"
-import { TouchableOpacity } from "react-native"
 import { Icon } from "expo"
 import Colors from "../constants/Colors"
 import PreviewBoard from "../components/previewboard/PreviewBoard"
@@ -275,14 +274,6 @@ class DetailWebsite extends Component {
                                 <WebsiteName>쿠팡</WebsiteName>
                                 <Follower>팔로워 22000명</Follower>
                             </Meta>
-                            {/* <TouchableOpacity>
-                                <Icon.Feather
-                                    name="external-link"
-                                    size={25}
-                                    color={Colors.supportColor}
-                                    // style={{ marginRight: 10 }}
-                                />
-                            </TouchableOpacity> */}
                         </MetaWrap>
                     </WebsiteInfo>
                     {data.map((previewboard, key) => (
