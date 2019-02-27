@@ -23,6 +23,10 @@ const LoginView = styled.View``
 const Text = styled.Text``
 
 class LoginScreen extends Component {
+    static navigationOptions = {
+        header: null
+    }
+
     render() {
         return (
             <Container>

@@ -1,7 +1,9 @@
 import React, { PureComponent } from "react"
+import { TouchableWithoutFeedback } from "react-native"
+import { withNavigation } from "react-navigation"
 import styled from "styled-components"
-import Colors from '../../constants/Colors'
-import { moderateScale } from 'react-native-size-matters'
+import Colors from "../../constants/Colors"
+import { moderateScale } from "react-native-size-matters"
 
 const Container = styled.View`
     padding-top: ${moderateScale(8)};
@@ -35,25 +37,34 @@ const PublishedDate = styled.Text`
 
 class CardText extends PureComponent {
     render() {
-        const {
-            card,
-            numberOfLines = 2
-        } = this.props
+        const { card, numberOfLines = 2, navigation } = this.props
         const { title, publishedDate, firstAddedInfo } = card
         return (
-            <Container>
-                <Title numberOfLines={numberOfLines}>{title}</Title>
+            <TouchableWithoutFeedback
+                onPress={() =>
+                    navigation.navigate({
+                        routeName: "DetailCard",
+                        params: {
+                            title: card.title,
+                            link: card.link
+                        }
+                    })
+                }
+            >
+                <Container>
+                    <Title numberOfLines={numberOfLines}>{title}</Title>
 
-                {publishedDate && (
-                    <PublishedDate>{publishedDate}</PublishedDate>
-                )}
+                    {publishedDate && (
+                        <PublishedDate>{publishedDate}</PublishedDate>
+                    )}
 
-                {firstAddedInfo && (
-                    <FirstAddedInfo>{firstAddedInfo}</FirstAddedInfo>
-                )}
-            </Container>
+                    {firstAddedInfo && (
+                        <FirstAddedInfo>{firstAddedInfo}</FirstAddedInfo>
+                    )}
+                </Container>
+            </TouchableWithoutFeedback>
         )
     }
 }
 
-export default CardText
+export default withNavigation(CardText)

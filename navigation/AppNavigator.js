@@ -1,8 +1,8 @@
 import React from "react"
 import { createAppContainer, createSwitchNavigator } from "react-navigation"
 import TabNavigator from "./TabNavigation"
-import DetailWebsite from "../screens/DetailWebsite"
-import DetailBoard from "../screens/DetailBoard"
+import DetailWebsite from "../screens/DetailWebsiteScreen"
+import DetailBoard from "../screens/DetailBoardScreen"
 
 export default createAppContainer(
     createSwitchNavigator({

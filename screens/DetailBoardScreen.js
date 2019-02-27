@@ -218,7 +218,7 @@ const CardList = styled.View`
     margin-top: 20px;
 `
 
-class DetailBoard extends Component {
+class DetailBoardScreen extends Component {
     static navigationOptions = {
         headerRight: (
             <Icon.Feather
@@ -296,4 +296,4 @@ class DetailBoard extends Component {
     }
 }
 
-export default DetailBoard
+export default DetailBoardScreen

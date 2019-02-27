@@ -1,6 +1,8 @@
 import React, { PureComponent } from "react"
+import { TouchableWithoutFeedback } from "react-native"
+import { withNavigation } from "react-navigation"
 import styled from "styled-components"
-import Colors from '../../constants/Colors'
+import Colors from "../../constants/Colors"
 import { LazyloadImage } from "react-native-lazyload"
 
 const Container = styled.View`
@@ -68,68 +70,81 @@ class CardPhoto extends PureComponent {
             secondAddedInfoWeight,
             secondAddedInfoSize,
             textAlign,
-            numberOfLines
+            numberOfLines,
+            navigation
         } = this.props
 
         return (
-            <Container layoutWidth={layoutWidth}>
-                <Thumbnail
-                    layoutWidth={layoutWidth}
-                    layoutHeight={layoutHeight}
-                    isRank={isRank}
-                >
-                    <LazyloadImage
-                        host={scrollHost}
-                        style={{
-                            width: layoutWidth,
-                            height: layoutHeight,
-                            borderTopLeftRadius: 4,
-                            borderTopRightRadius: 4,
-                            borderBottomLeftRadius: !isRank ? 4 : 0,
-                            borderBottomRightRadius: !isRank ? 4 : 0
-                        }}
-                        source={{ uri: card.thumbnail }}
-                    />
-                </Thumbnail>
-                {isRank && (
-                    <Rank layoutWidth={layoutWidth}>
-                        <RankText numberOfLines={1}>
+            <TouchableWithoutFeedback
+                onPress={() =>
+                    navigation.navigate({
+                        routeName: "DetailCard",
+                        params: {
+                            title: card.title,
+                            link: card.link
+                        }
+                    })
+                }
+            >
+                <Container layoutWidth={layoutWidth}>
+                    <Thumbnail
+                        layoutWidth={layoutWidth}
+                        layoutHeight={layoutHeight}
+                        isRank={isRank}
+                    >
+                        <LazyloadImage
+                            host={scrollHost}
+                            style={{
+                                width: layoutWidth,
+                                height: layoutHeight,
+                                borderTopLeftRadius: 4,
+                                borderTopRightRadius: 4,
+                                borderBottomLeftRadius: !isRank ? 4 : 0,
+                                borderBottomRightRadius: !isRank ? 4 : 0
+                            }}
+                            source={{ uri: card.thumbnail }}
+                        />
+                    </Thumbnail>
+                    {isRank && (
+                        <Rank layoutWidth={layoutWidth}>
+                            <RankText numberOfLines={1}>
+                                {card.secondAddedInfo}
+                            </RankText>
+                        </Rank>
+                    )}
+
+                    <Title
+                        numberOfLines={numberOfLines}
+                        weight={titleWeight}
+                        fontSize={titleSize}
+                        textAlign={textAlign}
+                    >
+                        {card.title}
+                    </Title>
+
+                    {card.firstAddedInfo && (
+                        <FirstAddedInfo
+                            numberOfLines={1}
+                            weight={firstAddedInfoWeight}
+                            fontSize={firstAddedInfoSize}
+                        >
+                            {card.firstAddedInfo}
+                        </FirstAddedInfo>
+                    )}
+
+                    {card.secondAddedInfo && !isRank && (
+                        <SecondAddedInfo
+                            numberOfLines={1}
+                            weight={secondAddedInfoWeight}
+                            fontSize={secondAddedInfoSize}
+                        >
                             {card.secondAddedInfo}
-                        </RankText>
-                    </Rank>
-                )}
-
-                <Title
-                    numberOfLines={numberOfLines}
-                    weight={titleWeight}
-                    fontSize={titleSize}
-                    textAlign={textAlign}
-                >
-                    {card.title}
-                </Title>
-
-                {card.firstAddedInfo && (
-                    <FirstAddedInfo
-                        numberOfLines={1}
-                        weight={firstAddedInfoWeight}
-                        fontSize={firstAddedInfoSize}
-                    >
-                        {card.firstAddedInfo}
-                    </FirstAddedInfo>
-                )}
-
-                {card.secondAddedInfo && !isRank && (
-                    <SecondAddedInfo
-                        numberOfLines={1}
-                        weight={secondAddedInfoWeight}
-                        fontSize={secondAddedInfoSize}
-                    >
-                        {card.secondAddedInfo}
-                    </SecondAddedInfo>
-                )}
-            </Container>
+                        </SecondAddedInfo>
+                    )}
+                </Container>
+            </TouchableWithoutFeedback>
         )
     }
 }
 
-export default CardPhoto
+export default withNavigation(CardPhoto)

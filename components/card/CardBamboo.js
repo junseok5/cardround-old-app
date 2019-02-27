@@ -1,4 +1,6 @@
 import React, { PureComponent } from "react"
+import { TouchableWithoutFeedback } from "react-native"
+import { withNavigation } from "react-navigation"
 import styled from "styled-components"
 import { Icon } from "expo"
 import Colors from "../../constants/Colors"
@@ -56,31 +58,44 @@ class CardBamboo extends PureComponent {
             layoutHeight,
             horizontal,
             numberOfLines = 10,
-            isFb = false
+            isFb = false,
+            navigation
         } = this.props
         const { title, firstAddedInfo, secondAddedInfo } = card
         return (
-            <Container layoutWidth={layoutWidth} horizontal={horizontal}>
-                <Title numberOfLines={numberOfLines}>{title}</Title>
+            <TouchableWithoutFeedback
+                onPress={() =>
+                    navigation.navigate({
+                        routeName: "DetailCard",
+                        params: {
+                            title: card.title,
+                            link: card.link
+                        }
+                    })
+                }
+            >
+                <Container layoutWidth={layoutWidth} horizontal={horizontal}>
+                    <Title numberOfLines={numberOfLines}>{title}</Title>
 
-                {isFb && (
-                    <FbBottom>
-                        <FbLike>
-                            <ThumbsUp>
-                                <Icon.Ionicons
-                                    name="md-thumbs-up"
-                                    size={12}
-                                    color="#fff"
-                                />
-                            </ThumbsUp>
-                            <FbLikeText>{firstAddedInfo}</FbLikeText>
-                        </FbLike>
-                        <FbComments>{secondAddedInfo}</FbComments>
-                    </FbBottom>
-                )}
-            </Container>
+                    {isFb && (
+                        <FbBottom>
+                            <FbLike>
+                                <ThumbsUp>
+                                    <Icon.Ionicons
+                                        name="md-thumbs-up"
+                                        size={12}
+                                        color="#fff"
+                                    />
+                                </ThumbsUp>
+                                <FbLikeText>{firstAddedInfo}</FbLikeText>
+                            </FbLike>
+                            <FbComments>{secondAddedInfo}</FbComments>
+                        </FbBottom>
+                    )}
+                </Container>
+            </TouchableWithoutFeedback>
         )
     }
 }
 
-export default CardBamboo
+export default withNavigation(CardBamboo)

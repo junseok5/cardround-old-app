@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+import { TouchableWithoutFeedback } from "react-native"
+import { withNavigation } from "react-navigation"
 import styled from "styled-components"
 import Colors from "../../constants/Colors"
 import { LazyloadImage } from "react-native-lazyload"
@@ -34,25 +36,33 @@ class Website extends Component {
     render() {
         const { websiteData } = this.props
         return (
-            <Container>
-                <Thumbnail>
-                    <LazyloadImage
-                        host="website-scroll"
-                        style={{
-                            width: 64,
-                            height: 64,
-                            borderRadius: 4
-                        }}
-                        source={{ uri: websiteData.thumbnail }}
-                    />
-                </Thumbnail>
-                <MetaInfo>
-                    <Name>{websiteData.name}</Name>
-                    <Follower>팔로워 {websiteData.follower}명</Follower>
-                </MetaInfo>
-            </Container>
+            <TouchableWithoutFeedback
+                onPress={() =>
+                    this.props.navigation.navigate({
+                        routeName: "DetailWebsite"
+                    })
+                }
+            >
+                <Container>
+                    <Thumbnail>
+                        <LazyloadImage
+                            host="website-scroll"
+                            style={{
+                                width: 64,
+                                height: 64,
+                                borderRadius: 4
+                            }}
+                            source={{ uri: websiteData.thumbnail }}
+                        />
+                    </Thumbnail>
+                    <MetaInfo>
+                        <Name>{websiteData.name}</Name>
+                        <Follower>팔로워 {websiteData.follower}명</Follower>
+                    </MetaInfo>
+                </Container>
+            </TouchableWithoutFeedback>
         )
     }
 }
 
-export default Website
+export default withNavigation(Website)

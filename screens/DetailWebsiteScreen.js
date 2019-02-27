@@ -243,7 +243,7 @@ const WebsiteName = styled.Text`
 
 const Follower = styled.Text``
 
-class DetailWebsite extends Component {
+class DetailWebsiteScreen extends Component {
     static navigationOptions = {
         headerRight: (
             <Icon.Feather
@@ -289,4 +289,4 @@ class DetailWebsite extends Component {
     }
 }
 
-export default DetailWebsite
+export default DetailWebsiteScreen
