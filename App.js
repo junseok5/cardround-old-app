@@ -1,9 +1,10 @@
 import React from "react"
-import { Platform, StatusBar, StyleSheet, View } from "react-native"
 import { AppLoading, Asset, Font, Icon } from "expo"
-import MainNavigation from "./navigation/MainNavigation"
+import { Provider } from "react-redux"
+import store from "./store"
+import AppContainer from "./components/AppContainer"
 
-export default class App extends React.Component {
+class App extends React.Component {
     state = {
         isLoadingComplete: false
     }
@@ -19,10 +20,9 @@ export default class App extends React.Component {
             )
         } else {
             return (
-                <View style={styles.container}>
-                    {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-                    <MainNavigation />
-                </View>
+                <Provider store={store}>
+                    <AppContainer />
+                </Provider>
             )
         }
     }
@@ -54,9 +54,4 @@ export default class App extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff"
-    }
-})
+export default App

@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { WebView } from "react-native"
+import { WebView, Share, TouchableOpacity } from "react-native"
 import styled from "styled-components"
 import { Icon } from "expo"
 import Colors from "../constants/Colors"
@@ -9,12 +9,14 @@ class DetailCardScreen extends Component {
         return {
             title: navigation.getParam("title"),
             headerRight: (
-                <Icon.FontAwesome
-                    name="share"
-                    size={20}
-                    color={Colors.supportColor}
-                    style={{ marginRight: 10 }}
-                />
+                <TouchableOpacity>
+                    <Icon.FontAwesome
+                        name="share"
+                        size={20}
+                        color={Colors.supportColor}
+                        style={{ marginRight: 10 }}
+                    />
+                </TouchableOpacity>
             )
         }
     }

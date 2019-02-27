@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { RefreshControl } from "react-native"
 import styled from "styled-components"
 import Search from "../components/search/Search"
 import SearchModal from "../components/modal/SearchModal"
@@ -248,6 +249,17 @@ class BoardsScreen extends Component {
         header: null
     }
 
+    state = {
+        refreshing: false
+    }
+
+    _onRefresh = () => {
+        this.setState({ refreshing: true })
+        setTimeout(() => {
+            this.setState({ refreshing: false })
+        }, 1000)
+    }
+
     render() {
         return (
             <Container>
@@ -259,6 +271,12 @@ class BoardsScreen extends Component {
                 <LazyloadScrollView
                     name="boards-scroll"
                     showsVerticalScrollIndicator={false}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this._onRefresh}
+                        />
+                    }
                 >
                     {data.map((previewboard, key) => (
                         <PreviewBoard
