@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import { TouchableOpacity } from "react-native"
 import Colors from "../../constants/Colors"
 import { Icon } from "expo"
 
@@ -23,12 +22,10 @@ const Title = styled.Text`
 `
 
 const SocialButton = ({ iconName, color, title }) => (
-    <TouchableOpacity>
-        <Button>
-            <Icon.EvilIcons name={iconName} size={32} color={color} />
-            <Title>{title}</Title>
-        </Button>
-    </TouchableOpacity>
+    <Button>
+        <Icon.EvilIcons name={iconName} size={32} color={color} />
+        <Title>{title}</Title>
+    </Button>
 )
 
 export default SocialButton

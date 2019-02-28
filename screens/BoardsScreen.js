@@ -65,7 +65,7 @@ const data = [
                 title: "사바하",
                 firstAddedInfo: "예매율 27.4%",
                 secondAddedInfo: "No.1",
-                link: "https://naver.com"
+                link: "https://laftel.net"
             },
             {
                 code: "2",
@@ -73,7 +73,7 @@ const data = [
                 title: "해리포터와 비밀의 방",
                 firstAddedInfo: "예매율 16.8%",
                 secondAddedInfo: "No.2",
-                link: "https://naver.com"
+                link: "https://page.kakao.com"
             },
             {
                 code: "3",
