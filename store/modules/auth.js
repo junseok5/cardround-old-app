@@ -59,10 +59,10 @@ export default handleActions(
             type: LOCAL_LOGIN,
             onSuccess: (state, action) => {
                 const { data } = action.payload
+                console.log(data)
 
                 return produce(state, draft => {
                     draft.loginResult = data
-                    draft.logged = true
                 })
             },
             onFailure: (state, action) => {
@@ -91,7 +91,6 @@ export default handleActions(
 
                 return produce(state, draft => {
                     draft.loginResult = data
-                    draft.logged = true
                 })
             },
             onFailure: (state, action) => {

@@ -14,7 +14,8 @@ class ProfileContainer extends Component {
 
         if (!profile.email) {
             try {
-                await UserActions.getMyInfo()
+                const token = await AsyncStorage.getItem("accessToken")
+                await UserActions.getMyInfo(token)
             } catch (error) {
                 const { getMyInfoResult } = this.props
 
@@ -27,7 +28,8 @@ class ProfileContainer extends Component {
     }
 
     _logout = async () => {
-        AuthActions.changeLogged(false)
+        AuthActions.initialize()
+        UserActions.initialize()
         await AsyncStorage.removeItem("accessToken")
     }
 

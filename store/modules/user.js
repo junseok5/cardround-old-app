@@ -31,7 +31,7 @@ export default handleActions(
             onFailure: (state, action) => {
                 const { status } = action.payload.response
 
-                if (status === 404) {
+                if (status === 401 || status === 404) {
                     return produce(state, draft => {
                         draft.getMyInfoResult = "NOT_USER"
                     })

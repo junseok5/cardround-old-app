@@ -19,6 +19,7 @@ class AppContainer extends Component {
     initialize = async () => {
         // await AsyncStorage.removeItem("accessToken")
         const token = await AsyncStorage.getItem("accessToken")
+        console.log(token)
 
         if (token) {
             AuthActions.changeLogged(true)

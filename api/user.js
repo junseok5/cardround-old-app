@@ -6,4 +6,9 @@ const api = axios.create({
 })
 
 // [GET]
-export const getMyInfo = () => api.get(`/v1.0/users`)
+export const getMyInfo = token =>
+    api.get(`/v1.0/users`, {
+        headers: {
+            "X-JWT": token
+        }
+    })

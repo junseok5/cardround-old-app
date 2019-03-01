@@ -49,8 +49,14 @@ class LoginContainer extends Component {
 
             const { loginResult } = this.props
 
-            AsyncStorage.setItem("accessToken", loginResult.token)
-
+            if (loginResult.ok) {
+                AuthActions.changeLogged(true)
+                AsyncStorage.setItem("accessToken", loginResult.token)
+            } else {
+                AuthActions.changeAlertText(
+                    "잠시 후 다시 시도 해주시기 바랍니다."
+                )
+            }
             AuthActions.changeLoading(false)
         } catch (error) {
             AuthActions.changeLoading(false)
@@ -71,7 +77,14 @@ class LoginContainer extends Component {
 
                 const { loginResult } = this.props
 
-                AsyncStorage.setItem("accessToken", loginResult.token)
+                if (loginResult.ok) {
+                    AuthActions.changeLogged(true)
+                    AsyncStorage.setItem("accessToken", loginResult.token)
+                } else {
+                    AuthActions.changeAlertText(
+                        "잠시 후 다시 시도 해주시기 바랍니다."
+                    )
+                }
                 AuthActions.changeLoading(false)
             } catch (error) {
                 AuthActions.changeLoading(false)

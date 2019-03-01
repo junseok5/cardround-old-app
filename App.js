@@ -7,7 +7,6 @@ import AppContainer from "./components/AppContainer"
 
 class App extends React.Component {
     state = {
-        isMainNav: false,
         isLoadingComplete: false
     }
 
