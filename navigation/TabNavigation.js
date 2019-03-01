@@ -18,7 +18,7 @@ const TabNavigation = createBottomTabNavigator(
     {
         Home: {
             screen: createStackNavigator({
-                Home: LoginScreen
+                Home: HomeScreen
             }),
             navigationOptions: {
                 tabBarLabel: "홈",

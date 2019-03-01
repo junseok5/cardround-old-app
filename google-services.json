@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "548863058882",
+    "firebase_url": "https://cardround.firebaseio.com",
+    "project_id": "cardround",
+    "storage_bucket": "cardround.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548863058882:android:6e5e5e7cd3b490c1",
+        "android_client_info": {
+          "package_name": "com.cardround.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "548863058882-p65b93j4jj2c8ub4557qd1nlcgmgpnr1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCM7VviltZ0dblZlrtT5cb1lqLpDp9cqG4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

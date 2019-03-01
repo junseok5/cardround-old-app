@@ -4,8 +4,8 @@ import Colors from "../../constants/Colors"
 import { Icon } from "expo"
 
 const Button = styled.View`
-    width: 240px;
-    padding: 10px 10px;
+    width: 280px;
+    padding: 10px 15px;
     margin-top: 2px;
     margin-bottom: 2px;
     flex-direction: row;
