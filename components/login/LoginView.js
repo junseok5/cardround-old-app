@@ -75,7 +75,8 @@ const LoginView = ({
     changeEmailForm,
     changePasswordForm,
     continueLogin,
-    socialLogin
+    socialLogin,
+    onSubmitEditing
 }) => {
     return (
         <Container>
@@ -98,6 +99,7 @@ const LoginView = ({
                     returnKeyType="send"
                     value={loginForm.password}
                     onChangeText={changePasswordForm}
+                    onSubmitEditing={onSubmitEditing}
                 />
                 <AlertText>{alertText}</AlertText>
                 <TouchableWithoutFeedback onPress={continueLogin}>

@@ -4,7 +4,7 @@ import { AsyncStorage, Platform, StatusBar } from "react-native"
 import { connect } from "react-redux"
 import MainNavigation from "../navigation/MainNavigation"
 import LoginNavigation from "../navigation/LoginNavigation"
-import { AuthActions } from "../store/actionCreator";
+import { AuthActions } from "../store/actionCreator"
 
 const Container = styled.View`
     flex: 1;
@@ -12,7 +12,11 @@ const Container = styled.View`
 `
 
 class AppContainer extends Component {
-    async componentDidMount() {
+    componentDidMount() {
+        this.initialize()
+    }
+
+    initialize = async () => {
         // await AsyncStorage.removeItem("accessToken")
         const token = await AsyncStorage.getItem("accessToken")
 

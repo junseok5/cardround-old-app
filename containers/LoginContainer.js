@@ -49,10 +49,7 @@ class LoginContainer extends Component {
 
             const { loginResult } = this.props
 
-            if (loginResult.ok) {
-                AuthActions.changeLogged(true)
-                AsyncStorage.setItem("accessToken", loginResult.token)
-            }
+            AsyncStorage.setItem("accessToken", loginResult.token)
 
             AuthActions.changeLoading(false)
         } catch (error) {
@@ -74,16 +71,17 @@ class LoginContainer extends Component {
 
                 const { loginResult } = this.props
 
-                if (loginResult.ok) {
-                    AuthActions.changeLogged(true)
-                    AsyncStorage.setItem("accessToken", loginResult.token)
-                }
+                AsyncStorage.setItem("accessToken", loginResult.token)
                 AuthActions.changeLoading(false)
             } catch (error) {
                 AuthActions.changeLoading(false)
                 console.log(error)
             }
         }
+    }
+
+    _onSubmitEditing = () => {
+        this._continueLogin()
     }
 
     render() {
@@ -96,6 +94,7 @@ class LoginContainer extends Component {
                 changePasswordForm={this._changePasswordForm}
                 continueLogin={this._continueLogin}
                 socialLogin={this._socialLogin}
+                onSubmitEditing={this._onSubmitEditing}
             />
         )
     }
