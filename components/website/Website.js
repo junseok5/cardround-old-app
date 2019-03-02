@@ -15,7 +15,7 @@ const Container = styled.View`
 const Thumbnail = styled.View`
     width: 64px;
     height: 64px;
-    background: ${Colors.thumbnail};
+    /* background: ${Colors.thumbnail}; */
     border-radius: 4;
 `
 
@@ -45,6 +45,14 @@ class Website extends Component {
             >
                 <Container>
                     <Thumbnail>
+                        {/* <Image
+                            style={{
+                                width: 64,
+                                height: 64,
+                                borderRadius: 4
+                            }}
+                            source={{ uri: websiteData.thumbnail }}
+                        /> */}
                         <LazyloadImage
                             host="website-scroll"
                             style={{
