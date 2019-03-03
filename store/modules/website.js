@@ -15,7 +15,7 @@ export const getWebsiteList = createAction(
 export const changePage = createAction(CHANGE_PAGE)
 
 const initialState = {
-    websites: [],
+    websites: {},
     listError: false,
     page: 1
 }

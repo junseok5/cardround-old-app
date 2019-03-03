@@ -61,6 +61,11 @@ class ProfileContainer extends Component {
         }
     }
 
+    _refetchMyProfile = () => {
+        UserActions.initialize()
+        this._fetchMyProfile()
+    }
+
     _logout = async () => {
         AuthActions.initialize()
         UserActions.initialize()
@@ -80,14 +85,14 @@ class ProfileContainer extends Component {
             return (
                 <ErrorNotice
                     message={errorMessage.network}
-                    refetch={this._fetchMyProfile}
+                    refetch={this._refetchMyProfile}
                 />
             )
         } else if (readError === "SERVER_ERROR") {
             return (
                 <ErrorNotice
                     message={errorMessage.server}
-                    refetch={this._fetchMyProfile}
+                    refetch={this._refetchMyProfile}
                 />
             )
         } else if (loading) {
