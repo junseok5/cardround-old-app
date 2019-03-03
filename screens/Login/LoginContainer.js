@@ -1,12 +1,15 @@
 import React, { Component } from "react"
 import { AsyncStorage } from "react-native"
-import { connect } from "react-redux"
-import { AuthActions } from "../store/actionCreator"
-import LoginView from "../components/login/LoginView"
-import { facebookLogin } from "../utils/socialLogin"
-import { emailCheck, passwordCheck } from "../utils/validate"
+import { AuthActions } from "../../store/actionCreator"
+import { facebookLogin } from "../../utils/socialLogin"
+import { emailCheck, passwordCheck } from "../../utils/validate"
+import LoginPresenter from "./LoginPresenter";
 
 class LoginContainer extends Component {
+    static navigationOptions = {
+        header: null
+    }
+
     componentDidMount() {
         AuthActions.initialize()
     }
@@ -99,7 +102,7 @@ class LoginContainer extends Component {
 
     render() {
         return (
-            <LoginView
+            <LoginPresenter
                 loginForm={this.props.loginForm}
                 alertText={this.props.alertText}
                 loading={this.props.loading}
@@ -113,10 +116,4 @@ class LoginContainer extends Component {
     }
 }
 
-export default connect(state => ({
-    loginForm: state.auth.loginForm,
-    alertText: state.auth.alertText,
-    loginResult: state.auth.loginResult,
-    loading: state.auth.loading,
-    error: state.auth.error
-}))(LoginContainer)
+export default LoginContainer

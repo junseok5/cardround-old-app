@@ -1,9 +1,8 @@
 import React, { Component } from "react"
-import { TouchableWithoutFeedback } from "react-native"
+import { Image, TouchableWithoutFeedback } from "react-native"
 import { withNavigation } from "react-navigation"
 import styled from "styled-components"
 import Colors from "../../constants/Colors"
-import { LazyloadImage } from "react-native-lazyload"
 
 const Container = styled.View`
     padding-top: 5px;
@@ -15,7 +14,6 @@ const Container = styled.View`
 const Thumbnail = styled.View`
     width: 64px;
     height: 64px;
-    /* background: ${Colors.thumbnail}; */
     border-radius: 4;
 `
 
@@ -39,26 +37,21 @@ class Website extends Component {
             <TouchableWithoutFeedback
                 onPress={() =>
                     this.props.navigation.navigate({
-                        routeName: "DetailWebsite"
+                        routeName: "DetailWebsite",
+                        params: {
+                            websiteData
+                        }
                     })
                 }
             >
                 <Container>
                     <Thumbnail>
-                        {/* <Image
+                        <Image
                             style={{
                                 width: 64,
                                 height: 64,
-                                borderRadius: 4
-                            }}
-                            source={{ uri: websiteData.thumbnail }}
-                        /> */}
-                        <LazyloadImage
-                            host="website-scroll"
-                            style={{
-                                width: 64,
-                                height: 64,
-                                borderRadius: 4
+                                borderRadius: 4,
+                                resizeMode: "contain"
                             }}
                             source={{ uri: websiteData.thumbnail }}
                         />

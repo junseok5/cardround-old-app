@@ -8,11 +8,8 @@ import Colors from "../constants/Colors"
 import TabBarIcon from "../components/common/TabBarIcon"
 import HomeScreen from "../screens/HomeScreen"
 import BoardsScreen from "../screens/BoardsScreen"
-import WebsitesScreen from "../screens/WebsitesScreen"
-import ProfileScreen from "../screens/ProfileScreen"
-import DetailWebsite from "../screens/DetailWebsiteScreen"
-import DetailBoard from "../screens/DetailBoardScreen"
-import LoginScreen from "../screens/LoginScreen"
+import WebsitesScreen from "../screens/Websites"
+import ProfileScreen from "../screens/Profile"
 
 const TabNavigation = createBottomTabNavigator(
     {

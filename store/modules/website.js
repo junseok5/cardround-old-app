@@ -16,12 +16,13 @@ export const changePage = createAction(CHANGE_PAGE)
 
 const initialState = {
     websites: [],
-    getWebsiteListResult: false,
+    listError: false,
     page: 1
 }
 
 export default handleActions(
     {
+        [INITIALIZE]: (state, action) => initialState,
         ...pender({
             type: GET_WEBSITE_LIST,
             onSuccess: (state, action) => {
@@ -32,7 +33,7 @@ export default handleActions(
             },
             onFailure: (state, action) => {
                 return produce(state, draft => {
-                    draft.getWebsiteListResult = true
+                    draft.listError = true
                 })
             }
         }),

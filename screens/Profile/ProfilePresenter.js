@@ -1,5 +1,5 @@
 import React from "react"
-import { ActivityIndicator, TouchableOpacity, Switch } from "react-native"
+import { TouchableOpacity, Switch } from "react-native"
 import styled from "styled-components"
 import Colors from "../../constants/Colors"
 
@@ -8,12 +8,6 @@ const Container = styled.View`
     padding-top: 20px;
     padding-bottom: 20px;
     background: #fff;
-`
-
-const Loading = styled.View`
-    flex: 1;
-    justify-content: center;
-    align-items: center;
 `
 
 const PContainer = styled.View`
@@ -65,13 +59,7 @@ const ListText = styled.Text`
     color: #8c8c8c;
 `
 
-const ProfileView = ({ profile, loading, logout }) => {
-    if (loading)
-        return (
-            <Loading>
-                <ActivityIndicator size="large" color={Colors.mainColor} />
-            </Loading>
-        )
+const ProfilePresenter = ({ profile, logout }) => {
     return (
         <Container>
             <PContainer>
@@ -124,4 +112,4 @@ const ProfileView = ({ profile, loading, logout }) => {
     )
 }
 
-export default ProfileView
+export default ProfilePresenter

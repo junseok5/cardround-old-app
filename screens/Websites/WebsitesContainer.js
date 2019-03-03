@@ -1,14 +1,13 @@
 import React, { Component } from "react"
-import { connect } from "react-redux"
-import WebsitesView from "../components/tabs/WebsitesView"
-import { WebsiteActions } from "../store/actionCreator"
+import WebsitesPresenter from "./WebsitesPresenter"
+import { WebsiteActions } from "../../store/actionCreator"
 
 class WebsitesContainer extends Component {
-    componentDidMount() {
-        this._initialize()
+    static navigationOptions = {
+        header: null
     }
 
-    _initialize = () => {
+    componentDidMount() {
         this._fetchWebsiteList()
     }
 
@@ -22,17 +21,24 @@ class WebsitesContainer extends Component {
         }
     }
 
+    _refetchWebsiteList = () => {
+        WebsiteActions.initialize()
+        this._fetchWebsiteList()
+    }
+
     _keyExtractor = (item, index) => item._id
 
     _onEndReached = () => {
-        console.log('Hey!')
+        console.log("Hey!")
     }
 
     render() {
         return (
-            <WebsitesView
+            <WebsitesPresenter
                 loading={this.props.loading}
                 data={this.props.websites}
+                listError={this.props.listError}
+                refetchWebsiteList={this._refetchWebsiteList}
                 keyExtractor={this._keyExtractor}
                 onEndReached={this._onEndReached}
             />
@@ -40,9 +46,4 @@ class WebsitesContainer extends Component {
     }
 }
 
-export default connect(state => ({
-    websites: state.website.websites,
-    getWebsiteListResult: state.website.getWebsiteListResult,
-    page: state.website.page,
-    loading: state.pender.pending["website/GET_WEBSITE_LIST"]
-}))(WebsitesContainer)
+export default WebsitesContainer

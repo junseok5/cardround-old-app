@@ -2,9 +2,9 @@ import React from "react"
 import PropTypes from "prop-types"
 import { TouchableOpacity, TouchableWithoutFeedback } from "react-native"
 import styled from "styled-components"
-import SocialButton from "../common/SocialButton"
 import Spinner from "react-native-loading-spinner-overlay"
 import Colors from "../../constants/Colors"
+import SocialButton from "../../components/common/SocialButton"
 
 const Container = styled.View`
     flex: 1;
@@ -68,7 +68,7 @@ const ButtonText = styled.Text`
 
 const SocialLogin = styled.View``
 
-const LoginView = ({
+const LoginPresenter = ({
     loginForm,
     alertText,
     loading,
@@ -121,8 +121,4 @@ const LoginView = ({
     )
 }
 
-LoginView.propTypes = {
-    socialLogin: PropTypes.func
-}
-
-export default LoginView
+export default LoginPresenter

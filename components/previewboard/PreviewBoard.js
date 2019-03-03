@@ -2,7 +2,7 @@ import React, { PureComponent } from "react"
 import styled from "styled-components"
 import { withNavigation } from "react-navigation"
 import Colors from "../../constants/Colors"
-import { Button, TouchableWithoutFeedback } from "react-native"
+import { Button, Image, TouchableWithoutFeedback } from "react-native"
 import NewsPhoto from "./NewsPhoto"
 import Chart from "./Chart"
 import ShopPhoto from "./ShopPhoto"
@@ -28,7 +28,7 @@ const BoardInfo = styled.View`
     align-items: center;
 `
 
-const BoardThumbnail = styled.Image`
+const Thumbnail = styled.View`
     width: 35px;
     height: 35px;
     margin-right: 10px;
@@ -71,11 +71,19 @@ class PreviewBoard extends PureComponent {
                         }
                     >
                         <BoardInfo>
-                            <BoardThumbnail
-                                source={{
-                                    uri: websiteThumbnail
-                                }}
-                            />
+                            <Thumbnail>
+                                <Image
+                                    source={{
+                                        uri: websiteThumbnail
+                                    }}
+                                    style={{
+                                        width: 35,
+                                        height: 35,
+                                        borderRadius: 50,
+                                        resizeMode: "contain"
+                                    }}
+                                />
+                            </Thumbnail>
                             <BoardName>{name}</BoardName>
                             <WebsiteName> - {websiteName}</WebsiteName>
                         </BoardInfo>

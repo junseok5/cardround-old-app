@@ -1,10 +1,10 @@
 import React, { Component } from "react"
 import styled from "styled-components"
-import { AsyncStorage, Platform, StatusBar } from "react-native"
+import { AsyncStorage, NetInfo, Platform, StatusBar } from "react-native"
 import { connect } from "react-redux"
 import MainNavigation from "../navigation/MainNavigation"
 import LoginNavigation from "../navigation/LoginNavigation"
-import { AuthActions } from "../store/actionCreator"
+import { AuthActions, BaseActions } from "../store/actionCreator"
 
 const Container = styled.View`
     flex: 1;
@@ -17,13 +17,23 @@ class AppContainer extends Component {
     }
 
     initialize = async () => {
-        // await AsyncStorage.removeItem("accessToken")
         const token = await AsyncStorage.getItem("accessToken")
-        console.log(token)
 
         if (token) {
             AuthActions.changeLogged(true)
         }
+
+        this.handleFirstConnectivityChange()
+    }
+
+    handleFirstConnectivityChange = () => {
+        NetInfo.getConnectionInfo().then(({ type }) => {
+            if (type === "none" || type === "unknown") {
+                BaseActions.changeIsNetworkConnected(false)
+            } else {
+                BaseActions.changeIsNetworkConnected(true)
+            }
+        })
     }
 
     render() {
