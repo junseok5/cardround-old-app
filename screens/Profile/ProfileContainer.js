@@ -25,6 +25,14 @@ class ProfileContainer extends Component {
         )
     }
 
+    _initialize = () => {
+        this._fetchMyProfile()
+        NetInfo.isConnected.addEventListener(
+            "connectionChange",
+            this.handleConnectivityChange
+        )
+    }
+
     handleConnectivityChange = isConnected => {
         if (isConnected) {
             BaseActions.changeIsNetworkConnected(true)
@@ -32,14 +40,6 @@ class ProfileContainer extends Component {
         } else {
             BaseActions.changeIsNetworkConnected(false)
         }
-    }
-
-    _initialize = () => {
-        this._fetchMyProfile()
-        NetInfo.isConnected.addEventListener(
-            "connectionChange",
-            this.handleConnectivityChange
-        )
     }
 
     _fetchMyProfile = async () => {

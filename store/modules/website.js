@@ -15,7 +15,7 @@ export const getWebsiteList = createAction(
 export const changePage = createAction(CHANGE_PAGE)
 
 const initialState = {
-    websites: {},
+    websites: [],
     listError: false,
     page: 1
 }
@@ -29,6 +29,7 @@ export default handleActions(
                 const { websites } = action.payload.data
                 return produce(state, draft => {
                     draft.websites = websites
+                    draft.page++
                 })
             },
             onFailure: (state, action) => {

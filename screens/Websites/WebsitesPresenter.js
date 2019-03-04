@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { ActivityIndicator, Button, FlatList } from "react-native"
+import { ActivityIndicator, FlatList } from "react-native"
 import Search from "../../components/search/Search"
 import SearchModal from "../../components/modal/SearchModal"
 import Menu from "../../components/menu/Menu"
@@ -15,8 +15,10 @@ const Container = styled.View`
 `
 
 const Header = styled.View`
-    border-bottom-width: 1px;
-    border-bottom-color: ${Colors.borderColor};
+    height: 85px;
+    /* padding-bottom: 15px; */
+    /* border-bottom-width: 1px;
+    border-bottom-color: ${Colors.borderColor}; */
 `
 
 const Main = styled.View`
@@ -29,38 +31,39 @@ const Loading = styled.View`
     align-items: center;
 `
 
-const menuArr = ["최신", "대학", "영화", "음악", "커뮤니티", "블로그", "쇼핑"]
-
 const WebsitesPresenter = ({
-    loading,
-    data,
-    listError,
-    refetchWebsiteList,
+    categoriesLoading,
+    websitesLoading,
+    websites,
+    categories,
+    selected,
     keyExtractor,
-    onEndReached
+    onEndReached,
+    fetchSelectedCategory
 }) => {
     return (
         <Container>
             <Header>
                 <Search />
                 <SearchModal />
-                <Menu data={menuArr} />
+                {!categoriesLoading && (
+                    <Menu
+                        selected={selected}
+                        data={categories}
+                        fetchSelectedCategory={fetchSelectedCategory}
+                    />
+                )}
             </Header>
-            {loading ? (
+            {websitesLoading ? (
                 <Loading>
                     <ActivityIndicator size="large" color={Colors.mainColor} />
                 </Loading>
-            ) : listError ? (
-                <Button
-                    title="다시 시도"
-                    color={Colors.buttonBackground}
-                    onPress={refetchWebsiteList}
-                />
             ) : (
                 <Main>
                     <FlatList
-                        data={data}
+                        data={websites}
                         keyExtractor={keyExtractor}
+                        // ListHeaderComponent={<Menu data={categories} />}
                         renderItem={({ item }) => (
                             <Website websiteData={item} key={item._id} />
                         )}

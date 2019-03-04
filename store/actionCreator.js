@@ -5,6 +5,7 @@ import * as authActions from "./modules/auth"
 import * as userActions from "./modules/user"
 import * as websiteActions from "./modules/website"
 import * as previewboardActions from "./modules/previewboard"
+import * as categoryActions from "./modules/category"
 
 const { dispatch } = store
 
@@ -16,3 +17,4 @@ export const PreviewboardActions = bindActionCreators(
     previewboardActions,
     dispatch
 )
+export const CategoryActions = bindActionCreators(categoryActions, dispatch)
