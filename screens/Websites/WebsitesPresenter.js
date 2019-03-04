@@ -16,9 +16,6 @@ const Container = styled.View`
 
 const Header = styled.View`
     height: 85px;
-    /* padding-bottom: 15px; */
-    /* border-bottom-width: 1px;
-    border-bottom-color: ${Colors.borderColor}; */
 `
 
 const Main = styled.View`
@@ -32,29 +29,29 @@ const Loading = styled.View`
 `
 
 const WebsitesPresenter = ({
-    categoriesLoading,
-    websitesLoading,
+    loadingCategories,
+    loadingWebsites,
     websites,
     categories,
     selected,
     keyExtractor,
     onEndReached,
-    fetchSelectedCategory
+    changeSelectedCategory
 }) => {
     return (
         <Container>
             <Header>
                 <Search />
                 <SearchModal />
-                {!categoriesLoading && (
+                {!loadingCategories && (
                     <Menu
                         selected={selected}
                         data={categories}
-                        fetchSelectedCategory={fetchSelectedCategory}
+                        changeSelectedCategory={changeSelectedCategory}
                     />
                 )}
             </Header>
-            {websitesLoading ? (
+            {loadingWebsites && websites.length === 0 ? (
                 <Loading>
                     <ActivityIndicator size="large" color={Colors.mainColor} />
                 </Loading>
@@ -63,7 +60,6 @@ const WebsitesPresenter = ({
                     <FlatList
                         data={websites}
                         keyExtractor={keyExtractor}
-                        // ListHeaderComponent={<Menu data={categories} />}
                         renderItem={({ item }) => (
                             <Website websiteData={item} key={item._id} />
                         )}

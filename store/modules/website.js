@@ -17,7 +17,8 @@ export const changePage = createAction(CHANGE_PAGE)
 const initialState = {
     websites: [],
     listError: false,
-    page: 1
+    page: 1,
+    end: false
 }
 
 export default handleActions(
@@ -27,10 +28,18 @@ export default handleActions(
             type: GET_WEBSITE_LIST,
             onSuccess: (state, action) => {
                 const { websites } = action.payload.data
-                return produce(state, draft => {
-                    draft.websites = websites
-                    draft.page++
-                })
+
+                if (websites.length < 20) {
+                    return produce(state, draft => {
+                        draft.websites = state.websites.concat(websites)
+                        draft.end = true
+                    })
+                } else {
+                    return produce(state, draft => {
+                        draft.websites = state.websites.concat(websites)
+                        draft.page++
+                    })
+                }
             },
             onFailure: (state, action) => {
                 return produce(state, draft => {

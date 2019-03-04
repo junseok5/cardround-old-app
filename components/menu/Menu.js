@@ -17,7 +17,7 @@ const MenuText = styled.Text`
         props.selected ? Colors.mainColor : Colors.supportColor};
 `
 
-const Menu = ({ selected, data, fetchSelectedCategory }) => {
+const Menu = ({ selected, data, changeSelectedCategory }) => {
     return (
         <Container>
             <ScrollView
@@ -25,14 +25,14 @@ const Menu = ({ selected, data, fetchSelectedCategory }) => {
                 showsHorizontalScrollIndicator={false}
             >
                 <TouchableWithoutFeedback
-                    onPress={() => fetchSelectedCategory("인기")}
+                    onPress={() => changeSelectedCategory("인기")}
                 >
                     <MenuText selected={selected === "인기"}>인기</MenuText>
                 </TouchableWithoutFeedback>
                 {data.map((item, key) => (
                     <TouchableWithoutFeedback
                         key={key}
-                        onPress={() => fetchSelectedCategory(item.name)}
+                        onPress={() => changeSelectedCategory(item.name)}
                     >
                         <MenuText selected={selected === item.name}>
                             {item.name}

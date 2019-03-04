@@ -17,6 +17,12 @@ class WebsitesContainer extends Component {
         this._initialize()
     }
 
+    componentDidUpdate = async (prevProps, prevState) =>{
+        if (prevProps.selected !== this.props.selected) {
+            this._refetchWebsiteList()
+        }
+    }
+
     componentWillUnmount() {
         NetInfo.removeEventListener(
             "connectionChange",
@@ -48,8 +54,10 @@ class WebsitesContainer extends Component {
     }
 
     _fetchWebsiteList = async () => {
-        const { page, selected } = this.props
-        console.log(selected)
+        const { page, selected, end } = this.props
+
+        if (end) return
+
         const category = selected === "인기" ? null : selected
         let query = category
             ? {
@@ -67,8 +75,8 @@ class WebsitesContainer extends Component {
         }
     }
 
-    _refetchWebsiteList = () => {
-        WebsiteActions.initialize()
+    _refetchWebsiteList = async () => {
+        await WebsiteActions.initialize()
         this._fetchWebsiteList()
     }
 
@@ -88,16 +96,14 @@ class WebsitesContainer extends Component {
     _keyExtractor = (item, index) => item._id
 
     _onEndReached = () => {
-        console.log("Hey!")
+        this._fetchWebsiteList()
     }
 
-    _fetchSelectedCategory = async category => {
+    _changeSelectedCategory = async category => {
         const { selected } = this.props
 
         if (category === selected) return
-
         await CategoryActions.changeSelected(category)
-        this._refetchWebsiteList()
     }
 
     render() {
@@ -105,8 +111,8 @@ class WebsitesContainer extends Component {
             isNetworkConnected,
             errorMessage,
             listError,
-            categoriesLoading,
-            websitesLoading,
+            loadingCategories,
+            loadingWebsites,
             websites,
             categories,
             selected
@@ -129,14 +135,14 @@ class WebsitesContainer extends Component {
         } else {
             return (
                 <WebsitesPresenter
-                    categoriesLoading={categoriesLoading}
-                    websitesLoading={websitesLoading}
+                    loadingCategories={loadingCategories}
+                    loadingWebsites={loadingWebsites}
                     websites={websites}
                     categories={categories}
                     selected={selected}
                     keyExtractor={this._keyExtractor}
                     onEndReached={this._onEndReached}
-                    fetchSelectedCategory={this._fetchSelectedCategory}
+                    changeSelectedCategory={this._changeSelectedCategory}
                 />
             )
         }
