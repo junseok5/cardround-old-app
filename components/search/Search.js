@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React from "react"
 import { TouchableWithoutFeedback } from "react-native"
 import styled from "styled-components"
 import Colors from "../../constants/Colors"
@@ -27,26 +27,24 @@ const SText = styled.Text`
     color: ${Colors.supportColor};
 `
 
-class Search extends Component {
-    render() {
-        return (
-            <Container>
-                <TouchableWithoutFeedback>
-                    <SearchWrap>
-                        <SearchButton>
-                            <Icon.Feather
-                                name="search"
-                                size={20}
-                                style={{ marginRight: 10 }}
-                                color={Colors.supportColor}
-                            />
-                            <SText>검색</SText>
-                        </SearchButton>
-                    </SearchWrap>
-                </TouchableWithoutFeedback>
-            </Container>
-        )
-    }
+const Search = ({ openModal }) => {
+    return (
+        <Container>
+            <TouchableWithoutFeedback onPress={openModal}>
+                <SearchWrap>
+                    <SearchButton>
+                        <Icon.Feather
+                            name="search"
+                            size={20}
+                            style={{ marginRight: 10 }}
+                            color={Colors.supportColor}
+                        />
+                        <SText>검색</SText>
+                    </SearchButton>
+                </SearchWrap>
+            </TouchableWithoutFeedback>
+        </Container>
+    )
 }
 
 export default Search

@@ -4,7 +4,8 @@ import WebsitesPresenter from "./WebsitesPresenter"
 import {
     BaseActions,
     CategoryActions,
-    WebsiteActions
+    WebsiteActions,
+    SearchActions
 } from "../../store/actionCreator"
 import ErrorNotice from "../../components/common/ErrorNotice"
 
@@ -17,8 +18,11 @@ class WebsitesContainer extends Component {
         this._initialize()
     }
 
-    componentDidUpdate = async (prevProps, prevState) =>{
-        if (prevProps.selected !== this.props.selected) {
+    componentDidUpdate = async (prevProps, prevState) => {
+        if (
+            prevProps.selected !== this.props.selected ||
+            prevProps.keyword !== this.props.keyword
+        ) {
             this._refetchWebsiteList()
         }
     }
@@ -54,7 +58,7 @@ class WebsitesContainer extends Component {
     }
 
     _fetchWebsiteList = async () => {
-        const { page, selected, end } = this.props
+        const { page, selected, keyword, end } = this.props
 
         if (end) return
 
@@ -63,6 +67,11 @@ class WebsitesContainer extends Component {
             ? {
                   page,
                   category
+              }
+            : keyword
+            ? {
+                  page,
+                  keyword
               }
             : {
                   page
@@ -103,7 +112,11 @@ class WebsitesContainer extends Component {
         const { selected } = this.props
 
         if (category === selected) return
-        await CategoryActions.changeSelected(category)
+        CategoryActions.changeSelected(category)
+    }
+
+    _changeSearchInput = text => {
+        SearchActions.changeKeyword({ name: "website", value: text })
     }
 
     render() {

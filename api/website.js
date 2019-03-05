@@ -15,3 +15,11 @@ export const getWebsiteList = ({ page, category, keyword }) =>
             keyword
         })}`
     )
+
+export const getWebsitePreviewList = ({ page, keyword }) =>
+    api.get(
+        `/v1.0/websites/search/preview?${queryString.stringify({
+            page,
+            keyword
+        })}`
+    )

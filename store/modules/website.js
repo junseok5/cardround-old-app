@@ -33,17 +33,20 @@ export default handleActions(
                     return produce(state, draft => {
                         draft.websites = state.websites.concat(websites)
                         draft.end = true
+                        draft.loading = false
                     })
                 } else {
                     return produce(state, draft => {
                         draft.websites = state.websites.concat(websites)
                         draft.page++
+                        draft.loading = false
                     })
                 }
             },
             onFailure: (state, action) => {
                 return produce(state, draft => {
                     draft.listError = true
+                    draft.loading = false
                 })
             }
         }),

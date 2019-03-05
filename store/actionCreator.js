@@ -6,6 +6,7 @@ import * as userActions from "./modules/user"
 import * as websiteActions from "./modules/website"
 import * as previewboardActions from "./modules/previewboard"
 import * as categoryActions from "./modules/category"
+import * as searchActions from "./modules/search"
 
 const { dispatch } = store
 
@@ -18,3 +19,4 @@ export const PreviewboardActions = bindActionCreators(
     dispatch
 )
 export const CategoryActions = bindActionCreators(categoryActions, dispatch)
+export const SearchActions = bindActionCreators(searchActions, dispatch)

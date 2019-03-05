@@ -3,8 +3,6 @@ import styled from "styled-components"
 import { ScrollView, TouchableWithoutFeedback } from "react-native"
 import Colors from "../../constants/Colors"
 
-const selected = "최신"
-
 const Container = styled.View`
     padding: 10px 5px;
 `
