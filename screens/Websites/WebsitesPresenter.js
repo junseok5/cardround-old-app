@@ -6,6 +6,7 @@ import Website from "../../components/list/Website"
 import Colors from "../../constants/Colors"
 import SearchWebModalContainer from "../../containers/SearchWebModalContainer"
 import SearchWebContainer from "../../containers/SearchWebContainer";
+import SearchResultWebModalContainer from "../../containers/SearchResultWebModalContainer";
 
 const Container = styled.View`
     flex: 1;
@@ -43,6 +44,7 @@ const WebsitesPresenter = ({
             <Header>
                 <SearchWebContainer />
                 <SearchWebModalContainer />
+                <SearchResultWebModalContainer />
                 {!loadingCategories && (
                     <Menu
                         selected={selected}

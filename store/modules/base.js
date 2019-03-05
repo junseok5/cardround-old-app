@@ -19,7 +19,9 @@ const initialState = {
     },
     modal: {
         searchWebsite: false,
-        searchBoard: false
+        searchBoard: false,
+        searchResultWeb: false,
+        searchResultBoard: false
     }
 }
 

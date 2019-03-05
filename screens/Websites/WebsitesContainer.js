@@ -4,8 +4,7 @@ import WebsitesPresenter from "./WebsitesPresenter"
 import {
     BaseActions,
     CategoryActions,
-    WebsiteActions,
-    SearchActions
+    ListingActions
 } from "../../store/actionCreator"
 import ErrorNotice from "../../components/common/ErrorNotice"
 
@@ -18,14 +17,13 @@ class WebsitesContainer extends Component {
         this._initialize()
     }
 
-    componentDidUpdate = async (prevProps, prevState) => {
-        if (
-            prevProps.selected !== this.props.selected ||
-            prevProps.keyword !== this.props.keyword
-        ) {
-            this._refetchWebsiteList()
-        }
-    }
+    // componentDidUpdate = async (prevProps, prevState) => {
+    //     if (prevProps.selected !== this.props.selected) {
+    //         this._refetchWebsiteList()
+    //     } else if (prevProps.keyword !== this.props.keyword) {
+    //         this._refetchWebsiteSearchList()
+    //     }
+    // }
 
     componentWillUnmount() {
         NetInfo.removeEventListener(
@@ -58,7 +56,7 @@ class WebsitesContainer extends Component {
     }
 
     _fetchWebsiteList = async () => {
-        const { page, selected, keyword, end } = this.props
+        const { page, selected, end } = this.props
 
         if (end) return
 
@@ -68,24 +66,19 @@ class WebsitesContainer extends Component {
                   page,
                   category
               }
-            : keyword
-            ? {
-                  page,
-                  keyword
-              }
             : {
                   page
               }
 
         try {
-            await WebsiteActions.getWebsiteList(query)
+            await ListingActions.getNormalWebsites(query)
         } catch (error) {
             console.log(error)
         }
     }
 
     _refetchWebsiteList = async () => {
-        await WebsiteActions.initialize()
+        await ListingActions.initializeNormalWebsites()
         this._fetchWebsiteList()
     }
 
@@ -112,18 +105,16 @@ class WebsitesContainer extends Component {
         const { selected } = this.props
 
         if (category === selected) return
-        CategoryActions.changeSelected(category)
-    }
 
-    _changeSearchInput = text => {
-        SearchActions.changeKeyword({ name: "website", value: text })
+        await CategoryActions.changeSelected(category)
+        this._refetchWebsiteList()
     }
 
     render() {
         const {
             isNetworkConnected,
             errorMessage,
-            listError,
+            error,
             loadingCategories,
             loadingWebsites,
             websites,
@@ -138,7 +129,7 @@ class WebsitesContainer extends Component {
                     refetch={this._refetchAll}
                 />
             )
-        } else if (listError) {
+        } else if (error) {
             return (
                 <ErrorNotice
                     message={errorMessage.server}

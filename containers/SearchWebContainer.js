@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { connect } from "react-redux"
 import Search from "../components/search/Search"
 import { BaseActions } from "../store/actionCreator"
 
@@ -8,8 +9,11 @@ class SearchWebContainer extends Component {
     }
 
     render() {
-        return <Search openModal={this._openModal} />
+        const { keyword } = this.props
+        return <Search keyword={keyword} openModal={this._openModal} />
     }
 }
 
-export default SearchWebContainer
+export default connect(state => ({
+    keyword: state.search.keyword.website
+}))(SearchWebContainer)

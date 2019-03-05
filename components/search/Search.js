@@ -4,9 +4,13 @@ import styled from "styled-components"
 import Colors from "../../constants/Colors"
 import { Icon } from "expo"
 
-const Container = styled.View``
+const Container = styled.View`
+    flex: 1;
+    flex-direction: row;
+`
 
 const SearchWrap = styled.View`
+    flex: 1;
     height: 40px;
     padding-left: 15px;
     padding-right: 15px;
@@ -27,7 +31,7 @@ const SText = styled.Text`
     color: ${Colors.supportColor};
 `
 
-const Search = ({ openModal }) => {
+const Search = ({ keyword, openModal }) => {
     return (
         <Container>
             <TouchableWithoutFeedback onPress={openModal}>
@@ -39,7 +43,7 @@ const Search = ({ openModal }) => {
                             style={{ marginRight: 10 }}
                             color={Colors.supportColor}
                         />
-                        <SText>검색</SText>
+                        <SText>{keyword ? keyword : "검색"}</SText>
                     </SearchButton>
                 </SearchWrap>
             </TouchableWithoutFeedback>
