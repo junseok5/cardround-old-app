@@ -12,7 +12,7 @@ import Colors from "../../constants/Colors"
 
 const Container = styled.View`
     flex: 1;
-    padding-top: 7px;
+    padding-top: 3px;
     padding-left: 15px;
     padding-right: 15px;
 `

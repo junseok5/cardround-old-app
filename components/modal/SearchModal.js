@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { PureComponent } from "react"
 import {
     Dimensions,
     Modal,
@@ -12,7 +12,9 @@ import { Icon } from "expo"
 const { width } = Dimensions.get("window")
 
 const Container = styled.View`
-    padding: 15px;
+    flex-direction: column;
+    padding: 11px 15px 15px 15px;
+    z-index: 1000;
 `
 
 const SearchView = styled.View`
@@ -83,58 +85,79 @@ const RecentKeyword = styled.Text`
     letter-spacing: 1px;
 `
 
-const SearchModal = ({ visible, form, closeModal, onChangeForm, onSearch }) => {
-    return (
-        <Modal
-            animationType="none"
-            visible={visible}
-            onRequestClose={closeModal}
-        >
-            <Container>
-                <SearchView>
-                    <SearchBox>
-                        <Icon.Feather
-                            name="search"
-                            size={20}
-                            color={Colors.supportColor}
-                        />
-                        <SearchInput
-                            placeholder="검색"
-                            placeholderTextColor={Colors.supportColor}
-                            value={form}
-                            onChangeText={onChangeForm}
-                            onSubmitEditing={onSearch}
-                            autoFocus
-                        />
-                    </SearchBox>
-                    <TouchableWithoutFeedback onPress={closeModal}>
-                        <SearchCancel>
-                            <CancelText>취소</CancelText>
-                        </SearchCancel>
-                    </TouchableWithoutFeedback>
-                </SearchView>
-                <SearchHelper>
-                    <SHContainer>
-                        <Title>최근 검색어</Title>
-                        <DeleteButton>
-                            <Icon.Feather name="x" size={13} color="white" />
-                        </DeleteButton>
-                    </SHContainer>
-                    <RecentKeywords>
-                        <TouchableOpacity>
-                            <RecentKeyword>충남대</RecentKeyword>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <RecentKeyword>서울대</RecentKeyword>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <RecentKeyword>하버드대</RecentKeyword>
-                        </TouchableOpacity>
-                    </RecentKeywords>
-                </SearchHelper>
-            </Container>
-        </Modal>
-    )
+class SearchModal extends PureComponent {
+    componentDidUpdate() {
+        if (!this.props.resultModalVisible) {
+            if (this.searchInput) {
+                setTimeout(() => {
+                    this.searchInput.focus()
+                }, 100)
+            }
+        }
+    }
+
+    render() {
+        const { visible, form, closeModal, onChangeForm, onSearch } = this.props
+        return (
+            <Modal
+                animationType="none"
+                visible={visible}
+                onRequestClose={closeModal}
+            >
+                <Container>
+                    <SearchView>
+                        <SearchBox>
+                            <Icon.Feather
+                                name="search"
+                                size={20}
+                                color={Colors.supportColor}
+                            />
+                            <SearchInput
+                                placeholder="검색"
+                                placeholderTextColor={Colors.supportColor}
+                                value={form}
+                                onChangeText={onChangeForm}
+                                onSubmitEditing={onSearch}
+                                ref={ref => {
+                                    this.searchInput = ref
+                                }}
+                                autoFocus
+                            />
+                        </SearchBox>
+                        <TouchableWithoutFeedback onPress={closeModal}>
+                            <SearchCancel>
+                                <CancelText>취소</CancelText>
+                            </SearchCancel>
+                        </TouchableWithoutFeedback>
+                    </SearchView>
+
+                    <SearchHelper>
+                        <SHContainer>
+                            <Title>최근 검색어</Title>
+                            <DeleteButton>
+                                <Icon.Feather
+                                    name="x"
+                                    size={13}
+                                    color="white"
+                                />
+                            </DeleteButton>
+                        </SHContainer>
+                        <RecentKeywords>
+                            <TouchableOpacity>
+                                <RecentKeyword>충남대</RecentKeyword>
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                                <RecentKeyword>서울대</RecentKeyword>
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                                <RecentKeyword>하버드대</RecentKeyword>
+                            </TouchableOpacity>
+                        </RecentKeywords>
+                    </SearchHelper>
+                </Container>
+            </Modal>
+        )
+    }
 }
 
 export default SearchModal

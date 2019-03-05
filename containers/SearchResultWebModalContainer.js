@@ -11,10 +11,6 @@ class SearchResultWebModalContainer extends Component {
         }
     }
 
-    _initialize = () => {
-        this._fetchWebsiteList()
-    }
-
     _fetchWebsiteList = async () => {
         const { page, keyword, end } = this.props
 

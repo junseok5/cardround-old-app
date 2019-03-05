@@ -38,14 +38,14 @@ class SearchWebModalContainer extends Component {
 
         SearchActions.changeKeyword({ name: "website", value: form })
         BaseActions.changeModal({ name: "searchResultWeb", value: true })
-        this._closeModal()
     }
 
     render() {
-        const { visible, form } = this.props
+        const { visible, resultModalVisible, form } = this.props
         return (
             <SearchModal
                 visible={visible}
+                resultModalVisible={resultModalVisible}
                 form={form}
                 closeModal={this._closeModal}
                 onChangeForm={this._onChangeForm}
@@ -57,6 +57,7 @@ class SearchWebModalContainer extends Component {
 
 export default connect(state => ({
     visible: state.base.modal.searchWebsite,
+    resultModalVisible: state.base.modal.searchResultWeb,
     form: state.search.form.website,
     keyword: state.search.keyword.website
 }))(SearchWebModalContainer)
