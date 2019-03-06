@@ -4,7 +4,7 @@ import SearchResultModal from "../components/modal/SearchResultModal"
 import Website from "../components/list/Website"
 import { ListingActions, BaseActions } from "../store/actionCreator"
 
-class SearchResultWebModalContainer extends Component {
+class SearchResultModalWebContainer extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.keyword !== this.props.keyword) {
             this._refetchWebsiteList()
@@ -62,4 +62,4 @@ export default connect(state => ({
     end: state.listing.website.search.end,
     keyword: state.search.keyword.website,
     loading: state.pender.pending["listing/GET_SEARCH_WEBSITES"]
-}))(SearchResultWebModalContainer)
+}))(SearchResultModalWebContainer)

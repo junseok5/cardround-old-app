@@ -97,7 +97,16 @@ class SearchModal extends PureComponent {
     }
 
     render() {
-        const { visible, form, closeModal, onChangeForm, onSearch } = this.props
+        const {
+            visible,
+            form,
+            recentKeywords,
+            closeModal,
+            onChangeForm,
+            onSearch,
+            clearRecentKeywords
+        } = this.props
+
         return (
             <Modal
                 animationType="none"
@@ -134,24 +143,29 @@ class SearchModal extends PureComponent {
                     <SearchHelper>
                         <SHContainer>
                             <Title>최근 검색어</Title>
-                            <DeleteButton>
-                                <Icon.Feather
-                                    name="x"
-                                    size={13}
-                                    color="white"
-                                />
-                            </DeleteButton>
+                            <TouchableWithoutFeedback
+                                onPress={clearRecentKeywords}
+                            >
+                                <DeleteButton>
+                                    <Icon.Feather
+                                        name="x"
+                                        size={13}
+                                        color="white"
+                                    />
+                                </DeleteButton>
+                            </TouchableWithoutFeedback>
                         </SHContainer>
                         <RecentKeywords>
-                            <TouchableOpacity>
-                                <RecentKeyword>충남대</RecentKeyword>
-                            </TouchableOpacity>
-                            <TouchableOpacity>
-                                <RecentKeyword>서울대</RecentKeyword>
-                            </TouchableOpacity>
-                            <TouchableOpacity>
-                                <RecentKeyword>하버드대</RecentKeyword>
-                            </TouchableOpacity>
+                            {recentKeywords.length > 0 &&
+                                recentKeywords.map((recentKeyword, key) => {
+                                    return (
+                                        <TouchableOpacity key={key}>
+                                            <RecentKeyword>
+                                                {recentKeyword}
+                                            </RecentKeyword>
+                                        </TouchableOpacity>
+                                    )
+                                })}
                         </RecentKeywords>
                     </SearchHelper>
                 </Container>

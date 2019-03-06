@@ -4,9 +4,9 @@ import { ActivityIndicator, FlatList } from "react-native"
 import Menu from "../../components/menu/Menu"
 import Website from "../../components/list/Website"
 import Colors from "../../constants/Colors"
-import SearchWebModalContainer from "../../containers/SearchWebModalContainer"
+import SearchModalWebContainer from "../../containers/SearchModalWebContainer"
 import SearchWebContainer from "../../containers/SearchWebContainer";
-import SearchResultWebModalContainer from "../../containers/SearchResultWebModalContainer";
+import SearchResultModalWebContainer from "../../containers/SearchResultModalWebContainer";
 
 const Container = styled.View`
     flex: 1;
@@ -43,8 +43,8 @@ const WebsitesPresenter = ({
         <Container>
             <Header>
                 <SearchWebContainer />
-                <SearchWebModalContainer />
-                <SearchResultWebModalContainer />
+                <SearchModalWebContainer />
+                <SearchResultModalWebContainer />
                 {!loadingCategories && (
                     <Menu
                         selected={selected}

@@ -1,7 +1,9 @@
 import React, { Component } from "react"
+import { AsyncStorage } from "react-native"
 import { connect } from "react-redux"
 import Search from "../components/search/Search"
-import { BaseActions } from "../store/actionCreator"
+import { BaseActions, SearchActions } from "../store/actionCreator"
+import { readRecentKeywords } from "../utils/recent-keywords";
 
 class SearchWebContainer extends Component {
     _openModal = () => {
@@ -12,17 +14,13 @@ class SearchWebContainer extends Component {
             return
         }
 
+        readRecentKeywords("webRecentKeywords")
         BaseActions.changeModal({ name: "searchWebsite", value: true })
     }
 
     render() {
         const { keyword } = this.props
-        return (
-            <Search
-                keyword={keyword}
-                openModal={this._openModal}
-            />
-        )
+        return <Search keyword={keyword} openModal={this._openModal} />
     }
 }
 

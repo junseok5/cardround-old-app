@@ -1,15 +1,21 @@
 import React, { Component } from "react"
+import { AsyncStorage } from "react-native"
 import { connect } from "react-redux"
 import SearchModal from "../components/modal/SearchModal"
 import {
     BaseActions,
     SearchActions,
-    WebsiteActions,
-    CategoryActions
+    WebsiteActions
 } from "../store/actionCreator"
+import {
+    writeRecentKeywords,
+    clearRecentKeyowrds,
+    readRecentKeywords
+} from "../utils/recent-keywords"
 
-class SearchWebModalContainer extends Component {
+class SearchModalWebContainer extends Component {
     _closeModal = () => {
+        SearchActions.initialize()
         BaseActions.changeModal({ name: "searchWebsite", value: false })
     }
 
@@ -38,18 +44,28 @@ class SearchWebModalContainer extends Component {
 
         SearchActions.changeKeyword({ name: "website", value: form })
         BaseActions.changeModal({ name: "searchResultWeb", value: true })
+
+        writeRecentKeywords({ target: "webRecentKeywords", keyword: form })
+        readRecentKeywords("webRecentKeywords")
+    }
+
+    _clearRecentKeywords = () => {
+        clearRecentKeyowrds("webRecentKeywords")
+        readRecentKeywords("webRecentKeywords")
     }
 
     render() {
-        const { visible, resultModalVisible, form } = this.props
+        const { visible, resultModalVisible, form, recentKeywords } = this.props
         return (
             <SearchModal
                 visible={visible}
                 resultModalVisible={resultModalVisible}
                 form={form}
+                recentKeywords={recentKeywords}
                 closeModal={this._closeModal}
                 onChangeForm={this._onChangeForm}
                 onSearch={this._onSearch}
+                clearRecentKeywords={this._clearRecentKeywords}
             />
         )
     }
@@ -59,5 +75,6 @@ export default connect(state => ({
     visible: state.base.modal.searchWebsite,
     resultModalVisible: state.base.modal.searchResultWeb,
     form: state.search.form.website,
-    keyword: state.search.keyword.website
-}))(SearchWebModalContainer)
+    keyword: state.search.keyword.website,
+    recentKeywords: state.search.recentKeywords.website
+}))(SearchModalWebContainer)
