@@ -18,9 +18,9 @@ export const writeRecentKeywords = ({ target, keyword }) => {
     let recentKeywords = AsyncStorage[target] || []
 
     if (recentKeywords.length > 0) {
-        const exists = recentKeywords.indexOf(keyword)
+        const index = recentKeywords.indexOf(keyword)
 
-        if (exists >= 0) {
+        if (index >= 0) {
             recentKeywords.splice(index, 1)
         } else if (recentKeywords.length >= 4) {
             recentKeywords.pop()

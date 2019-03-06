@@ -8,6 +8,7 @@ import {
 import styled from "styled-components"
 import Colors from "../../constants/Colors"
 import { Icon } from "expo"
+import Loading from "../common/Loading"
 
 const { width } = Dimensions.get("window")
 
@@ -73,11 +74,11 @@ const DeleteButton = styled.View`
     border-radius: 50;
 `
 
-const RecentKeywords = styled.View`
+const Keywords = styled.View`
     padding-top: 10px;
 `
 
-const RecentKeyword = styled.Text`
+const Keyword = styled.Text`
     padding-top: 5px;
     padding-bottom: 5px;
     font-size: 20px;
@@ -101,10 +102,14 @@ class SearchModal extends PureComponent {
             visible,
             form,
             recentKeywords,
+            loading,
+            preview,
+            error,
             closeModal,
             onChangeForm,
             onSearch,
-            clearRecentKeywords
+            clearRecentKeywords,
+            onClickKeyword
         } = this.props
 
         return (
@@ -140,34 +145,57 @@ class SearchModal extends PureComponent {
                         </TouchableWithoutFeedback>
                     </SearchView>
 
-                    <SearchHelper>
-                        <SHContainer>
-                            <Title>최근 검색어</Title>
-                            <TouchableWithoutFeedback
-                                onPress={clearRecentKeywords}
-                            >
-                                <DeleteButton>
-                                    <Icon.Feather
-                                        name="x"
-                                        size={13}
-                                        color="white"
-                                    />
-                                </DeleteButton>
-                            </TouchableWithoutFeedback>
-                        </SHContainer>
-                        <RecentKeywords>
-                            {recentKeywords.length > 0 &&
-                                recentKeywords.map((recentKeyword, key) => {
-                                    return (
-                                        <TouchableOpacity key={key}>
-                                            <RecentKeyword>
-                                                {recentKeyword}
-                                            </RecentKeyword>
+                    {!form ? (
+                        <SearchHelper>
+                            <SHContainer>
+                                <Title>최근 검색어</Title>
+                                <TouchableWithoutFeedback
+                                    onPress={clearRecentKeywords}
+                                >
+                                    <DeleteButton>
+                                        <Icon.Feather
+                                            name="x"
+                                            size={13}
+                                            color="white"
+                                        />
+                                    </DeleteButton>
+                                </TouchableWithoutFeedback>
+                            </SHContainer>
+                            <Keywords>
+                                {recentKeywords.length > 0 &&
+                                    recentKeywords.map((recentKeyword, key) => (
+                                        <TouchableOpacity
+                                            key={key}
+                                            onPress={() =>
+                                                onClickKeyword(recentKeyword)
+                                            }
+                                        >
+                                            <Keyword>{recentKeyword}</Keyword>
                                         </TouchableOpacity>
-                                    )
-                                })}
-                        </RecentKeywords>
-                    </SearchHelper>
+                                    ))}
+                            </Keywords>
+                        </SearchHelper>
+                    ) : (
+                        <SearchHelper>
+                            <Keywords>
+                                {loading ? (
+                                    <Loading />
+                                ) : (
+                                    !error &&
+                                    preview.map((keyword, key) => (
+                                        <TouchableOpacity
+                                            key={key}
+                                            onPress={() =>
+                                                onClickKeyword(keyword.name)
+                                            }
+                                        >
+                                            <Keyword>{keyword.name}</Keyword>
+                                        </TouchableOpacity>
+                                    ))
+                                )}
+                            </Keywords>
+                        </SearchHelper>
+                    )}
                 </Container>
             </Modal>
         )

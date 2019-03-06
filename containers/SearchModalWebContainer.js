@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import SearchModal from "../components/modal/SearchModal"
 import {
     BaseActions,
+    ListingActions,
     SearchActions,
     WebsiteActions
 } from "../store/actionCreator"
@@ -21,6 +22,19 @@ class SearchModalWebContainer extends Component {
 
     _onChangeForm = text => {
         SearchActions.changeForm({ name: "website", value: text })
+        ListingActions.getPreviewWebsites(text)
+    }
+
+    _searchStart = keyword => {
+        SearchActions.changeKeyword({ name: "website", value: keyword })
+        BaseActions.changeModal({ name: "searchResultWeb", value: true })
+
+        writeRecentKeywords({ target: "webRecentKeywords", keyword })
+        readRecentKeywords("webRecentKeywords")
+    }
+
+    _onClickKeyword = keyword => {
+        this._searchStart(keyword)
     }
 
     _fetchWebsiteSearchList = async () => {
@@ -42,11 +56,7 @@ class SearchModalWebContainer extends Component {
 
         if (!form) return
 
-        SearchActions.changeKeyword({ name: "website", value: form })
-        BaseActions.changeModal({ name: "searchResultWeb", value: true })
-
-        writeRecentKeywords({ target: "webRecentKeywords", keyword: form })
-        readRecentKeywords("webRecentKeywords")
+        this._searchStart(form)
     }
 
     _clearRecentKeywords = () => {
@@ -55,17 +65,30 @@ class SearchModalWebContainer extends Component {
     }
 
     render() {
-        const { visible, resultModalVisible, form, recentKeywords } = this.props
+        const {
+            visible,
+            resultModalVisible,
+            form,
+            recentKeywords,
+            loading,
+            preview,
+            error
+        } = this.props
+
         return (
             <SearchModal
                 visible={visible}
                 resultModalVisible={resultModalVisible}
                 form={form}
                 recentKeywords={recentKeywords}
+                loading={loading}
+                preview={preview}
+                error={error}
                 closeModal={this._closeModal}
                 onChangeForm={this._onChangeForm}
                 onSearch={this._onSearch}
                 clearRecentKeywords={this._clearRecentKeywords}
+                onClickKeyword={this._onClickKeyword}
             />
         )
     }
@@ -76,5 +99,8 @@ export default connect(state => ({
     resultModalVisible: state.base.modal.searchResultWeb,
     form: state.search.form.website,
     keyword: state.search.keyword.website,
-    recentKeywords: state.search.recentKeywords.website
+    recentKeywords: state.search.recentKeywords.website,
+    preview: state.listing.website.preview.websites,
+    error: state.listing.website.preview.error,
+    loading: state.pender.pending["listing/GET_PREVIEW_WEBSITES"]
 }))(SearchModalWebContainer)
