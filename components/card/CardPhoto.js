@@ -3,7 +3,6 @@ import { TouchableWithoutFeedback } from "react-native"
 import { withNavigation } from "react-navigation"
 import styled from "styled-components"
 import Colors from "../../constants/Colors"
-import { LazyloadImage } from "react-native-lazyload"
 
 const Container = styled.View`
     width: ${props => props.layoutWidth};
@@ -17,6 +16,15 @@ const Thumbnail = styled.View`
     margin-bottom: ${props => (props.isRank ? "0" : "5px")};
     background-color: ${Colors.thumbnail};
     border-radius: 4;
+`
+
+const Image = styled.Image`
+    width: ${props => props.layoutWidth};
+    height: ${props => props.layoutHeight};
+    border-top-left-radius: 4;
+    border-top-right-radius: 4;
+    border-bottom-left-radius: ${props => (!props.isRank ? 4 : 0)};
+    border-bottom-right-radius: ${props => (!props.isRank ? 4 : 0)};
 `
 
 const Rank = styled.View`
@@ -59,7 +67,6 @@ class CardPhoto extends PureComponent {
     render() {
         const {
             card,
-            scrollHost,
             layoutWidth,
             layoutHeight,
             isRank,
@@ -92,16 +99,10 @@ class CardPhoto extends PureComponent {
                         layoutHeight={layoutHeight}
                         isRank={isRank}
                     >
-                        <LazyloadImage
-                            host={scrollHost}
-                            style={{
-                                width: layoutWidth,
-                                height: layoutHeight,
-                                borderTopLeftRadius: 4,
-                                borderTopRightRadius: 4,
-                                borderBottomLeftRadius: !isRank ? 4 : 0,
-                                borderBottomRightRadius: !isRank ? 4 : 0
-                            }}
+                        <Image
+                            layoutWidth={layoutWidth}
+                            layoutHeight={layoutHeight}
+                            isRank={isRank}
                             source={{ uri: card.thumbnail }}
                         />
                     </Thumbnail>

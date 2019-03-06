@@ -55,7 +55,6 @@ class CardBamboo extends PureComponent {
         const {
             card,
             layoutWidth,
-            layoutHeight,
             horizontal,
             numberOfLines = 10,
             isFb = false,

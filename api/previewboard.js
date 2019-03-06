@@ -9,9 +9,10 @@ const api = axios.create({
 // [GET]
 export const getPreviewboardList = ({ page, category, keyword, websiteId }) =>
     api.get(
-        `/v1.0/previewboards/websites/${websiteId}?${queryString.stringify({
+        `/v1.0/previewboards?${queryString.stringify({
             page,
             category,
-            keyword
+            keyword,
+            websiteId
         })}`
     )

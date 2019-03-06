@@ -17,14 +17,6 @@ class WebsitesContainer extends Component {
         this._initialize()
     }
 
-    // componentDidUpdate = async (prevProps, prevState) => {
-    //     if (prevProps.selected !== this.props.selected) {
-    //         this._refetchWebsiteList()
-    //     } else if (prevProps.keyword !== this.props.keyword) {
-    //         this._refetchWebsiteSearchList()
-    //     }
-    // }
-
     componentWillUnmount() {
         NetInfo.removeEventListener(
             "connectionChange",
@@ -44,7 +36,7 @@ class WebsitesContainer extends Component {
     handleConnectivityChange = isConnected => {
         if (isConnected) {
             BaseActions.changeIsNetworkConnected(true)
-            this._fetchMyProfile()
+            this._fetchWebsiteList()
         } else {
             BaseActions.changeIsNetworkConnected(false)
         }

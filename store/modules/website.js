@@ -6,9 +6,7 @@ const INITIALIZE = "website/INITIALIZE"
 
 export const initialize = createAction(INITIALIZE)
 
-const initialState = {
-    
-}
+const initialState = {}
 
 export default handleActions(
     {

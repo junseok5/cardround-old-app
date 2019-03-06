@@ -63,7 +63,7 @@ const WebsitesPresenter = ({
                         data={websites}
                         keyExtractor={keyExtractor}
                         renderItem={({ item }) => (
-                            <Website websiteData={item} key={item._id} />
+                            <Website website={item} key={item._id} />
                         )}
                         onEndReachedThreshold={0.6}
                         onEndReached={onEndReached}

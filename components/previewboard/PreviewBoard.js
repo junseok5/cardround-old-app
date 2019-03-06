@@ -50,7 +50,7 @@ const Main = styled.View``
 
 class PreviewBoard extends PureComponent {
     render() {
-        const { previewboardData, scrollHost, navigation } = this.props
+        const { data, scrollHost, navigation } = this.props
         const {
             _id,
             name,
@@ -58,7 +58,7 @@ class PreviewBoard extends PureComponent {
             websiteName,
             layoutType,
             cards
-        } = previewboardData
+        } = data
 
         return (
             <Container>

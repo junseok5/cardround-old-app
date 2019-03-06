@@ -32,14 +32,14 @@ const Follower = styled.Text`
 
 class Website extends Component {
     render() {
-        const { websiteData } = this.props
+        const { website } = this.props
         return (
             <TouchableWithoutFeedback
                 onPress={() =>
                     this.props.navigation.navigate({
                         routeName: "DetailWebsite",
                         params: {
-                            websiteData
+                            website
                         }
                     })
                 }
@@ -53,12 +53,12 @@ class Website extends Component {
                                 borderRadius: 4,
                                 resizeMode: "contain"
                             }}
-                            source={{ uri: websiteData.thumbnail }}
+                            source={{ uri: website.thumbnail }}
                         />
                     </Thumbnail>
                     <MetaInfo>
-                        <Name>{websiteData.name}</Name>
-                        <Follower>팔로워 {websiteData.follower}명</Follower>
+                        <Name>{website.name}</Name>
+                        <Follower>팔로워 {website.follower}명</Follower>
                     </MetaInfo>
                 </Container>
             </TouchableWithoutFeedback>
