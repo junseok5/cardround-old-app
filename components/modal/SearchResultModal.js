@@ -78,7 +78,7 @@ const SearchResultModal = ({
                             data={websites}
                             keyExtractor={keyExtractor}
                             renderItem={({ item }) => (
-                                <ListItem websiteData={item} key={item._id} />
+                                <ListItem website={item} key={item._id} />
                             )}
                             onEndReachedThreshold={0.6}
                             onEndReached={onEndReached}
