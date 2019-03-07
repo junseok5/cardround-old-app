@@ -1,6 +1,5 @@
-import React, { Component } from "react"
+import React from "react"
 import { Image, TouchableWithoutFeedback } from "react-native"
-import { withNavigation } from "react-navigation"
 import styled from "styled-components"
 import Colors from "../../constants/Colors"
 
@@ -30,40 +29,26 @@ const Follower = styled.Text`
     font-size: 13px;
 `
 
-class Website extends Component {
-    render() {
-        const { website } = this.props
-        return (
-            <TouchableWithoutFeedback
-                onPress={() =>
-                    this.props.navigation.navigate({
-                        routeName: "DetailWebsite",
-                        params: {
-                            website
-                        }
-                    })
-                }
-            >
-                <Container>
-                    <Thumbnail>
-                        <Image
-                            style={{
-                                width: 64,
-                                height: 64,
-                                borderRadius: 4,
-                                resizeMode: "contain"
-                            }}
-                            source={{ uri: website.thumbnail }}
-                        />
-                    </Thumbnail>
-                    <MetaInfo>
-                        <Name>{website.name}</Name>
-                        <Follower>팔로워 {website.follower}명</Follower>
-                    </MetaInfo>
-                </Container>
-            </TouchableWithoutFeedback>
-        )
-    }
-}
+const Website = ({ website, moveToDetail }) => (
+    <TouchableWithoutFeedback onPress={moveToDetail}>
+        <Container>
+            <Thumbnail>
+                <Image
+                    style={{
+                        width: 64,
+                        height: 64,
+                        borderRadius: 4,
+                        resizeMode: "contain"
+                    }}
+                    source={{ uri: website.thumbnail }}
+                />
+            </Thumbnail>
+            <MetaInfo>
+                <Name>{website.name}</Name>
+                <Follower>팔로워 {website.follower}명</Follower>
+            </MetaInfo>
+        </Container>
+    </TouchableWithoutFeedback>
+)
 
-export default withNavigation(Website)
+export default Website

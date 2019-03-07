@@ -4,10 +4,11 @@ import { withNavigation } from "react-navigation"
 import Colors from "../../constants/Colors"
 import { Button, Image, TouchableWithoutFeedback } from "react-native"
 import NewsPhoto from "./NewsPhoto"
-import Chart from "./Chart"
 import ShopPhoto from "./ShopPhoto"
 import OldBoard from "./OldBoard"
 import Bamboo from "./Bamboo"
+import MovieChart from "./MovieChart"
+import MusicChart from "./MusicChart"
 
 const Container = styled.View`
     margin-top: 15px;
@@ -95,15 +96,14 @@ class PreviewBoard extends PureComponent {
                     />
                 </Header>
                 <Main>
-                    {layoutType === "NEWS_PHOTO" && (
-                        <NewsPhoto data={cards} scrollHost={scrollHost} />
-                    )}
-                    {layoutType === "CHART" && (
-                        <Chart data={cards} scrollHost={scrollHost} />
-                    )}
+                    {layoutType === "NEWS_PHOTO" && <NewsPhoto data={cards} />}
                     {layoutType === "OLD_BOARD" && <OldBoard data={cards} />}
-                    {layoutType === "SHOP_PHOTO" && (
-                        <ShopPhoto data={cards} scrollHost={scrollHost} />
+                    {layoutType === "SHOP_PHOTO" && <ShopPhoto data={cards} />}
+                    {layoutType === "MOVIE_CHART" && (
+                        <MovieChart data={cards} />
+                    )}
+                    {layoutType === "MUSIC_CHART" && (
+                        <MusicChart data={cards} />
                     )}
                     {layoutType === "BAMBOO" && <Bamboo data={cards} />}
                 </Main>

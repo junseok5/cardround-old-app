@@ -17,6 +17,12 @@ class DetailWebsiteContainer extends Component {
     }
 
     _initialize = () => {
+        const { loading } = this.props
+
+        if (loading) {
+            return
+        }
+
         this._refetchPreviewboardList()
         NetInfo.isConnected.addEventListener(
             "connectionChange",

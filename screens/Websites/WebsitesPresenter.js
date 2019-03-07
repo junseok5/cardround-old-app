@@ -2,11 +2,11 @@ import React from "react"
 import styled from "styled-components"
 import { ActivityIndicator, FlatList } from "react-native"
 import Menu from "../../components/menu/Menu"
-import Website from "../../components/list/Website"
 import Colors from "../../constants/Colors"
 import SearchModalWebContainer from "../../containers/SearchModalWebContainer"
-import SearchWebContainer from "../../containers/SearchWebContainer";
-import SearchResultModalWebContainer from "../../containers/SearchResultModalWebContainer";
+import SearchWebContainer from "../../containers/SearchWebContainer"
+import SearchResultModalWebContainer from "../../containers/SearchResultModalWebContainer"
+import WebsiteContainer from "../../containers/WebsiteContainer"
 
 const Container = styled.View`
     flex: 1;
@@ -37,7 +37,7 @@ const WebsitesPresenter = ({
     selected,
     keyExtractor,
     onEndReached,
-    changeSelectedCategory,
+    changeSelectedCategory
 }) => {
     return (
         <Container>
@@ -63,7 +63,7 @@ const WebsitesPresenter = ({
                         data={websites}
                         keyExtractor={keyExtractor}
                         renderItem={({ item }) => (
-                            <Website website={item} key={item._id} />
+                            <WebsiteContainer website={item} key={item._id} />
                         )}
                         onEndReachedThreshold={0.6}
                         onEndReached={onEndReached}

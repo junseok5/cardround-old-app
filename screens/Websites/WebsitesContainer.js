@@ -25,8 +25,8 @@ class WebsitesContainer extends Component {
     }
 
     _initialize = () => {
-        this._fetchWebsiteList()
         this._fetchCategoryList()
+        this._fetchWebsiteList()
         NetInfo.isConnected.addEventListener(
             "connectionChange",
             this.handleConnectivityChange

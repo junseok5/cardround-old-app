@@ -31,6 +31,7 @@ class DetailCardScreen extends Component {
                 source={{
                     uri: this.props.navigation.state.params.link
                 }}
+                startInLoadingState={true}
             />
         )
     }

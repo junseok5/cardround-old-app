@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import SearchResultModal from "../components/modal/SearchResultModal"
-import Website from "../components/list/Website"
 import { ListingActions, BaseActions } from "../store/actionCreator"
+import WebsiteContainer from "./WebsiteContainer";
 
 class SearchResultModalWebContainer extends Component {
     componentDidUpdate(prevProps, prevState) {
@@ -48,7 +48,7 @@ class SearchResultModalWebContainer extends Component {
                 keyExtractor={this._keyExtractor}
                 onEndReached={this._onEndReached}
                 closeModal={this._closeModal}
-                ListItem={Website}
+                ListItem={WebsiteContainer}
             />
         )
     }
