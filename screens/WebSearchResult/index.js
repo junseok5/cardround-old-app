@@ -2,6 +2,8 @@ import { connect } from "react-redux"
 import WebSearchResultContainer from "./WebSearchResultContainer"
 
 export default connect(state => ({
+    isNetworkConnected: state.base.isNetworkConnected,
+    errorMessage: state.base.errorMessage,
     websites: state.listing.website.search.websites,
     error: state.listing.website.search.error,
     page: state.listing.website.search.page,

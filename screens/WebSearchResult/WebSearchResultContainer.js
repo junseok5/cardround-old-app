@@ -1,8 +1,10 @@
 import React, { Component } from "react"
+import { NetInfo } from "react-native"
 import { withNavigation } from "react-navigation"
 import SearchResult from "../../components/search/SearchResult"
 import Website from "../../components/list/Website"
-import { ListingActions } from "../../store/actionCreator"
+import { BaseActions, ListingActions } from "../../store/actionCreator"
+import ErrorNotice from "../../components/common/ErrorNotice"
 
 class WebSearchResultContainer extends Component {
     static navigationOptions = {
@@ -10,11 +12,28 @@ class WebSearchResultContainer extends Component {
     }
 
     componentDidMount() {
-        this._fetchWebsiteList()
+        this._initialize()
     }
 
     componentWillUnmount() {
         ListingActions.initializeSearchWebsites()
+    }
+
+    _initialize = () => {
+        this._fetchWebsiteList()
+        NetInfo.isConnected.addEventListener(
+            "connectionChange",
+            this.handleConnectivityChange
+        )
+    }
+
+    handleConnectivityChange = isConnected => {
+        if (isConnected) {
+            BaseActions.changeIsNetworkConnected(true)
+            this._fetchWebsiteList()
+        } else {
+            BaseActions.changeIsNetworkConnected(false)
+        }
     }
 
     _fetchWebsiteList = async () => {
@@ -41,24 +60,47 @@ class WebSearchResultContainer extends Component {
         navigation.goBack()
     }
 
-    _keyExtractor = (item) => item._id
+    _keyExtractor = item => item._id
 
     _onEndReached = () => {
         this._fetchWebsiteList()
     }
 
     render() {
-        const { loading, websites } = this.props
-        return (
-            <SearchResult
-                loading={loading}
-                websites={websites}
-                keyExtractor={this._keyExtractor}
-                onEndReached={this._onEndReached}
-                closeScreen={this._closeScreen}
-                ListItem={Website}
-            />
-        )
+        const {
+            isNetworkConnected,
+            errorMessage,
+            loading,
+            websites,
+            error
+        } = this.props
+
+        if (!isNetworkConnected && websites.length === 0) {
+            return (
+                <ErrorNotice
+                    message={errorMessage.network}
+                    refetch={this._refetchWebsiteList}
+                />
+            )
+        } else if (error) {
+            return (
+                <ErrorNotice
+                    message={errorMessage.server}
+                    refetch={this._refetchWebsiteList}
+                />
+            )
+        } else {
+            return (
+                <SearchResult
+                    loading={loading}
+                    websites={websites}
+                    keyExtractor={this._keyExtractor}
+                    onEndReached={this._onEndReached}
+                    closeScreen={this._closeScreen}
+                    ListItem={Website}
+                />
+            )
+        }
     }
 }
 
