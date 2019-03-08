@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react"
+import React from "react"
 import { Icon } from "expo"
 import {
     Dimensions,
@@ -84,113 +84,84 @@ const Keyword = styled.Text`
     letter-spacing: 1px;
 `
 
-class Search extends PureComponent {
-    componentDidUpdate() {
-        if (!this.props.resultModalVisible) {
-            if (this.searchInput) {
-                setTimeout(() => {
-                    this.searchInput.focus()
-                }, 100)
-            }
-        }
-    }
+const Search = ({
+    form,
+    recentKeywords,
+    loading,
+    preview,
+    error,
+    closeScreen,
+    onChangeForm,
+    onSearch,
+    clearRecentKeywords,
+    onClickKeyword
+}) => (
+    <Container>
+        <SearchView>
+            <SearchBox>
+                <Icon.Feather
+                    name="search"
+                    size={20}
+                    color={Colors.supportColor}
+                />
+                <SearchInput
+                    placeholder="검색"
+                    placeholderTextColor={Colors.supportColor}
+                    value={form}
+                    onChangeText={onChangeForm}
+                    onSubmitEditing={onSearch}
+                    autoFocus
+                />
+            </SearchBox>
+            <TouchableWithoutFeedback onPress={closeScreen}>
+                <SearchCancel>
+                    <CancelText>취소</CancelText>
+                </SearchCancel>
+            </TouchableWithoutFeedback>
+        </SearchView>
 
-    render() {
-        const {
-            form,
-            recentKeywords,
-            loading,
-            preview,
-            error,
-            closeScreen,
-            onChangeForm,
-            onSearch,
-            clearRecentKeywords,
-            onClickKeyword
-        } = this.props
-
-        return (
-            <Container>
-                <SearchView>
-                    <SearchBox>
-                        <Icon.Feather
-                            name="search"
-                            size={20}
-                            color={Colors.supportColor}
-                        />
-                        <SearchInput
-                            placeholder="검색"
-                            placeholderTextColor={Colors.supportColor}
-                            value={form}
-                            onChangeText={onChangeForm}
-                            onSubmitEditing={onSearch}
-                            ref={ref => {
-                                this.searchInput = ref
-                            }}
-                            autoFocus
-                        />
-                    </SearchBox>
-                    <TouchableWithoutFeedback onPress={closeScreen}>
-                        <SearchCancel>
-                            <CancelText>취소</CancelText>
-                        </SearchCancel>
+        {!form ? (
+            <SearchHelper>
+                <SHContainer>
+                    <Title>최근 검색어</Title>
+                    <TouchableWithoutFeedback onPress={clearRecentKeywords}>
+                        <DeleteButton>
+                            <Icon.Feather name="x" size={13} color="white" />
+                        </DeleteButton>
                     </TouchableWithoutFeedback>
-                </SearchView>
-
-                {!form ? (
-                    <SearchHelper>
-                        <SHContainer>
-                            <Title>최근 검색어</Title>
-                            <TouchableWithoutFeedback
-                                onPress={clearRecentKeywords}
+                </SHContainer>
+                <Keywords>
+                    {recentKeywords.length > 0 &&
+                        recentKeywords.map((recentKeyword, key) => (
+                            <TouchableOpacity
+                                key={key}
+                                onPress={() => onClickKeyword(recentKeyword)}
                             >
-                                <DeleteButton>
-                                    <Icon.Feather
-                                        name="x"
-                                        size={13}
-                                        color="white"
-                                    />
-                                </DeleteButton>
-                            </TouchableWithoutFeedback>
-                        </SHContainer>
-                        <Keywords>
-                            {recentKeywords.length > 0 &&
-                                recentKeywords.map((recentKeyword, key) => (
-                                    <TouchableOpacity
-                                        key={key}
-                                        onPress={() =>
-                                            onClickKeyword(recentKeyword)
-                                        }
-                                    >
-                                        <Keyword>{recentKeyword}</Keyword>
-                                    </TouchableOpacity>
-                                ))}
-                        </Keywords>
-                    </SearchHelper>
-                ) : (
-                    <SearchHelper>
-                        <Keywords>
-                            {loading ? (
-                                <Loading />
-                            ) : (
-                                !error &&
-                                preview.map((keyword, key) => (
-                                    <TouchableOpacity
-                                        key={key}
-                                        onPress={() =>
-                                            onClickKeyword(keyword.name)
-                                        }
-                                    >
-                                        <Keyword>{keyword.name}</Keyword>
-                                    </TouchableOpacity>
-                                ))
-                            )}
-                        </Keywords>
-                    </SearchHelper>
-                )}
-            </Container>
-        )
-    }
-}
+                                <Keyword>{recentKeyword}</Keyword>
+                            </TouchableOpacity>
+                        ))}
+                </Keywords>
+            </SearchHelper>
+        ) : (
+            <SearchHelper>
+                <Keywords>
+                    {loading ? (
+                        <Loading />
+                    ) : (
+                        !error &&
+                        preview.map((keyword, key) => (
+                            <TouchableOpacity
+                                key={key}
+                                onPress={() => onClickKeyword(keyword.name)}
+                            >
+                                <Keyword>{keyword.name}</Keyword>
+                            </TouchableOpacity>
+                        ))
+                    )}
+                </Keywords>
+            </SearchHelper>
+        )}
+    </Container>
+)
 
 export default Search

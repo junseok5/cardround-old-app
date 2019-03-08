@@ -10,11 +10,15 @@ import {
     readRecentKeywords,
     writeRecentKeywords
 } from "../../utils/recent-keywords"
-import Search from "../../components/search/Search";
+import Search from "../../components/search/Search"
 
 class WebSearchContainer extends Component {
     static navigationOptions = {
         header: null
+    }
+
+    componentWillUnmount() {
+        SearchActions.initialize()
     }
 
     _closeScreen = () => {
@@ -24,14 +28,14 @@ class WebSearchContainer extends Component {
         navigation.goBack()
     }
 
-    _onChangeForm = text => {
+    _onChangeForm = async text => {
         SearchActions.changeForm({ name: "website", value: text })
-        ListingActions.getPreviewWebsites(text)
+        await ListingActions.getPreviewWebsites(text)
     }
 
     _searchStart = keyword => {
         const { navigation } = this.props
-        
+
         SearchActions.changeKeyword({ name: "website", value: keyword })
         navigation.navigate("WebSearchResult")
 

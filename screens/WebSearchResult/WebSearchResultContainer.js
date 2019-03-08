@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { withNavigation } from "react-navigation"
 import SearchResult from "../../components/search/SearchResult"
 import Website from "../../components/list/Website"
-import { ListingActions } from "../../store/actionCreator";
+import { ListingActions } from "../../store/actionCreator"
 
 class WebSearchResultContainer extends Component {
     static navigationOptions = {
@@ -10,14 +10,12 @@ class WebSearchResultContainer extends Component {
     }
 
     componentDidMount() {
-        this._refetchWebsiteList()
+        this._fetchWebsiteList()
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     if (prevProps.keyword !== this.props.keyword) {
-    //         this._refetchWebsiteList()
-    //     }
-    // }
+    componentWillUnmount() {
+        ListingActions.initializeSearchWebsites()
+    }
 
     _fetchWebsiteList = async () => {
         const { page, keyword, end } = this.props
@@ -43,7 +41,7 @@ class WebSearchResultContainer extends Component {
         navigation.goBack()
     }
 
-    _keyExtractor = (item, index) => item._id
+    _keyExtractor = (item) => item._id
 
     _onEndReached = () => {
         this._fetchWebsiteList()
