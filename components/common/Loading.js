@@ -5,13 +5,15 @@ import Colors from "../../constants/Colors"
 
 const Container = styled.View`
     flex: 1;
-    justify-content: center;
+    justify-content: ${props => (props.isList ? "flex-start" : "center")};
     align-items: center;
+
+    /* align-items: center; */
 `
 
-const Loading = () => {
+const Loading = ({ isList = false }) => {
     return (
-        <Container>
+        <Container isList={isList}>
             <ActivityIndicator size="large" color={Colors.mainColor} />
         </Container>
     )

@@ -3,6 +3,8 @@ import TabNavigation from "./TabNavigation"
 import DetailBoardScreen from "../screens/DetailBoardScreen"
 import DetailCardScreen from "../screens/DetailCardScreen"
 import DetailWebsite from "../screens/DetailWebsite"
+import WebSearch from "../screens/WebSearch"
+import WebSearchResult from "../screens/WebSearchResult"
 
 const MainNavigation = createStackNavigator(
     {
@@ -20,6 +22,12 @@ const MainNavigation = createStackNavigator(
         },
         DetailCard: {
             screen: DetailCardScreen
+        },
+        WebSearch: {
+            screen: WebSearch
+        },
+        WebSearchResult: {
+            screen: WebSearchResult
         }
     },
     {

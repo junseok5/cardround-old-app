@@ -1,8 +1,6 @@
 import React, { Component } from "react"
 import { RefreshControl } from "react-native"
 import styled from "styled-components"
-import Search from "../components/search/Search"
-import SearchModal from "../components/modal/SearchModal"
 import Menu from "../components/menu/Menu"
 import { LazyloadScrollView } from "react-native-lazyload"
 import PreviewBoard from "../components/previewboard/PreviewBoard"
@@ -42,8 +40,8 @@ class BoardsScreen extends Component {
         return (
             <Container>
                 <Header>
-                    <Search />
-                    <SearchModal />
+                    {/* <Search />
+                    <SearchModal /> */}
                     <Menu data={menuArr} />
                 </Header>
                 <LazyloadScrollView

@@ -1,14 +1,15 @@
 import React, { Component } from "react"
 import { withNavigation } from "react-navigation"
 import Website from "../components/list/Website"
-import { BaseActions } from "../store/actionCreator";
+import { BaseActions } from "../store/actionCreator"
 
 class WebsiteContainer extends Component {
-    _moveToDetail = () => {
-        const { navigation, website } = this.props
+    _moveToDetail = async navigation => {
+        console.log('hey')
+        const { website } = this.props
 
-        navigation.popToTop()
-        navigation.goBack(null)
+        // await BaseActions.changeModal({ name: "searchResultWeb", value: false })
+        // await BaseActions.changeModal({ name: "searchWebsite", value: false })
         navigation.navigate({
             routeName: "DetailWebsite",
             params: {
@@ -23,4 +24,4 @@ class WebsiteContainer extends Component {
     }
 }
 
-export default withNavigation(WebsiteContainer)
+export default WebsiteContainer

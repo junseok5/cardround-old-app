@@ -1,5 +1,6 @@
 import React from "react"
 import { Image, TouchableWithoutFeedback } from "react-native"
+import { withNavigation } from "react-navigation"
 import styled from "styled-components"
 import Colors from "../../constants/Colors"
 
@@ -29,8 +30,17 @@ const Follower = styled.Text`
     font-size: 13px;
 `
 
-const Website = ({ website, moveToDetail }) => (
-    <TouchableWithoutFeedback onPress={moveToDetail}>
+const Website = ({ website, navigation }) => (
+    <TouchableWithoutFeedback
+        onPress={() =>
+            navigation.navigate({
+                routeName: "DetailWebsite",
+                params: {
+                    website
+                }
+            })
+        }
+    >
         <Container>
             <Thumbnail>
                 <Image
@@ -51,4 +61,4 @@ const Website = ({ website, moveToDetail }) => (
     </TouchableWithoutFeedback>
 )
 
-export default Website
+export default withNavigation(Website)

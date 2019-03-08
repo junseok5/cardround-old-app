@@ -1,23 +1,27 @@
 import React, { Component } from "react"
-import { AsyncStorage } from "react-native"
-import { connect } from "react-redux"
-import SearchModal from "../components/modal/SearchModal"
+import { withNavigation } from "react-navigation"
 import {
-    BaseActions,
     ListingActions,
     SearchActions,
     WebsiteActions
-} from "../store/actionCreator"
+} from "../../store/actionCreator"
 import {
-    writeRecentKeywords,
     clearRecentKeyowrds,
-    readRecentKeywords
-} from "../utils/recent-keywords"
+    readRecentKeywords,
+    writeRecentKeywords
+} from "../../utils/recent-keywords"
+import Search from "../../components/search/Search";
 
-class SearchModalWebContainer extends Component {
-    _closeModal = () => {
+class WebSearchContainer extends Component {
+    static navigationOptions = {
+        header: null
+    }
+
+    _closeScreen = () => {
+        const { navigation } = this.props
+
         SearchActions.initialize()
-        BaseActions.changeModal({ name: "searchWebsite", value: false })
+        navigation.goBack()
     }
 
     _onChangeForm = text => {
@@ -26,8 +30,10 @@ class SearchModalWebContainer extends Component {
     }
 
     _searchStart = keyword => {
+        const { navigation } = this.props
+        
         SearchActions.changeKeyword({ name: "website", value: keyword })
-        BaseActions.changeModal({ name: "searchResultWeb", value: true })
+        navigation.navigate("WebSearchResult")
 
         writeRecentKeywords({ target: "webRecentKeywords", keyword })
         readRecentKeywords("webRecentKeywords")
@@ -66,7 +72,6 @@ class SearchModalWebContainer extends Component {
 
     render() {
         const {
-            visible,
             resultModalVisible,
             form,
             recentKeywords,
@@ -76,15 +81,14 @@ class SearchModalWebContainer extends Component {
         } = this.props
 
         return (
-            <SearchModal
-                visible={visible}
+            <Search
                 resultModalVisible={resultModalVisible}
                 form={form}
                 recentKeywords={recentKeywords}
                 loading={loading}
                 preview={preview}
                 error={error}
-                closeModal={this._closeModal}
+                closeScreen={this._closeScreen}
                 onChangeForm={this._onChangeForm}
                 onSearch={this._onSearch}
                 clearRecentKeywords={this._clearRecentKeywords}
@@ -94,13 +98,4 @@ class SearchModalWebContainer extends Component {
     }
 }
 
-export default connect(state => ({
-    visible: state.base.modal.searchWebsite,
-    resultModalVisible: state.base.modal.searchResultWeb,
-    form: state.search.form.website,
-    keyword: state.search.keyword.website,
-    recentKeywords: state.search.recentKeywords.website,
-    preview: state.listing.website.preview.websites,
-    error: state.listing.website.preview.error,
-    loading: state.pender.pending["listing/GET_PREVIEW_WEBSITES"]
-}))(SearchModalWebContainer)
+export default withNavigation(WebSearchContainer)

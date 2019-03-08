@@ -3,10 +3,8 @@ import styled from "styled-components"
 import { ActivityIndicator, FlatList } from "react-native"
 import Menu from "../../components/menu/Menu"
 import Colors from "../../constants/Colors"
-import SearchModalWebContainer from "../../containers/SearchModalWebContainer"
-import SearchWebContainer from "../../containers/SearchWebContainer"
-import SearchResultModalWebContainer from "../../containers/SearchResultModalWebContainer"
 import WebsiteContainer from "../../containers/WebsiteContainer"
+import WebSearchHeaderContainer from "../../containers/WebSearchHeaderContainer";
 
 const Container = styled.View`
     flex: 1;
@@ -42,9 +40,7 @@ const WebsitesPresenter = ({
     return (
         <Container>
             <Header>
-                <SearchWebContainer />
-                <SearchModalWebContainer />
-                <SearchResultModalWebContainer />
+                <WebSearchHeaderContainer />
                 {!loadingCategories && (
                     <Menu
                         selected={selected}
