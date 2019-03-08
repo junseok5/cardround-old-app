@@ -1,30 +1,30 @@
 import React from "react"
 import { FlatList } from "react-native"
 import styled from "styled-components"
-import WebsiteContainer from "../../containers/WebsiteContainer"
-import WebSearchHeaderContainer from "../../containers/WebSearchHeaderContainer"
 import Category from "../../components/category/Category"
+import Previewboard from "../../components/list/Previewboard"
 import Loading from "../../components/common/Loading"
+import BoardSearchHeaderContainer from "../../containers/BoardSearchHeaderContainer"
 
 const Container = styled.View`
     flex: 1;
     padding-top: 35px;
-    padding-left: 15px;
-    padding-right: 15px;
 `
 
 const Header = styled.View`
     height: 85px;
+    padding-left: 15px;
+    padding-right: 15px;
 `
 
 const Main = styled.View`
     flex: 1;
 `
 
-const WebsitesPresenter = ({
-    websites,
+const BoardsPresenter = ({
+    previewboards,
     loadingCategories,
-    loadingWebsites,
+    loadingPreviewboards,
     categories,
     selected,
     keyExtractor,
@@ -34,7 +34,7 @@ const WebsitesPresenter = ({
     return (
         <Container>
             <Header>
-                <WebSearchHeaderContainer />
+                <BoardSearchHeaderContainer />
                 {!loadingCategories && (
                     <Category
                         selected={selected}
@@ -43,15 +43,15 @@ const WebsitesPresenter = ({
                     />
                 )}
             </Header>
-            {loadingWebsites && websites.length === 0 ? (
+            {loadingPreviewboards && previewboards.length === 0 ? (
                 <Loading />
             ) : (
                 <Main>
                     <FlatList
-                        data={websites}
+                        data={previewboards}
                         keyExtractor={keyExtractor}
                         renderItem={({ item }) => (
-                            <WebsiteContainer website={item} key={item._id} />
+                            <Previewboard data={item} key={item._id} />
                         )}
                         onEndReachedThreshold={0.6}
                         onEndReached={onEndReached}
@@ -63,4 +63,4 @@ const WebsitesPresenter = ({
     )
 }
 
-export default WebsitesPresenter
+export default BoardsPresenter

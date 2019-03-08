@@ -1,14 +1,10 @@
 import React, { Component } from "react"
 import { NetInfo } from "react-native"
-import WebsitesPresenter from "./WebsitesPresenter"
-import {
-    BaseActions,
-    CategoryActions,
-    ListingActions
-} from "../../store/actionCreator"
+import BoardsPresenter from "./BoardsPresenter"
+import { CategoryActions, ListingActions } from "../../store/actionCreator"
 import ErrorNotice from "../../components/common/ErrorNotice"
 
-class WebsitesContainer extends Component {
+class BoardsContainer extends Component {
     static navigationOptions = {
         header: null
     }
@@ -30,7 +26,7 @@ class WebsitesContainer extends Component {
 
     _initialize = () => {
         this._fetchCategoryList()
-        this._fetchWebsiteList()
+        this._fetchPreviewboardList()
     }
 
     handleConnectivityChange = isConnected => {
@@ -44,10 +40,10 @@ class WebsitesContainer extends Component {
 
     _refetchAll = () => {
         this._refetchCategoryList()
-        this._refetchWebsiteList()
+        this._refetchPreviewboardList()
     }
 
-    _fetchWebsiteList = async () => {
+    _fetchPreviewboardList = async () => {
         const { page, selected, end } = this.props
 
         if (end) return
@@ -63,34 +59,34 @@ class WebsitesContainer extends Component {
               }
 
         try {
-            await ListingActions.getNormalWebsites(query)
+            await ListingActions.getNormalPreviewboards(query)
         } catch (error) {
             console.log(error)
         }
     }
 
-    _refetchWebsiteList = async () => {
-        await ListingActions.initializeNormalWebsites()
-        this._fetchWebsiteList()
+    _refetchPreviewboardList = async () => {
+        await ListingActions.initializeNormalPreviewboards()
+        this._fetchPreviewboardList()
     }
 
     _fetchCategoryList = async () => {
         try {
-            await CategoryActions.getWebsiteCategoryList("WEBSITE")
+            await CategoryActions.getBoardCategoryList("BOARD")
         } catch (error) {
             console.log(error)
         }
     }
 
     _refetchCategoryList = async () => {
-        await CategoryActions.initializeWebsiteCategories()
+        await CategoryActions.initializeBoardCategories()
         this._fetchCategoryList()
     }
 
-    _keyExtractor = (item, index) => item._id
+    _keyExtractor = item => item._id
 
     _onEndReached = () => {
-        this._fetchWebsiteList()
+        this._fetchPreviewboardList()
     }
 
     _changeSelectedCategory = async category => {
@@ -99,20 +95,20 @@ class WebsitesContainer extends Component {
         if (category === selected) return
 
         await CategoryActions.changeSelected({
-            name: "website",
+            name: "board",
             value: category
         })
-        this._refetchWebsiteList()
+        this._refetchPreviewboardList()
     }
 
     render() {
         const {
             isNetworkConnected,
             errorMessage,
-            websites,
+            previewboards,
             error,
             loadingCategories,
-            loadingWebsites,
+            loadingPreviewboards,
             categories,
             selected
         } = this.props
@@ -133,10 +129,10 @@ class WebsitesContainer extends Component {
             )
         } else {
             return (
-                <WebsitesPresenter
-                    websites={websites}
+                <BoardsPresenter
+                    previewboards={previewboards}
                     loadingCategories={loadingCategories}
-                    loadingWebsites={loadingWebsites}
+                    loadingPreviewboards={loadingPreviewboards}
                     categories={categories}
                     selected={selected}
                     keyExtractor={this._keyExtractor}
@@ -148,4 +144,4 @@ class WebsitesContainer extends Component {
     }
 }
 
-export default WebsitesContainer
+export default BoardsContainer

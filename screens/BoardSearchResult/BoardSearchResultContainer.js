@@ -2,11 +2,11 @@ import React, { Component } from "react"
 import { NetInfo } from "react-native"
 import { withNavigation } from "react-navigation"
 import SearchResult from "../../components/search/SearchResult"
-import Website from "../../components/list/Website"
 import { BaseActions, ListingActions } from "../../store/actionCreator"
 import ErrorNotice from "../../components/common/ErrorNotice"
+import Previewboard from "../../components/list/Previewboard"
 
-class WebSearchResultContainer extends Component {
+class BoardSearchResultContainer extends Component {
     static navigationOptions = {
         header: null
     }
@@ -16,7 +16,7 @@ class WebSearchResultContainer extends Component {
     }
 
     componentWillUnmount() {
-        ListingActions.initializeSearchWebsites()
+        ListingActions.initializeSearchPreviewboards()
         NetInfo.removeEventListener(
             "connectionChange",
             this.handleConnectivityChange
@@ -24,7 +24,7 @@ class WebSearchResultContainer extends Component {
     }
 
     _initialize = () => {
-        this._fetchWebsiteList()
+        this._fetchPreviewboardList()
         NetInfo.isConnected.addEventListener(
             "connectionChange",
             this.handleConnectivityChange
@@ -34,13 +34,13 @@ class WebSearchResultContainer extends Component {
     handleConnectivityChange = isConnected => {
         if (isConnected) {
             BaseActions.changeIsNetworkConnected(true)
-            this._fetchWebsiteList()
+            this._fetchPreviewboardList()
         } else {
             BaseActions.changeIsNetworkConnected(false)
         }
     }
 
-    _fetchWebsiteList = async () => {
+    _fetchPreviewboardList = async () => {
         const { page, keyword, end } = this.props
 
         if (end) return
@@ -48,15 +48,15 @@ class WebSearchResultContainer extends Component {
         const query = { page, keyword }
 
         try {
-            await ListingActions.getSearchWebsites(query)
+            await ListingActions.getSearchPreviewboards(query)
         } catch (error) {
             console.log(error)
         }
     }
 
-    _refetchWebsiteList = async () => {
-        await ListingActions.initializeSearchWebsites()
-        this._fetchWebsiteList()
+    _refetchPreviewboardList = async () => {
+        await ListingActions.initializeSearchPreviewboards()
+        this._fetchPreviewboardList()
     }
 
     _closeScreen = () => {
@@ -67,7 +67,7 @@ class WebSearchResultContainer extends Component {
     _keyExtractor = item => item._id
 
     _onEndReached = () => {
-        this._fetchWebsiteList()
+        this._fetchPreviewboardList()
     }
 
     render() {
@@ -75,7 +75,7 @@ class WebSearchResultContainer extends Component {
             isNetworkConnected,
             errorMessage,
             loading,
-            websites,
+            previewboards,
             error
         } = this.props
 
@@ -83,29 +83,30 @@ class WebSearchResultContainer extends Component {
             return (
                 <ErrorNotice
                     message={errorMessage.network}
-                    refetch={this._refetchWebsiteList}
+                    refetch={this._refetchPreviewboardList}
                 />
             )
         } else if (error) {
             return (
                 <ErrorNotice
                     message={errorMessage.server}
-                    refetch={this._refetchWebsiteList}
+                    refetch={this._refetchPreviewboardList}
                 />
             )
         } else {
             return (
                 <SearchResult
                     loading={loading}
-                    listData={websites}
+                    listData={previewboards}
                     keyExtractor={this._keyExtractor}
                     onEndReached={this._onEndReached}
                     closeScreen={this._closeScreen}
-                    ListItem={Website}
+                    ListItem={Previewboard}
+                    isPadding={false}
                 />
             )
         }
     }
 }
 
-export default withNavigation(WebSearchResultContainer)
+export default withNavigation(BoardSearchResultContainer)

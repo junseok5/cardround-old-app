@@ -4,18 +4,19 @@ import { withNavigation } from "react-navigation"
 import { readRecentKeywords } from "../utils/recent-keywords"
 import SearchHeader from "../components/search/SearchHeader"
 
-class WebSearchWebContainer extends Component {
+class BoardSearchHeaderContainer extends Component {
     _openSearchScreen = () => {
         const { navigation, recentKeywords } = this.props
+        console.log(navigation)
 
-        if (navigation.state.routeName === "WebSearchResult") {
+        if (navigation.state.routeName === "BoardSearchResult") {
             navigation.goBack()
         } else {
-            navigation.navigate("WebSearch")
+            navigation.navigate("BoardSearch")
         }
 
         if (recentKeywords.length === 0) {
-            readRecentKeywords("webRecentKeywords")
+            readRecentKeywords("boardRecentKeywords")
         }
     }
 
@@ -32,6 +33,6 @@ class WebSearchWebContainer extends Component {
 }
 
 export default connect(state => ({
-    keyword: state.search.keyword.website,
-    recentKeywords: state.search.recentKeywords.website
-}))(withNavigation(WebSearchWebContainer))
+    keyword: state.search.keyword.board,
+    recentKeywords: state.search.recentKeywords.board
+}))(withNavigation(BoardSearchHeaderContainer))

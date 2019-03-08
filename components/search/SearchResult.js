@@ -9,11 +9,13 @@ import Loading from "../common/Loading"
 const Container = styled.View`
     flex: 1;
     padding-top: 35px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: ${props => (props.isPadding ? "15px" : "0px")};
+    padding-right: ${props => (props.isPadding ? "15px" : "0px")};
 `
 
 const Header = styled.View`
+    padding-left: ${props => (!props.isPadding ? "15px" : "0px")};
+    padding-right: ${props => (!props.isPadding ? "15px" : "0px")};
     padding-bottom: 15px;
     flex-direction: row;
     align-items: center;
@@ -29,15 +31,16 @@ const Main = styled.View`
 
 const SearchResult = ({
     loading,
-    websites,
+    listData,
     keyExtractor,
     onEndReached,
     closeScreen,
-    ListItem
+    ListItem,
+    isPadding = true
 }) => {
     return (
-        <Container>
-            <Header>
+        <Container isPadding={isPadding}>
+            <Header isPadding={isPadding}>
                 <TouchableWithoutFeedback onPress={closeScreen}>
                     <BackIcon>
                         <Icon.Entypo
@@ -49,15 +52,15 @@ const SearchResult = ({
                 </TouchableWithoutFeedback>
                 <WebSearchHeaderContainer />
             </Header>
-            {loading && websites.length === 0 ? (
+            {loading && listData.length === 0 ? (
                 <Loading isList={true} />
             ) : (
                 <Main>
                     <FlatList
-                        data={websites}
+                        data={listData}
                         keyExtractor={keyExtractor}
                         renderItem={({ item }) => (
-                            <ListItem website={item} key={item._id} />
+                            <ListItem data={item} key={item._id} />
                         )}
                         onEndReachedThreshold={0.6}
                         onEndReached={onEndReached}

@@ -3,12 +3,12 @@ import styled from "styled-components"
 import { withNavigation } from "react-navigation"
 import Colors from "../../constants/Colors"
 import { Button, Image, TouchableWithoutFeedback } from "react-native"
-import NewsPhoto from "./NewsPhoto"
-import ShopPhoto from "./ShopPhoto"
-import OldBoard from "./OldBoard"
-import Bamboo from "./Bamboo"
-import MovieChart from "./MovieChart"
-import MusicChart from "./MusicChart"
+import NewsPhoto from "../previewboard/NewsPhoto"
+import ShopPhoto from "../previewboard/ShopPhoto"
+import OldBoard from "../previewboard/OldBoard"
+import Bamboo from "../previewboard/Bamboo"
+import MovieChart from "../previewboard/MovieChart"
+import MusicChart from "../previewboard/MusicChart"
 
 const Container = styled.View`
     margin-top: 15px;
@@ -49,9 +49,9 @@ const WebsiteName = styled.Text`
 
 const Main = styled.View``
 
-class PreviewBoard extends PureComponent {
+class Previewboard extends PureComponent {
     render() {
-        const { data, scrollHost, navigation } = this.props
+        const { data, navigation } = this.props
         const {
             _id,
             name,
@@ -112,4 +112,4 @@ class PreviewBoard extends PureComponent {
     }
 }
 
-export default withNavigation(PreviewBoard)
+export default withNavigation(Previewboard)

@@ -1,46 +1,42 @@
 import React, { Component } from "react"
 import { withNavigation } from "react-navigation"
 import {
-    ListingActions,
-    SearchActions,
-    WebsiteActions
-} from "../../store/actionCreator"
-import {
     clearRecentKeyowrds,
     readRecentKeywords,
     writeRecentKeywords
 } from "../../utils/recent-keywords"
+import { ListingActions, SearchActions } from "../../store/actionCreator"
 import Search from "../../components/search/Search"
 
-class WebSearchContainer extends Component {
+class BoardSearchContainer extends Component {
     static navigationOptions = {
         header: null
     }
 
     componentWillUnmount() {
-        SearchActions.initializeWebsiteSearch()
+        SearchActions.initializeBoardSearch()
     }
 
     _closeScreen = () => {
         const { navigation } = this.props
 
-        SearchActions.initializeWebsiteSearch()
+        SearchActions.initializeBoardSearch()
         navigation.goBack()
     }
 
     _onChangeForm = async text => {
-        SearchActions.changeForm({ name: "website", value: text })
-        await ListingActions.getPreviewWebsites(text)
+        SearchActions.changeForm({ name: "board", value: text })
+        await ListingActions.getPreviewPreviewboards(text)
     }
 
     _searchStart = keyword => {
         const { navigation } = this.props
 
-        SearchActions.changeKeyword({ name: "website", value: keyword })
-        navigation.navigate("WebSearchResult")
+        SearchActions.changeKeyword({ name: "board", value: keyword })
+        navigation.navigate("BoardSearchResult")
 
-        writeRecentKeywords({ target: "webRecentKeywords", keyword })
-        readRecentKeywords("webRecentKeywords")
+        writeRecentKeywords({ target: "boardRecentKeywords", keyword })
+        readRecentKeywords("boardRecentKeywords")
     }
 
     _onClickKeyword = keyword => {
@@ -56,18 +52,12 @@ class WebSearchContainer extends Component {
     }
 
     _clearRecentKeywords = () => {
-        clearRecentKeyowrds("webRecentKeywords")
-        readRecentKeywords("webRecentKeywords")
+        clearRecentKeyowrds("boardRecentKeywords")
+        readRecentKeywords("boardRecentKeywords")
     }
 
     render() {
-        const {
-            form,
-            recentKeywords,
-            loading,
-            preview,
-            error
-        } = this.props
+        const { form, recentKeywords, loading, preview, error } = this.props
 
         return (
             <Search
@@ -86,4 +76,4 @@ class WebSearchContainer extends Component {
     }
 }
 
-export default withNavigation(WebSearchContainer)
+export default withNavigation(BoardSearchContainer)

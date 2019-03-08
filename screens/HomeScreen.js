@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import PreviewBoard from "../components/previewboard/PreviewBoard"
+import Previewboard from "../components/list/Previewboard"
 import { LazyloadScrollView } from "react-native-lazyload"
 
 const data = [

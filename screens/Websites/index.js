@@ -9,9 +9,9 @@ export default connect(state => ({
     page: state.listing.website.normal.page,
     end: state.listing.website.normal.end,
     categories: state.category.websiteCategories,
-    selected: state.category.selected,
+    selected: state.category.selected.website,
     keyword: state.search.keyword.website,
-    loadingWebsites: state.pender.pending["listing/GET_NORMAL_WEBSITES"],
     loadingCategories:
-        state.pender.pending["category/GET_WEBSITE_CATEGORY_LIST"]
+        state.pender.pending["category/GET_WEBSITE_CATEGORY_LIST"],
+    loadingWebsites: state.pender.pending["listing/GET_NORMAL_WEBSITES"]
 }))(WebsitesContainer)

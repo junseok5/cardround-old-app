@@ -16,3 +16,10 @@ export const getPreviewboardList = ({ page, category, keyword, websiteId }) =>
             websiteId
         })}`
     )
+
+export const getPreviewPreviewboardList = keyword =>
+    api.get(
+        `/v1.0/previewboards/search/preview?${queryString.stringify({
+            keyword
+        })}`
+    )

@@ -5,6 +5,8 @@ import DetailCardScreen from "../screens/DetailCardScreen"
 import DetailWebsite from "../screens/DetailWebsite"
 import WebSearch from "../screens/WebSearch"
 import WebSearchResult from "../screens/WebSearchResult"
+import BoardSearch from "../screens/BoardSearch"
+import BoardSearchResult from "../screens/BoardSearchResult"
 
 const MainNavigation = createStackNavigator(
     {
@@ -28,6 +30,12 @@ const MainNavigation = createStackNavigator(
         },
         WebSearchResult: {
             screen: WebSearchResult
+        },
+        BoardSearch: {
+            screen: BoardSearch
+        },
+        BoardSearchResult: {
+            screen: BoardSearchResult
         }
     },
     {

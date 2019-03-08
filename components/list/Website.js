@@ -30,13 +30,13 @@ const Follower = styled.Text`
     font-size: 13px;
 `
 
-const Website = ({ website, navigation }) => (
+const Website = ({ data, navigation }) => (
     <TouchableWithoutFeedback
         onPress={() =>
             navigation.navigate({
                 routeName: "DetailWebsite",
                 params: {
-                    website
+                    data
                 }
             })
         }
@@ -50,12 +50,12 @@ const Website = ({ website, navigation }) => (
                         borderRadius: 4,
                         resizeMode: "contain"
                     }}
-                    source={{ uri: website.thumbnail }}
+                    source={{ uri: data.thumbnail }}
                 />
             </Thumbnail>
             <MetaInfo>
-                <Name>{website.name}</Name>
-                <Follower>팔로워 {website.follower}명</Follower>
+                <Name>{data.name}</Name>
+                <Follower>팔로워 {data.follower}명</Follower>
             </MetaInfo>
         </Container>
     </TouchableWithoutFeedback>

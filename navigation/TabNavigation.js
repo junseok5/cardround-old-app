@@ -7,7 +7,7 @@ import {
 import Colors from "../constants/Colors"
 import TabBarIcon from "../components/common/TabBarIcon"
 import HomeScreen from "../screens/HomeScreen"
-import BoardsScreen from "../screens/BoardsScreen"
+import BoardsScreen from "../screens/Boards"
 import WebsitesScreen from "../screens/Websites"
 import ProfileScreen from "../screens/Profile"
 

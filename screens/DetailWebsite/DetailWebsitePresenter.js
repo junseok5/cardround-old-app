@@ -2,7 +2,7 @@ import React from "react"
 import { FlatList, ScrollView } from "react-native"
 import styled from "styled-components"
 import Colors from "../../constants/Colors"
-import PreviewBoard from "../../components/previewboard/PreviewBoard"
+import Previewboard from "../../components/list/Previewboard"
 import Loading from "../../components/common/Loading"
 
 const Container = styled.View``
@@ -74,7 +74,7 @@ const DetailWebsitePresenter = ({
                         data={previewboards}
                         keyExtractor={keyExtractor}
                         renderItem={({ item }) => (
-                            <PreviewBoard
+                            <Previewboard
                                 data={item}
                                 scrollHost="website-scroll"
                                 key={item._id}

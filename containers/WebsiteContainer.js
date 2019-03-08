@@ -20,7 +20,7 @@ class WebsiteContainer extends Component {
 
     render() {
         const { website } = this.props
-        return <Website website={website} moveToDetail={this._moveToDetail} />
+        return <Website data={website} moveToDetail={this._moveToDetail} />
     }
 }
 
