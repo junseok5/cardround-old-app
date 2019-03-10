@@ -8,6 +8,5 @@ export default connect(state => ({
     page: state.listing.previewboard.website.page,
     end: state.listing.previewboard.website.end,
     error: state.listing.previewboard.website.error,
-    refreshing: state.base.refreshing,
     loading: state.pender.pending["listing/GET_WEBSITE_PREVIEWBOARDS"]
 }))(DetailWebsiteContainer)

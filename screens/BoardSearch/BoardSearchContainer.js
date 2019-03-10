@@ -33,7 +33,12 @@ class BoardSearchContainer extends Component {
         const { navigation } = this.props
 
         SearchActions.changeKeyword({ name: "board", value: keyword })
-        navigation.navigate("BoardSearchResult")
+        navigation.navigate({
+            routeName: "BoardSearchResult",
+            params: {
+                keyword
+            }
+        })
 
         writeRecentKeywords({ target: "boardRecentKeywords", keyword })
         readRecentKeywords("boardRecentKeywords")

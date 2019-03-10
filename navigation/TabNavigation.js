@@ -4,12 +4,39 @@ import {
     createStackNavigator,
     createBottomTabNavigator
 } from "react-navigation"
+import { fromLeft, zoomIn, zoomOut } from "react-navigation-transitions"
 import Colors from "../constants/Colors"
 import TabBarIcon from "../components/common/TabBarIcon"
 import HomeScreen from "../screens/HomeScreen"
 import BoardsScreen from "../screens/Boards"
 import WebsitesScreen from "../screens/Websites"
 import ProfileScreen from "../screens/Profile"
+
+const handleCustomTransition = ({ scenes }) => {
+    const prevScene = scenes[scenes.length - 2]
+    const nextScene = scenes[scenes.length - 1]
+
+    if (
+        prevScene &&
+        prevScene.route.routeName === "Home" &&
+        nextScene.route.routeName === "Boards"
+    ) {
+        return fromLeft()
+    } else if (
+        prevScene &&
+        prevScene.route.routeName === "Boards" &&
+        nextScene.route.routeName === "Websites"
+    ) {
+        return fromLeft()
+    } else if (
+        prevScene &&
+        prevScene.route.routeName === "Websites" &&
+        nextScene.route.routeName === "Profile"
+    ) {
+        return fromLeft()
+    }
+        return fromLeft()
+}
 
 const TabNavigation = createBottomTabNavigator(
     {
@@ -62,7 +89,8 @@ const TabNavigation = createBottomTabNavigator(
         tabBarOptions: {
             activeTintColor: "#000",
             inactiveTintColor: Colors.supportColor
-        }
+        },
+        transitionConfig: nav => handleCustomTransition(nav)
     }
 )
 

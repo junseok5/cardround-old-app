@@ -24,8 +24,7 @@ const initialState = {
         searchBoard: false,
         searchResultWeb: false,
         searchResultBoard: false
-    },
-    refreshing: false
+    }
 }
 
 export default handleActions(

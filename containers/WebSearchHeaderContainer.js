@@ -8,11 +8,7 @@ class WebSearchWebContainer extends Component {
     _openSearchScreen = () => {
         const { navigation, recentKeywords } = this.props
 
-        if (navigation.state.routeName === "WebSearchResult") {
-            navigation.goBack()
-        } else {
-            navigation.navigate("WebSearch")
-        }
+        navigation.navigate("WebSearch")
 
         if (recentKeywords.length === 0) {
             readRecentKeywords("webRecentKeywords")

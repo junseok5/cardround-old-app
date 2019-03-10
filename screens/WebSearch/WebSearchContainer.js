@@ -37,7 +37,12 @@ class WebSearchContainer extends Component {
         const { navigation } = this.props
 
         SearchActions.changeKeyword({ name: "website", value: keyword })
-        navigation.navigate("WebSearchResult")
+        navigation.navigate({
+            routeName: "WebSearchResult",
+            params: {
+                keyword
+            }
+        })
 
         writeRecentKeywords({ target: "webRecentKeywords", keyword })
         readRecentKeywords("webRecentKeywords")
@@ -61,13 +66,7 @@ class WebSearchContainer extends Component {
     }
 
     render() {
-        const {
-            form,
-            recentKeywords,
-            loading,
-            preview,
-            error
-        } = this.props
+        const { form, recentKeywords, loading, preview, error } = this.props
 
         return (
             <Search

@@ -7,8 +7,10 @@ import ErrorNotice from "../../components/common/ErrorNotice"
 import Previewboard from "../../components/list/Previewboard"
 
 class BoardSearchResultContainer extends Component {
-    static navigationOptions = {
-        header: null
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: navigation.getParam("keyword")
+        }
     }
 
     componentDidMount() {
@@ -59,10 +61,10 @@ class BoardSearchResultContainer extends Component {
         this._fetchPreviewboardList()
     }
 
-    _closeScreen = () => {
-        const { navigation } = this.props
-        navigation.goBack()
-    }
+    // _closeScreen = () => {
+    //     const { navigation } = this.props
+    //     navigation.goBack()
+    // }
 
     _keyExtractor = item => item._id
 
@@ -100,7 +102,6 @@ class BoardSearchResultContainer extends Component {
                     listData={previewboards}
                     keyExtractor={this._keyExtractor}
                     onEndReached={this._onEndReached}
-                    closeScreen={this._closeScreen}
                     ListItem={Previewboard}
                     isPadding={false}
                 />

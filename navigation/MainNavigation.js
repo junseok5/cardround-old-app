@@ -40,7 +40,7 @@ const MainNavigation = createStackNavigator(
     },
     {
         headerMode: "screen",
-        headerBackTitleVisible: false
+        headerBackTitleVisible: false,
     }
 )
 

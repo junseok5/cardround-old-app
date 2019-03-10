@@ -7,13 +7,8 @@ import SearchHeader from "../components/search/SearchHeader"
 class BoardSearchHeaderContainer extends Component {
     _openSearchScreen = () => {
         const { navigation, recentKeywords } = this.props
-        console.log(navigation)
 
-        if (navigation.state.routeName === "BoardSearchResult") {
-            navigation.goBack()
-        } else {
-            navigation.navigate("BoardSearch")
-        }
+        navigation.navigate("BoardSearch")
 
         if (recentKeywords.length === 0) {
             readRecentKeywords("boardRecentKeywords")

@@ -85,7 +85,6 @@ class DetailWebsiteContainer extends Component {
             },
             previewboards,
             error,
-            refreshing,
             loading
         } = this.props
 
@@ -109,7 +108,6 @@ class DetailWebsiteContainer extends Component {
                     loading={loading}
                     website={website}
                     previewboards={previewboards}
-                    refreshing={refreshing}
                     keyExtractor={this._keyExtractor}
                     onEndReached={this._onEndReached}
                     onRefresh={this._refetchPreviewboardList}

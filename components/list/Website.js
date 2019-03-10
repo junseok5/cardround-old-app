@@ -36,7 +36,7 @@ const Website = ({ data, navigation }) => (
             navigation.navigate({
                 routeName: "DetailWebsite",
                 params: {
-                    data
+                    website: data
                 }
             })
         }

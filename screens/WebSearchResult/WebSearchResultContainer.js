@@ -7,8 +7,10 @@ import { BaseActions, ListingActions } from "../../store/actionCreator"
 import ErrorNotice from "../../components/common/ErrorNotice"
 
 class WebSearchResultContainer extends Component {
-    static navigationOptions = {
-        header: null
+    static navigationOptions = ({ navigation }) => {
+        return {
+            title: navigation.getParam("keyword")
+        }
     }
 
     componentDidMount() {
@@ -59,10 +61,10 @@ class WebSearchResultContainer extends Component {
         this._fetchWebsiteList()
     }
 
-    _closeScreen = () => {
-        const { navigation } = this.props
-        navigation.goBack()
-    }
+    // _closeScreen = () => {
+    //     const { navigation } = this.props
+    //     navigation.goBack()
+    // }
 
     _keyExtractor = item => item._id
 
@@ -100,7 +102,6 @@ class WebSearchResultContainer extends Component {
                     listData={websites}
                     keyExtractor={this._keyExtractor}
                     onEndReached={this._onEndReached}
-                    closeScreen={this._closeScreen}
                     ListItem={Website}
                 />
             )
