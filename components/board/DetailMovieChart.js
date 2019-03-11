@@ -4,17 +4,20 @@ import { verticalScale } from "react-native-size-matters"
 import DetailPhotoLayout from "../common/DetailPhotoLayout"
 
 const { width } = Layout.window
-const layoutWidth = width / 2 - 10
+const layoutWidth = width / 3 - 10
 
-const DetailShopPhoto = ({ data }) => {
+const DetailMovieChart = ({ data }) => {
     return (
         <DetailPhotoLayout
             data={data}
             layoutWidth={layoutWidth}
-            layoutHeight={verticalScale(150)}
-            firstAddedInfoWeight="bold"
+            layoutHeight={verticalScale(160)}
+            isRank={true}
+            titleSize="14px"
+            firstAddedInfoSize="12px"
+            numberOfLines={1}
         />
     )
 }
 
-export default DetailShopPhoto
+export default DetailMovieChart

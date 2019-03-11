@@ -15,6 +15,8 @@ const Thumbnail = styled.View`
     width: 64px;
     height: 64px;
     border-radius: 4;
+    border-width: 0.5px;
+    border-color: ${Colors.thickBorder};
 `
 
 const MetaInfo = styled.View`

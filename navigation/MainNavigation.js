@@ -1,6 +1,6 @@
 import { createStackNavigator, createAppContainer } from "react-navigation"
 import TabNavigation from "./TabNavigation"
-import DetailBoardScreen from "../screens/DetailBoardScreen"
+import DetailBoard from "../screens/DetailBoard"
 import DetailCardScreen from "../screens/DetailCardScreen"
 import DetailWebsite from "../screens/DetailWebsite"
 import WebSearch from "../screens/WebSearch"
@@ -17,7 +17,7 @@ const MainNavigation = createStackNavigator(
             }
         },
         DetailBoard: {
-            screen: DetailBoardScreen
+            screen: DetailBoard
         },
         DetailWebsite: {
             screen: DetailWebsite
@@ -40,7 +40,7 @@ const MainNavigation = createStackNavigator(
     },
     {
         headerMode: "screen",
-        headerBackTitleVisible: false,
+        headerBackTitleVisible: false
     }
 )
 

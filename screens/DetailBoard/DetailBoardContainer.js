@@ -1,10 +1,11 @@
 import React, { Component } from "react"
 import { NetInfo } from "react-native"
-import DetailWebsitePresenter from "./DetailWebsitePresenter"
-import { BaseActions, ListingActions } from "../../store/actionCreator"
+// import { withNavigation } from "react-navigation"
+import DetailBoardPresenter from "./DetailBoardPresenter"
+import { BaseActions, BoardActions } from "../../store/actionCreator"
 import ErrorNotice from "../../components/common/ErrorNotice"
 
-class DetailWebsiteContainer extends Component {
+class DetailBoardContainer extends Component {
     componentDidMount() {
         this._initialize()
     }
@@ -19,7 +20,7 @@ class DetailWebsiteContainer extends Component {
     handleConnectivityChange = isConnected => {
         if (isConnected) {
             BaseActions.changeIsNetworkConnected(true)
-            this._fetchPreviewboardList()
+            this._fetchBoard()
         } else {
             BaseActions.changeIsNetworkConnected(false)
         }
@@ -32,46 +33,52 @@ class DetailWebsiteContainer extends Component {
             return
         }
 
-        this._refetchPreviewboardList()
+        this._refetchBoard()
         NetInfo.isConnected.addEventListener(
             "connectionChange",
             this.handleConnectivityChange
         )
     }
 
-    _fetchPreviewboardList = async () => {
+    _fetchBoard = async () => {
         const {
-            page,
-            end,
             navigation: {
                 state: {
                     params: {
-                        website: { _id: websiteId }
+                        previewboard: { board: id }
                     }
                 }
             }
         } = this.props
 
-        if (end) return
-
-        const query = { page, websiteId }
-
-        try {
-            await ListingActions.getWebsitePreviewboards(query)
-        } catch (error) {
-            console.log(error)
+        if (id) {
+            try {
+                await BoardActions.getBoard(id)
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 
-    _refetchPreviewboardList = async () => {
-        await ListingActions.initializeWebsitePreviewboards()
-        this._fetchPreviewboardList()
+    _refetchBoard = async () => {
+        await BoardActions.initialize()
+        this._fetchBoard()
     }
 
-    _keyExtractor = (item, index) => item._id
+    _moveToDetailWebsite = () => {
+        const { navigation } = this.props
+        const {
+            state: {
+                params: { previewboard }
+            }
+        } = navigation
+        const website = {
+            _id: previewboard.websiteId,
+            name: previewboard.websiteName,
+            thumbnail: previewboard.websiteThumbnail
+        }
 
-    _onEndReached = () => {
-        this._fetchPreviewboardList()
+        navigation.navigate({ routeName: "DetailWebsite", params: { website } })
     }
 
     render() {
@@ -80,41 +87,40 @@ class DetailWebsiteContainer extends Component {
             errorMessage,
             navigation: {
                 state: {
-                    params: { website }
+                    params: { previewboard }
                 }
             },
-            previewboards,
+            board,
             error,
             loading
         } = this.props
 
-        if (!isNetworkConnected && previewboards.length === 0) {
+        if (!isNetworkConnected && !board) {
             return (
                 <ErrorNotice
                     message={errorMessage.network}
-                    refetch={this._refetchPreviewboardList}
+                    refetch={this._refetchBoard}
                 />
             )
         } else if (error) {
             return (
                 <ErrorNotice
                     message={errorMessage.server}
-                    refetch={this._refetchPreviewboardList}
+                    refetch={this._refetchBoard}
                 />
             )
         } else {
             return (
-                <DetailWebsitePresenter
+                <DetailBoardPresenter
                     loading={loading}
-                    website={website}
-                    previewboards={previewboards}
-                    keyExtractor={this._keyExtractor}
-                    onEndReached={this._onEndReached}
-                    onRefresh={this._refetchPreviewboardList}
+                    previewboard={previewboard}
+                    board={board}
+                    onRefresh={this._refetchBoard}
+                    moveToDetailWebsite={this._moveToDetailWebsite}
                 />
             )
         }
     }
 }
 
-export default DetailWebsiteContainer
+export default DetailBoardContainer

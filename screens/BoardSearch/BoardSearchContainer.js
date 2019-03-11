@@ -26,6 +26,8 @@ class BoardSearchContainer extends Component {
 
     _onChangeForm = async text => {
         SearchActions.changeForm({ name: "board", value: text })
+
+        if (!text) return
         await ListingActions.getPreviewPreviewboards(text)
     }
 

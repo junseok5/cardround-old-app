@@ -19,7 +19,8 @@ const WebsiteInfo = styled.View`
 const Thumbnail = styled.Image`
     width: 80px;
     height: 80px;
-    border-radius: 50;
+    border-radius: 4;
+    border-width: 0.5px;
     border-color: ${Colors.thickBorder};
 `
 
@@ -45,7 +46,6 @@ const DetailWebsitePresenter = ({
     loading,
     website,
     previewboards,
-    refreshing,
     keyExtractor,
     onEndReached,
     onRefresh
@@ -63,7 +63,6 @@ const DetailWebsitePresenter = ({
                     <MetaWrap>
                         <Meta>
                             <WebsiteName>{website.name}</WebsiteName>
-                            <Follower>팔로워 {website.follower}명</Follower>
                         </Meta>
                     </MetaWrap>
                 </WebsiteInfo>
@@ -76,7 +75,6 @@ const DetailWebsitePresenter = ({
                         renderItem={({ item }) => (
                             <Previewboard
                                 data={item}
-                                scrollHost="website-scroll"
                                 key={item._id}
                             />
                         )}

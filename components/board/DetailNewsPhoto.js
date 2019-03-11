@@ -6,11 +6,10 @@ import DetailPhotoLayout from "../common/DetailPhotoLayout"
 const { width } = Layout.window
 const layoutWidth = width - 10
 
-const DetailNewsPhoto = ({ data, scrollHost }) => {
+const DetailNewsPhoto = ({ data }) => {
     return (
         <DetailPhotoLayout
             data={data}
-            scrollHost={scrollHost}
             layoutWidth={layoutWidth}
             layoutHeight={verticalScale(200)}
             titleSize="18px"

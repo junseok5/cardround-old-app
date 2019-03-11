@@ -1,18 +1,17 @@
-import React from 'react'
-import Layout from '../../constants/Layout';
+import React from "react"
+import Layout from "../../constants/Layout"
 import { verticalScale } from "react-native-size-matters"
-import DetailPhotoLayout from '../common/DetailPhotoLayout';
+import DetailPhotoLayout from "../common/DetailPhotoLayout"
 
 const { width } = Layout.window
-const layoutWidth = (width / 3) - 10
+const layoutWidth = width / 3 - 10
 
-const DetailChart = ({ scrollHost, data }) => {
+const DetailMusicChart = ({ data }) => {
     return (
         <DetailPhotoLayout
             data={data}
-            scrollHost={scrollHost}
             layoutWidth={layoutWidth}
-            layoutHeight={verticalScale(160)}
+            layoutHeight={verticalScale(120)}
             isRank={true}
             titleSize="14px"
             firstAddedInfoSize="12px"
@@ -21,4 +20,4 @@ const DetailChart = ({ scrollHost, data }) => {
     )
 }
 
-export default DetailChart
+export default DetailMusicChart

@@ -30,6 +30,8 @@ class WebSearchContainer extends Component {
 
     _onChangeForm = async text => {
         SearchActions.changeForm({ name: "website", value: text })
+        
+        if (!text) return
         await ListingActions.getPreviewWebsites(text)
     }
 

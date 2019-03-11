@@ -34,7 +34,7 @@ const Thumbnail = styled.View`
     height: 35px;
     margin-right: 10px;
     border-radius: 50;
-    border-color: #ccc;
+    border-color: ${Colors.thickBorder};
     border-width: 0.5px;
 `
 
@@ -52,14 +52,7 @@ const Main = styled.View``
 class Previewboard extends PureComponent {
     render() {
         const { data, navigation } = this.props
-        const {
-            _id,
-            name,
-            websiteThumbnail,
-            websiteName,
-            layoutType,
-            cards
-        } = data
+        const { name, websiteThumbnail, websiteName, layoutType, cards } = data
 
         return (
             <Container>
@@ -67,7 +60,10 @@ class Previewboard extends PureComponent {
                     <TouchableWithoutFeedback
                         onPress={() =>
                             navigation.navigate({
-                                routeName: "DetailBoard"
+                                routeName: "DetailBoard",
+                                params: {
+                                    previewboard: data
+                                }
                             })
                         }
                     >
