@@ -1,10 +1,9 @@
 import React, { Component } from "react"
-import { WebView, Share, TouchableOpacity } from "react-native"
-import styled from "styled-components"
+import { WebView, TouchableOpacity } from "react-native"
 import { Icon } from "expo"
-import Colors from "../constants/Colors"
+import Colors from "../../constants/Colors"
 
-class DetailCardScreen extends Component {
+class DetailCardContainer extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
             title: navigation.getParam("title"),
@@ -21,10 +20,6 @@ class DetailCardScreen extends Component {
         }
     }
 
-    constructor(props) {
-        super(props)
-    }
-
     render() {
         return (
             <WebView
@@ -37,4 +32,4 @@ class DetailCardScreen extends Component {
     }
 }
 
-export default DetailCardScreen
+export default DetailCardContainer

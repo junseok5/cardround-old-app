@@ -1,11 +1,42 @@
 import React, { Component } from "react"
-import { NetInfo } from "react-native"
-// import { withNavigation } from "react-navigation"
+import { NetInfo, TouchableOpacity } from "react-native"
+import { Icon } from "expo"
 import DetailBoardPresenter from "./DetailBoardPresenter"
 import { BaseActions, BoardActions } from "../../store/actionCreator"
 import ErrorNotice from "../../components/common/ErrorNotice"
+import Colors from "../../constants/Colors"
 
 class DetailBoardContainer extends Component {
+    static navigationOptions = ({ navigation }) => {
+        const {
+            state: {
+                params: {
+                    previewboard: { link }
+                }
+            }
+        } = navigation
+
+        return {
+            headerRight: (
+                <TouchableOpacity
+                    onPress={() =>
+                        navigation.navigate({
+                            routeName: "ExternalWebsite",
+                            params: { link }
+                        })
+                    }
+                >
+                    <Icon.EvilIcons
+                        name="external-link"
+                        size={35}
+                        color={Colors.supportColor}
+                        style={{ marginRight: 10 }}
+                    />
+                </TouchableOpacity>
+            )
+        }
+    }
+
     componentDidMount() {
         this._initialize()
     }

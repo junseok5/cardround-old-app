@@ -1,12 +1,13 @@
 import { createStackNavigator, createAppContainer } from "react-navigation"
 import TabNavigation from "./TabNavigation"
 import DetailBoard from "../screens/DetailBoard"
-import DetailCardScreen from "../screens/DetailCardScreen"
+import DetailCard from "../screens/DetailCard"
 import DetailWebsite from "../screens/DetailWebsite"
 import WebSearch from "../screens/WebSearch"
 import WebSearchResult from "../screens/WebSearchResult"
 import BoardSearch from "../screens/BoardSearch"
 import BoardSearchResult from "../screens/BoardSearchResult"
+import ExternalWebsite from "../screens/ExternalWebsite"
 
 const MainNavigation = createStackNavigator(
     {
@@ -23,7 +24,7 @@ const MainNavigation = createStackNavigator(
             screen: DetailWebsite
         },
         DetailCard: {
-            screen: DetailCardScreen
+            screen: DetailCard
         },
         WebSearch: {
             screen: WebSearch
@@ -36,6 +37,9 @@ const MainNavigation = createStackNavigator(
         },
         BoardSearchResult: {
             screen: BoardSearchResult
+        },
+        ExternalWebsite: {
+            screen: ExternalWebsite
         }
     },
     {

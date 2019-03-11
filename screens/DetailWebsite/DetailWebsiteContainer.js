@@ -1,8 +1,10 @@
 import React, { Component } from "react"
-import { NetInfo } from "react-native"
+import { NetInfo, TouchableOpacity } from "react-native"
+import { Icon } from "expo"
 import DetailWebsitePresenter from "./DetailWebsitePresenter"
 import { BaseActions, ListingActions } from "../../store/actionCreator"
 import ErrorNotice from "../../components/common/ErrorNotice"
+import Colors from "../../constants/Colors"
 
 class DetailWebsiteContainer extends Component {
     componentDidMount() {
