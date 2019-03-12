@@ -12,3 +12,19 @@ export const getMyInfo = token =>
             "X-JWT": token
         }
     })
+
+// [POST]
+export const followBoard = ({ token, boardId }) =>
+    api.post(`/users/following/${boardId}`, {
+        headers: {
+            X_JWT: token
+        }
+    })
+
+// [DELETE]
+export const unfollowBoard = ({ token, boardId }) =>
+    api.delete(`/users/following/${boardId}`, {
+        headers: {
+            X_JWT: token
+        }
+    })

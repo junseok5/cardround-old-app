@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import Previewboard from "../components/list/Previewboard"
 import { LazyloadScrollView } from "react-native-lazyload"
+import Board from "../components/list/Board"
 
 const data = [
     {
@@ -235,12 +235,8 @@ export default class HomeScreen extends React.Component {
                     <HContainer>
                         <PageTitle>팔로우 보드</PageTitle>
                     </HContainer>
-                    {data.map((previewboard, key) => (
-                        <PreviewBoard
-                            previewboardData={previewboard}
-                            scrollHost="home-scroll"
-                            key={key}
-                        />
+                    {data.map((board, key) => (
+                        <Board data={board} key={key} />
                     ))}
                 </LazyloadScrollView>
             </Container>

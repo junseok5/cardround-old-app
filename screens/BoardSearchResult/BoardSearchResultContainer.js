@@ -2,9 +2,9 @@ import React, { Component } from "react"
 import { NetInfo } from "react-native"
 import { withNavigation } from "react-navigation"
 import SearchResult from "../../components/search/SearchResult"
-import { BaseActions, ListingActions } from "../../store/actionCreator"
+import { BaseActions, BoardsActions } from "../../store/actionCreator"
 import ErrorNotice from "../../components/common/ErrorNotice"
-import Previewboard from "../../components/list/Previewboard"
+import Board from "../../components/list/Board"
 
 class BoardSearchResultContainer extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -18,7 +18,7 @@ class BoardSearchResultContainer extends Component {
     }
 
     componentWillUnmount() {
-        ListingActions.initializeSearchPreviewboards()
+        BoardsActions.initialize("search")
         NetInfo.removeEventListener(
             "connectionChange",
             this.handleConnectivityChange
@@ -26,7 +26,7 @@ class BoardSearchResultContainer extends Component {
     }
 
     _initialize = () => {
-        this._fetchPreviewboardList()
+        this._fetchBoardList()
         NetInfo.isConnected.addEventListener(
             "connectionChange",
             this.handleConnectivityChange
@@ -36,13 +36,13 @@ class BoardSearchResultContainer extends Component {
     handleConnectivityChange = isConnected => {
         if (isConnected) {
             BaseActions.changeIsNetworkConnected(true)
-            this._fetchPreviewboardList()
+            this._fetchBoardList()
         } else {
             BaseActions.changeIsNetworkConnected(false)
         }
     }
 
-    _fetchPreviewboardList = async () => {
+    _fetchBoardList = async () => {
         const { page, keyword, end } = this.props
 
         if (end) return
@@ -50,26 +50,21 @@ class BoardSearchResultContainer extends Component {
         const query = { page, keyword }
 
         try {
-            await ListingActions.getSearchPreviewboards(query)
+            await BoardsActions.getSearchBoards(query)
         } catch (error) {
             console.log(error)
         }
     }
 
-    _refetchPreviewboardList = async () => {
-        await ListingActions.initializeSearchPreviewboards()
-        this._fetchPreviewboardList()
+    _refetchBoardList = async () => {
+        await BoardsActions.initialize("search")
+        this._fetchBoardList()
     }
-
-    // _closeScreen = () => {
-    //     const { navigation } = this.props
-    //     navigation.goBack()
-    // }
 
     _keyExtractor = item => item._id
 
     _onEndReached = () => {
-        this._fetchPreviewboardList()
+        this._fetchBoardList()
     }
 
     render() {
@@ -77,32 +72,32 @@ class BoardSearchResultContainer extends Component {
             isNetworkConnected,
             errorMessage,
             loading,
-            previewboards,
+            boards,
             error
         } = this.props
 
-        if (!isNetworkConnected && websites.length === 0) {
+        if (!isNetworkConnected && boards.length === 0) {
             return (
                 <ErrorNotice
                     message={errorMessage.network}
-                    refetch={this._refetchPreviewboardList}
+                    refetch={this._refetchBoardList}
                 />
             )
         } else if (error) {
             return (
                 <ErrorNotice
                     message={errorMessage.server}
-                    refetch={this._refetchPreviewboardList}
+                    refetch={this._refetchBoardList}
                 />
             )
         } else {
             return (
                 <SearchResult
                     loading={loading}
-                    listData={previewboards}
+                    listData={boards}
                     keyExtractor={this._keyExtractor}
                     onEndReached={this._onEndReached}
-                    ListItem={Previewboard}
+                    ListItem={Board}
                     isPadding={false}
                 />
             )

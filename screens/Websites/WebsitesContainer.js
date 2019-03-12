@@ -4,7 +4,7 @@ import WebsitesPresenter from "./WebsitesPresenter"
 import {
     BaseActions,
     CategoryActions,
-    ListingActions
+    WebsitesActions
 } from "../../store/actionCreator"
 import ErrorNotice from "../../components/common/ErrorNotice"
 
@@ -63,14 +63,14 @@ class WebsitesContainer extends Component {
               }
 
         try {
-            await ListingActions.getNormalWebsites(query)
+            await WebsitesActions.getNormalWebsites(query)
         } catch (error) {
             console.log(error)
         }
     }
 
     _refetchWebsiteList = async () => {
-        await ListingActions.initializeNormalWebsites()
+        await WebsitesActions.initialize("normal")
         this._fetchWebsiteList()
     }
 

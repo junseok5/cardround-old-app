@@ -4,13 +4,12 @@ import BoardsContainer from "./BoardsContainer"
 export default connect(state => ({
     isNetworkConnected: state.base.isNetworkConnected,
     errorMessage: state.base.errorMessage,
-    previewboards: state.listing.previewboard.normal.previewboards,
-    error: state.listing.previewboard.normal.error,
-    page: state.listing.previewboard.normal.page,
-    end: state.listing.previewboard.normal.end,
+    boards: state.boards.normal.boards,
+    error: state.boards.normal.error,
+    page: state.boards.normal.page,
+    end: state.boards.normal.end,
     categories: state.category.boardCategories,
     selected: state.category.selected.board,
     loadingCategories: state.pender.pending["category/GET_BOARD_CATEGORY_LIST"],
-    loadingPreviewboards:
-        state.pender.pending["listing/GET_NORMAL_PREVIEWBOARDS"]
+    loadingBoards: state.pender.pending["boards/GET_NORMAL_BOARDS"]
 }))(BoardsContainer)

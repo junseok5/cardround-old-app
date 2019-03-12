@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { NetInfo } from "react-native"
 import BoardsPresenter from "./BoardsPresenter"
-import { CategoryActions, ListingActions } from "../../store/actionCreator"
+import { CategoryActions, BoardsActions } from "../../store/actionCreator"
 import ErrorNotice from "../../components/common/ErrorNotice"
 
 class BoardsContainer extends Component {
@@ -26,7 +26,7 @@ class BoardsContainer extends Component {
 
     _initialize = () => {
         this._fetchCategoryList()
-        this._fetchPreviewboardList()
+        this._fetchBoardList()
     }
 
     handleConnectivityChange = isConnected => {
@@ -40,10 +40,10 @@ class BoardsContainer extends Component {
 
     _refetchAll = () => {
         this._refetchCategoryList()
-        this._refetchPreviewboardList()
+        this._refetchBoardList()
     }
 
-    _fetchPreviewboardList = async () => {
+    _fetchBoardList = async () => {
         const { page, selected, end } = this.props
 
         if (end) return
@@ -59,15 +59,15 @@ class BoardsContainer extends Component {
               }
 
         try {
-            await ListingActions.getNormalPreviewboards(query)
+            await BoardsActions.getNormalBoards(query)
         } catch (error) {
             console.log(error)
         }
     }
 
-    _refetchPreviewboardList = async () => {
-        await ListingActions.initializeNormalPreviewboards()
-        this._fetchPreviewboardList()
+    _refetchBoardList = async () => {
+        await BoardsActions.initialize("normal")
+        this._fetchBoardList()
     }
 
     _fetchCategoryList = async () => {
@@ -86,7 +86,7 @@ class BoardsContainer extends Component {
     _keyExtractor = item => item._id
 
     _onEndReached = () => {
-        this._fetchPreviewboardList()
+        this._fetchBoardList()
     }
 
     _changeSelectedCategory = async category => {
@@ -98,22 +98,22 @@ class BoardsContainer extends Component {
             name: "board",
             value: category
         })
-        this._refetchPreviewboardList()
+        this._refetchBoardList()
     }
 
     render() {
         const {
             isNetworkConnected,
             errorMessage,
-            previewboards,
+            boards,
             error,
             loadingCategories,
-            loadingPreviewboards,
+            loadingBoards,
             categories,
             selected
         } = this.props
 
-        if (!isNetworkConnected && websites.length === 0) {
+        if (!isNetworkConnected && boards.length === 0) {
             return (
                 <ErrorNotice
                     message={errorMessage.network}
@@ -130,9 +130,9 @@ class BoardsContainer extends Component {
         } else {
             return (
                 <BoardsPresenter
-                    previewboards={previewboards}
+                    boards={boards}
                     loadingCategories={loadingCategories}
-                    loadingPreviewboards={loadingPreviewboards}
+                    loadingBoards={loadingBoards}
                     categories={categories}
                     selected={selected}
                     keyExtractor={this._keyExtractor}

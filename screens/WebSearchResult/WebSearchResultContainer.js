@@ -3,7 +3,7 @@ import { NetInfo } from "react-native"
 import { withNavigation } from "react-navigation"
 import SearchResult from "../../components/search/SearchResult"
 import Website from "../../components/list/Website"
-import { BaseActions, ListingActions } from "../../store/actionCreator"
+import { BaseActions, WebsitesActions } from "../../store/actionCreator"
 import ErrorNotice from "../../components/common/ErrorNotice"
 
 class WebSearchResultContainer extends Component {
@@ -18,7 +18,7 @@ class WebSearchResultContainer extends Component {
     }
 
     componentWillUnmount() {
-        ListingActions.initializeSearchWebsites()
+        WebsitesActions.initialize("search")
         NetInfo.removeEventListener(
             "connectionChange",
             this.handleConnectivityChange
@@ -50,21 +50,16 @@ class WebSearchResultContainer extends Component {
         const query = { page, keyword }
 
         try {
-            await ListingActions.getSearchWebsites(query)
+            await WebsitesActions.getSearchWebsites(query)
         } catch (error) {
             console.log(error)
         }
     }
 
     _refetchWebsiteList = async () => {
-        await ListingActions.initializeSearchWebsites()
+        await WebsitesActions.initialize("search")
         this._fetchWebsiteList()
     }
-
-    // _closeScreen = () => {
-    //     const { navigation } = this.props
-    //     navigation.goBack()
-    // }
 
     _keyExtractor = item => item._id
 

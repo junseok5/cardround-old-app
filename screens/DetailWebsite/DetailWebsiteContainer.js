@@ -1,10 +1,8 @@
 import React, { Component } from "react"
-import { NetInfo, TouchableOpacity } from "react-native"
-import { Icon } from "expo"
+import { NetInfo } from "react-native"
 import DetailWebsitePresenter from "./DetailWebsitePresenter"
-import { BaseActions, ListingActions } from "../../store/actionCreator"
+import { BaseActions, BoardsActions } from "../../store/actionCreator"
 import ErrorNotice from "../../components/common/ErrorNotice"
-import Colors from "../../constants/Colors"
 
 class DetailWebsiteContainer extends Component {
     componentDidMount() {
@@ -21,7 +19,7 @@ class DetailWebsiteContainer extends Component {
     handleConnectivityChange = isConnected => {
         if (isConnected) {
             BaseActions.changeIsNetworkConnected(true)
-            this._fetchPreviewboardList()
+            this._fetchBoardList()
         } else {
             BaseActions.changeIsNetworkConnected(false)
         }
@@ -34,14 +32,14 @@ class DetailWebsiteContainer extends Component {
             return
         }
 
-        this._refetchPreviewboardList()
+        this._refetchBoardList()
         NetInfo.isConnected.addEventListener(
             "connectionChange",
             this.handleConnectivityChange
         )
     }
 
-    _fetchPreviewboardList = async () => {
+    _fetchBoardList = async () => {
         const {
             page,
             end,
@@ -59,21 +57,21 @@ class DetailWebsiteContainer extends Component {
         const query = { page, websiteId }
 
         try {
-            await ListingActions.getWebsitePreviewboards(query)
+            await BoardsActions.getWebsiteBoards(query)
         } catch (error) {
             console.log(error)
         }
     }
 
-    _refetchPreviewboardList = async () => {
-        await ListingActions.initializeWebsitePreviewboards()
-        this._fetchPreviewboardList()
+    _refetchBoardList = async () => {
+        await BoardsActions.initialize("website")
+        this._fetchBoardList()
     }
 
     _keyExtractor = (item, index) => item._id
 
     _onEndReached = () => {
-        this._fetchPreviewboardList()
+        this._fetchBoardList()
     }
 
     render() {
@@ -85,23 +83,23 @@ class DetailWebsiteContainer extends Component {
                     params: { website }
                 }
             },
-            previewboards,
+            boards,
             error,
             loading
         } = this.props
 
-        if (!isNetworkConnected && previewboards.length === 0) {
+        if (!isNetworkConnected && boards.length === 0) {
             return (
                 <ErrorNotice
                     message={errorMessage.network}
-                    refetch={this._refetchPreviewboardList}
+                    refetch={this._refetchBoardList}
                 />
             )
         } else if (error) {
             return (
                 <ErrorNotice
                     message={errorMessage.server}
-                    refetch={this._refetchPreviewboardList}
+                    refetch={this._refetchBoardList}
                 />
             )
         } else {
@@ -109,7 +107,7 @@ class DetailWebsiteContainer extends Component {
                 <DetailWebsitePresenter
                     loading={loading}
                     website={website}
-                    previewboards={previewboards}
+                    boards={boards}
                     keyExtractor={this._keyExtractor}
                     onEndReached={this._onEndReached}
                     onRefresh={this._refetchPreviewboardList}

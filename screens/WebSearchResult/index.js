@@ -4,10 +4,10 @@ import WebSearchResultContainer from "./WebSearchResultContainer"
 export default connect(state => ({
     isNetworkConnected: state.base.isNetworkConnected,
     errorMessage: state.base.errorMessage,
-    websites: state.listing.website.search.websites,
-    error: state.listing.website.search.error,
-    page: state.listing.website.search.page,
-    end: state.listing.website.search.end,
+    websites: state.websites.search.websites,
+    error: state.websites.search.error,
+    page: state.websites.search.page,
+    end: state.websites.search.end,
     keyword: state.search.keyword.website,
-    loading: state.pender.pending["listing/GET_SEARCH_WEBSITES"]
+    loading: state.pender.pending["websites/GET_SEARCH_WEBSITES"]
 }))(WebSearchResultContainer)

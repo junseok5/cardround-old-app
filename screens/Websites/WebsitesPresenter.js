@@ -1,10 +1,10 @@
 import React from "react"
 import { FlatList } from "react-native"
 import styled from "styled-components"
-import WebsiteContainer from "../../containers/WebsiteContainer"
 import WebSearchHeaderContainer from "../../containers/WebSearchHeaderContainer"
 import Category from "../../components/category/Category"
 import Loading from "../../components/common/Loading"
+import Website from "../../components/list/Website"
 
 const Container = styled.View`
     flex: 1;
@@ -51,7 +51,7 @@ const WebsitesPresenter = ({
                         data={websites}
                         keyExtractor={keyExtractor}
                         renderItem={({ item }) => (
-                            <WebsiteContainer data={item} key={item._id} />
+                            <Website data={item} key={item._id} />
                         )}
                         onEndReachedThreshold={0.6}
                         onEndReached={onEndReached}

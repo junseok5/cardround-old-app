@@ -2,9 +2,9 @@ import React from "react"
 import { FlatList } from "react-native"
 import styled from "styled-components"
 import Category from "../../components/category/Category"
-import Previewboard from "../../components/list/Previewboard"
 import Loading from "../../components/common/Loading"
 import BoardSearchHeaderContainer from "../../containers/BoardSearchHeaderContainer"
+import Board from "../../components/list/Board"
 
 const Container = styled.View`
     flex: 1;
@@ -22,9 +22,9 @@ const Main = styled.View`
 `
 
 const BoardsPresenter = ({
-    previewboards,
+    boards,
     loadingCategories,
-    loadingPreviewboards,
+    loadingBoards,
     categories,
     selected,
     keyExtractor,
@@ -43,15 +43,15 @@ const BoardsPresenter = ({
                     />
                 )}
             </Header>
-            {loadingPreviewboards && previewboards.length === 0 ? (
+            {loadingBoards && boards.length === 0 ? (
                 <Loading />
             ) : (
                 <Main>
                     <FlatList
-                        data={previewboards}
+                        data={boards}
                         keyExtractor={keyExtractor}
                         renderItem={({ item }) => (
-                            <Previewboard data={item} key={item._id} />
+                            <Board data={item} key={item._id} />
                         )}
                         onEndReachedThreshold={0.6}
                         onEndReached={onEndReached}

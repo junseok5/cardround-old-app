@@ -3,12 +3,12 @@ import styled from "styled-components"
 import { withNavigation } from "react-navigation"
 import Colors from "../../constants/Colors"
 import { Button, Image, TouchableWithoutFeedback } from "react-native"
-import NewsPhoto from "../previewboard/NewsPhoto"
-import ShopPhoto from "../previewboard/ShopPhoto"
-import OldBoard from "../previewboard/OldBoard"
-import Bamboo from "../previewboard/Bamboo"
-import MovieChart from "../previewboard/MovieChart"
-import MusicChart from "../previewboard/MusicChart"
+import NewsPhoto from "../board_layout_type/NewsPhoto"
+import ShopPhoto from "../board_layout_type/ShopPhoto"
+import OldBoard from "../board_layout_type/OldBoard"
+import Bamboo from "../board_layout_type/Bamboo"
+import MovieChart from "../board_layout_type/MovieChart"
+import MusicChart from "../board_layout_type/MusicChart"
 
 const Container = styled.View`
     margin-top: 15px;
@@ -49,7 +49,7 @@ const WebsiteName = styled.Text`
 
 const Main = styled.View``
 
-class Previewboard extends PureComponent {
+class Board extends PureComponent {
     render() {
         const { data, navigation } = this.props
         const { name, websiteThumbnail, websiteName, layoutType, cards } = data
@@ -110,4 +110,4 @@ class Previewboard extends PureComponent {
     }
 }
 
-export default withNavigation(Previewboard)
+export default withNavigation(Board)

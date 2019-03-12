@@ -5,7 +5,7 @@ import {
     readRecentKeywords,
     writeRecentKeywords
 } from "../../utils/recent-keywords"
-import { ListingActions, SearchActions } from "../../store/actionCreator"
+import { BoardsActions, SearchActions } from "../../store/actionCreator"
 import Search from "../../components/search/Search"
 
 class BoardSearchContainer extends Component {
@@ -14,13 +14,13 @@ class BoardSearchContainer extends Component {
     }
 
     componentWillUnmount() {
-        SearchActions.initializeBoardSearch()
+        SearchActions.initialize("board")
     }
 
     _closeScreen = () => {
         const { navigation } = this.props
 
-        SearchActions.initializeBoardSearch()
+        SearchActions.initialize("board")
         navigation.goBack()
     }
 
@@ -28,7 +28,7 @@ class BoardSearchContainer extends Component {
         SearchActions.changeForm({ name: "board", value: text })
 
         if (!text) return
-        await ListingActions.getPreviewPreviewboards(text)
+        await BoardsActions.getPreviewBoards(text)
     }
 
     _searchStart = keyword => {

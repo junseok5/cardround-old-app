@@ -1,10 +1,6 @@
 import React, { Component } from "react"
 import { withNavigation } from "react-navigation"
-import {
-    ListingActions,
-    SearchActions,
-    WebsiteActions
-} from "../../store/actionCreator"
+import { SearchActions, WebsitesActions } from "../../store/actionCreator"
 import {
     clearRecentKeyowrds,
     readRecentKeywords,
@@ -18,21 +14,25 @@ class WebSearchContainer extends Component {
     }
 
     componentWillUnmount() {
-        SearchActions.initializeWebsiteSearch()
+        SearchActions.initialize("website")
     }
 
     _closeScreen = () => {
         const { navigation } = this.props
 
-        SearchActions.initializeWebsiteSearch()
+        SearchActions.initialize("website")
         navigation.goBack()
     }
 
     _onChangeForm = async text => {
         SearchActions.changeForm({ name: "website", value: text })
-        
+
         if (!text) return
-        await ListingActions.getPreviewWebsites(text)
+        try {
+            await WebsitesActions.getPreviewWebsites(text)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     _searchStart = keyword => {
