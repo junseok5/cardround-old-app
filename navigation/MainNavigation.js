@@ -1,6 +1,6 @@
 import { createStackNavigator, createAppContainer } from "react-navigation"
 import TabNavigation from "./TabNavigation"
-import DetailBoard from "../screens/DetailBoard"
+// import DetailBoard from "../screens/DetailBoard"
 import DetailCard from "../screens/DetailCard"
 import DetailWebsite from "../screens/DetailWebsite"
 import WebSearch from "../screens/WebSearch"
@@ -17,9 +17,9 @@ const MainNavigation = createStackNavigator(
                 header: null
             }
         },
-        DetailBoard: {
-            screen: DetailBoard
-        },
+        // DetailBoard: {
+        //     screen: DetailBoard
+        // },
         DetailWebsite: {
             screen: DetailWebsite
         },

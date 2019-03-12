@@ -1,4 +1,5 @@
 import axios from "axios"
+import queryString from "query-string"
 import { API_URL } from "../constants/Base"
 
 const api = axios.create({
@@ -6,4 +7,19 @@ const api = axios.create({
 })
 
 // [GET]
-export const getBoard = id => api.get(`/v1.0/boards/${id}`)
+export const getBoardList = ({ page, category, keyword, websiteId }) =>
+    api.get(
+        `/v1.0/boards?${queryString.stringify({
+            page,
+            category,
+            keyword,
+            websiteId
+        })}`
+    )
+
+export const getBoardSearchPreviewList = keyword =>
+    api.get(
+        `/v1.0/boards/search/preview?${queryString.stringify({
+            keyword
+        })}`
+    )

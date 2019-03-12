@@ -19,8 +19,8 @@ const WebsiteInfo = styled.View`
 const Thumbnail = styled.Image`
     width: 80px;
     height: 80px;
-    border-radius: 4;
     border-width: 0.5px;
+    border-radius: 4;
     border-color: ${Colors.thickBorder};
 `
 
@@ -39,8 +39,6 @@ const WebsiteName = styled.Text`
     font-size: 24px;
     font-weight: bold;
 `
-
-const Follower = styled.Text``
 
 const DetailWebsitePresenter = ({
     loading,
@@ -73,10 +71,7 @@ const DetailWebsitePresenter = ({
                         data={previewboards}
                         keyExtractor={keyExtractor}
                         renderItem={({ item }) => (
-                            <Previewboard
-                                data={item}
-                                key={item._id}
-                            />
+                            <Previewboard data={item} key={item._id} />
                         )}
                         onEndReachedThreshold={0.6}
                         onEndReached={onEndReached}

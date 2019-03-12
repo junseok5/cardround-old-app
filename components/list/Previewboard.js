@@ -60,9 +60,11 @@ class Previewboard extends PureComponent {
                     <TouchableWithoutFeedback
                         onPress={() =>
                             navigation.navigate({
-                                routeName: "DetailBoard",
+                                routeName: "ExternalWebsite",
                                 params: {
-                                    previewboard: data
+                                    link: data.link,
+                                    name: data.name,
+                                    websiteName: data.websiteName
                                 }
                             })
                         }
