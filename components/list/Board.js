@@ -1,13 +1,14 @@
 import React, { PureComponent } from "react"
 import styled from "styled-components"
 import Colors from "../../constants/Colors"
-import { Button, Image, TouchableWithoutFeedback } from "react-native"
+import { Image, TouchableWithoutFeedback } from "react-native"
 import NewsPhoto from "../board_layout_type/NewsPhoto"
 import ShopPhoto from "../board_layout_type/ShopPhoto"
 import OldBoard from "../board_layout_type/OldBoard"
 import Bamboo from "../board_layout_type/Bamboo"
 import MovieChart from "../board_layout_type/MovieChart"
 import MusicChart from "../board_layout_type/MusicChart"
+import FollowButton from "../common/FollowButton"
 
 const Container = styled.View`
     margin-top: 15px;
@@ -88,15 +89,15 @@ class Board extends PureComponent {
                         </BoardInfo>
                     </TouchableWithoutFeedback>
                     {data.following ? (
-                        <Button
+                        <FollowButton
                             title="언팔로우"
-                            color={Colors.buttonBackground}
+                            backgroundColor={Colors.buttonBackground}
+                            color={Colors.thickBlack}
                             onPress={() => unfollowBoard(_id)}
                         />
                     ) : (
-                        <Button
+                        <FollowButton
                             title="팔로우"
-                            color={Colors.mainColor}
                             onPress={() => followBoard(_id)}
                         />
                     )}

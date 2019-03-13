@@ -22,5 +22,6 @@ export default {
     buttonBackground: shallowGray,
     textLayout: "#fafafa",
     fbSupportText: "#7A7A7A",
-    fbLikeColor: "#4080ff"
+    fbLikeColor: "#4080ff",
+    thickBlack: "#4C4C4C"
 }

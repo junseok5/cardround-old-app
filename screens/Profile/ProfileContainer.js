@@ -3,7 +3,8 @@ import { AsyncStorage, NetInfo } from "react-native"
 import {
     AuthActions,
     BaseActions,
-    UserActions
+    UserActions,
+    BoardsActions
 } from "../../store/actionCreator"
 import ErrorNotice from "../../components/common/ErrorNotice"
 import Loading from "../../components/common/Loading"
@@ -50,6 +51,7 @@ class ProfileContainer extends Component {
                 UserActions.changeLoading(true)
                 const token = await AsyncStorage.getItem("accessToken")
                 await UserActions.getMyInfo(token)
+                await BoardsActions.getFollowingPreviewBoards(token)
             } catch (error) {
                 const { readError } = this.props
 

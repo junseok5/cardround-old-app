@@ -43,7 +43,6 @@ export const followBoard = ({ token, boardId }) =>
 export const unfollowBoard = ({ token, boardId }) =>
     api.delete(
         `/v1.0/users/following/${boardId}`,
-        {},
         {
             headers: {
                 "X-JWT": token

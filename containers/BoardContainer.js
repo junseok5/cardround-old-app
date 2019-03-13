@@ -46,7 +46,7 @@ class BoardContainer extends Component {
                 data={data}
                 moveToDetailBoard={this._moveToDetailBoard}
                 followBoard={this._followBoard}
-                unfollowBoard={this.unfollowBoard}
+                unfollowBoard={this._unfollowBoard}
             />
         )
     }

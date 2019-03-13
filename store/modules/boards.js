@@ -32,7 +32,7 @@ export const getSearchBoards = createAction(
 )
 export const getFollowingPreviewBoards = createAction(
     GET_FOLLOWING_PREVIEW_BOARDS,
-    UserAPI.getPreviewFollowingBoards
+    UserAPI.getFollowingPreviewBoards
 )
 export const changeFollowingStatus = createAction(CHANGE_FOLLOWING_STATUS)
 
