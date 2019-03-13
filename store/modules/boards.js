@@ -2,6 +2,7 @@ import { createAction, handleActions } from "redux-actions"
 import produce from "immer"
 import { pender } from "redux-pender"
 import * as BoardAPI from "../../api/board"
+import * as UserAPI from "../../api/user"
 import { NUM_BOARD } from "../../constants/NumPerPage"
 
 const INITIALIZE = "boards/INITIALIZE"
@@ -9,6 +10,8 @@ const GET_WEBSITE_BOARDS = "boards/GET_WEBSITE_BOARDS"
 const GET_NORMAL_BOARDS = "boards/GET_NORMAL_BOARDS"
 const GET_PREVIEW_BOARDS = "boards/GET_PREVIEW_BOARDS"
 const GET_SEARCH_BOARDS = "boards/GET_SEARCH_BOARDS"
+const GET_FOLLOWING_PREVIEW_BOARDS = "boards/GET_FOLLOWING_PREVIEW_BOARDS"
+const CHANGE_FOLLOWING_STATUS = "boards/CHANGE_FOLLOWING_STATUS"
 
 export const initialize = createAction(INITIALIZE)
 export const getWebsiteBoards = createAction(
@@ -27,6 +30,11 @@ export const getSearchBoards = createAction(
     GET_SEARCH_BOARDS,
     BoardAPI.getBoardList
 )
+export const getFollowingPreviewBoards = createAction(
+    GET_FOLLOWING_PREVIEW_BOARDS,
+    UserAPI.getPreviewFollowingBoards
+)
+export const changeFollowingStatus = createAction(CHANGE_FOLLOWING_STATUS)
 
 const initialBoards = {
     boards: [],
@@ -40,7 +48,8 @@ const initialState = {
     website: initialBoards,
     normal: initialBoards,
     search: initialBoards,
-    preview: initialBoards
+    preview: initialBoards,
+    followingPreview: []
 }
 
 export default handleActions(
@@ -55,6 +64,17 @@ export default handleActions(
             type: GET_WEBSITE_BOARDS,
             onSuccess: (state, action) => {
                 const { boards } = action.payload.data
+                const { followingPreview } = state
+
+                if (boards.length !== 0 && followingPreview.length !== 0) {
+                    boards.forEach(board => {
+                        followingPreview.forEach(preview => {
+                            if (board._id === preview.board) {
+                                board.following = true
+                            }
+                        })
+                    })
+                }
 
                 if (boards.length < NUM_BOARD) {
                     return produce(state, draft => {
@@ -82,6 +102,17 @@ export default handleActions(
             type: GET_NORMAL_BOARDS,
             onSuccess: (state, action) => {
                 const { boards } = action.payload.data
+                const { followingPreview } = state
+
+                if (boards.length !== 0 && followingPreview.length !== 0) {
+                    boards.forEach(board => {
+                        followingPreview.forEach(preview => {
+                            if (board._id === preview.board) {
+                                board.following = true
+                            }
+                        })
+                    })
+                }
 
                 if (boards.length < NUM_BOARD) {
                     return produce(state, draft => {
@@ -119,6 +150,17 @@ export default handleActions(
             type: GET_SEARCH_BOARDS,
             onSuccess: (state, action) => {
                 const { boards } = action.payload.data
+                const { followingPreview } = state
+
+                if (boards.length !== 0 && followingPreview.length !== 0) {
+                    boards.forEach(board => {
+                        followingPreview.forEach(preview => {
+                            if (board._id === preview.board) {
+                                board.following = true
+                            }
+                        })
+                    })
+                }
 
                 if (boards.length < NUM_BOARD) {
                     return produce(state, draft => {
@@ -137,7 +179,22 @@ export default handleActions(
                     draft.search.error = true
                 })
             }
-        })
+        }),
+        ...pender({
+            type: GET_FOLLOWING_PREVIEW_BOARDS,
+            onSuccess: (state, action) => {
+                const { followingBoards } = action.payload.data
+                return produce(state, draft => {
+                    draft.followingPreview = followingBoards
+                })
+            }
+        }),
+        [CHANGE_FOLLOWING_STATUS]: (state, action) => {
+            const status = action.payload
+            return produce(state, draft => {
+                
+            })
+        }
     },
     initialState
 )

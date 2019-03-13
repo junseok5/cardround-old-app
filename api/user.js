@@ -13,18 +13,40 @@ export const getMyInfo = token =>
         }
     })
 
-// [POST]
-export const followBoard = ({ token, boardId }) =>
-    api.post(`/users/following/${boardId}`, {
+export const getFollowingBoards = token =>
+    api.get("/v1.0/users/following", {
         headers: {
-            X_JWT: token
+            "X-JWT": token
         }
     })
 
-// [DELETE]
-export const unfollowBoard = ({ token, boardId }) =>
-    api.delete(`/users/following/${boardId}`, {
+export const getFollowingPreviewBoards = token =>
+    api.get("/v1.0/users/following/preview", {
         headers: {
-            X_JWT: token
+            "X-JWT": token
         }
     })
+
+// [POST]
+export const followBoard = ({ token, boardId }) =>
+    api.post(
+        `/v1.0/users/following/${boardId}`,
+        {},
+        {
+            headers: {
+                "X-JWT": token
+            }
+        }
+    )
+
+// [DELETE]
+export const unfollowBoard = ({ token, boardId }) =>
+    api.delete(
+        `/v1.0/users/following/${boardId}`,
+        {},
+        {
+            headers: {
+                "X-JWT": token
+            }
+        }
+    )

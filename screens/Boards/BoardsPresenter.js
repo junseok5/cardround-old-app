@@ -4,7 +4,7 @@ import styled from "styled-components"
 import Category from "../../components/category/Category"
 import Loading from "../../components/common/Loading"
 import BoardSearchHeaderContainer from "../../containers/BoardSearchHeaderContainer"
-import Board from "../../components/list/Board"
+import BoardContainer from "../../containers/BoardContainer";
 
 const Container = styled.View`
     flex: 1;
@@ -51,7 +51,7 @@ const BoardsPresenter = ({
                         data={boards}
                         keyExtractor={keyExtractor}
                         renderItem={({ item }) => (
-                            <Board data={item} key={item._id} />
+                            <BoardContainer data={item} key={item._id} />
                         )}
                         onEndReachedThreshold={0.6}
                         onEndReached={onEndReached}

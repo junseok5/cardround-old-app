@@ -7,6 +7,7 @@ import * as boardsActions from "./modules/boards"
 import * as categoryActions from "./modules/category"
 import * as searchActions from "./modules/search"
 import * as websitesActions from "./modules/websites"
+import * as followActions from "./modules/follow"
 
 const { dispatch } = store
 
@@ -17,3 +18,4 @@ export const BoardsActions = bindActionCreators(boardsActions, dispatch)
 export const CategoryActions = bindActionCreators(categoryActions, dispatch)
 export const SearchActions = bindActionCreators(searchActions, dispatch)
 export const WebsitesActions = bindActionCreators(websitesActions, dispatch)
+export const FollowActions = bindActionCreators(followActions, dispatch)

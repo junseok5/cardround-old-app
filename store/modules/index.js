@@ -4,5 +4,6 @@ export { default as user } from "./user"
 export { default as boards } from "./boards"
 export { default as category } from "./category"
 export { default as search } from "./search"
-export { default as websites } from './websites'
+export { default as websites } from "./websites"
+export { default as follow } from "./follow"
 export { penderReducer as pender } from "redux-pender"

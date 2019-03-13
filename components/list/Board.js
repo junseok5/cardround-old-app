@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react"
 import styled from "styled-components"
-import { withNavigation } from "react-navigation"
 import Colors from "../../constants/Colors"
 import { Button, Image, TouchableWithoutFeedback } from "react-native"
 import NewsPhoto from "../board_layout_type/NewsPhoto"
@@ -51,24 +50,25 @@ const Main = styled.View``
 
 class Board extends PureComponent {
     render() {
-        const { data, navigation } = this.props
-        const { name, websiteThumbnail, websiteName, layoutType, cards } = data
+        const {
+            data,
+            moveToDetailBoard,
+            followBoard,
+            unfollowBoard
+        } = this.props
+        const {
+            _id,
+            name,
+            websiteThumbnail,
+            websiteName,
+            layoutType,
+            cards
+        } = data
 
         return (
             <Container>
                 <Header>
-                    <TouchableWithoutFeedback
-                        onPress={() =>
-                            navigation.navigate({
-                                routeName: "ExternalWebsite",
-                                params: {
-                                    link: data.link,
-                                    name: data.name,
-                                    websiteName: data.websiteName
-                                }
-                            })
-                        }
-                    >
+                    <TouchableWithoutFeedback onPress={moveToDetailBoard}>
                         <BoardInfo>
                             <Thumbnail>
                                 <Image
@@ -87,11 +87,19 @@ class Board extends PureComponent {
                             <WebsiteName> - {websiteName}</WebsiteName>
                         </BoardInfo>
                     </TouchableWithoutFeedback>
-                    <Button
-                        title="팔로우"
-                        color={Colors.mainColor}
-                        onPress={() => {}}
-                    />
+                    {data.following ? (
+                        <Button
+                            title="언팔로우"
+                            color={Colors.buttonBackground}
+                            onPress={() => unfollowBoard(_id)}
+                        />
+                    ) : (
+                        <Button
+                            title="팔로우"
+                            color={Colors.mainColor}
+                            onPress={() => followBoard(_id)}
+                        />
+                    )}
                 </Header>
                 <Main>
                     {layoutType === "NEWS_PHOTO" && <NewsPhoto data={cards} />}
@@ -110,4 +118,4 @@ class Board extends PureComponent {
     }
 }
 
-export default withNavigation(Board)
+export default Board

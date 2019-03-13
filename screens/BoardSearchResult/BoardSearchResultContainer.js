@@ -4,7 +4,7 @@ import { withNavigation } from "react-navigation"
 import SearchResult from "../../components/search/SearchResult"
 import { BaseActions, BoardsActions } from "../../store/actionCreator"
 import ErrorNotice from "../../components/common/ErrorNotice"
-import Board from "../../components/list/Board"
+import BoardContainer from "../../containers/BoardContainer"
 
 class BoardSearchResultContainer extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -97,7 +97,7 @@ class BoardSearchResultContainer extends Component {
                     listData={boards}
                     keyExtractor={this._keyExtractor}
                     onEndReached={this._onEndReached}
-                    ListItem={Board}
+                    ListItem={BoardContainer}
                     isPadding={false}
                 />
             )
