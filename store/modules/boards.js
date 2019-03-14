@@ -11,6 +11,7 @@ const GET_WEBSITE_BOARDS = "boards/GET_WEBSITE_BOARDS"
 const GET_NORMAL_BOARDS = "boards/GET_NORMAL_BOARDS"
 const GET_PREVIEW_BOARDS = "boards/GET_PREVIEW_BOARDS"
 const GET_SEARCH_BOARDS = "boards/GET_SEARCH_BOARDS"
+const GET_FOLLOWING_BOARDS = "boards/GET_FOLLOWING_BOARDS"
 const GET_FOLLOWING_PREVIEW_BOARDS = "boards/GET_FOLLOWING_PREVIEW_BOARDS"
 
 export const initialize = createAction(INITIALIZE)
@@ -31,6 +32,10 @@ export const getSearchBoards = createAction(
     GET_SEARCH_BOARDS,
     BoardAPI.getBoardList
 )
+export const getFollowingBoards = createAction(
+    GET_FOLLOWING_BOARDS,
+    UserAPI.getFollowingBoards
+)
 export const getFollowingPreviewBoards = createAction(
     GET_FOLLOWING_PREVIEW_BOARDS,
     UserAPI.getFollowingPreviewBoards
@@ -44,11 +49,11 @@ const initialBoards = {
 }
 
 const initialState = {
-    following: initialBoards,
     website: initialBoards,
     normal: initialBoards,
     search: initialBoards,
     preview: initialBoards,
+    following: initialBoards,
     followingPreview: []
 }
 
@@ -61,11 +66,59 @@ export default handleActions(
             })
         },
         [CHANGE_FOLLOWING_STATUS]: (state, action) => {
-            const { target, index, isFollowing } = action.payload
-            // const { following, website, normal, search } = state
+            const { target, index, boardId, isFollowing } = action.payload
+            const { following, normal } = state
 
             return produce(state, draft => {
                 draft[target].boards[index].following = isFollowing
+
+                if (isFollowing) {
+                    draft.followingPreview.push({ board: boardId })
+                } else {
+                    state.followingPreview.forEach((item, key) => {
+                        if (item.board === boardId) {
+                            draft.followingPreview.splice(key, 1)
+                        }
+                    })
+                }
+
+                if (target === "following") {
+                    if (normal.boards.length !== 0) {
+                        normal.boards.forEach((board, key) => {
+                            if (board._id === boardId) {
+                                draft.normal.boards[key].following = isFollowing
+                            }
+                        })
+                    }
+                } else if (target === "normal") {
+                    if (following.boards.length !== 0) {
+                        following.boards.forEach((board, key) => {
+                            if (board._id === boardId) {
+                                draft.following.boards[
+                                    key
+                                ].following = isFollowing
+                            }
+                        })
+                    }
+                } else {
+                    if (normal.boards.length !== 0) {
+                        normal.boards.forEach((board, key) => {
+                            if (board._id === boardId) {
+                                draft.normal.boards[key].following = isFollowing
+                            }
+                        })
+                    }
+
+                    if (following.boards.length !== 0) {
+                        following.boards.forEach((board, key) => {
+                            if (board._id === boardId) {
+                                draft.following.boards[
+                                    key
+                                ].following = isFollowing
+                            }
+                        })
+                    }
+                }
             })
         },
         ...pender({
@@ -185,6 +238,43 @@ export default handleActions(
             onFailure: (state, action) => {
                 return produce(state, draft => {
                     draft.search.error = true
+                })
+            }
+        }),
+        ...pender({
+            type: GET_FOLLOWING_BOARDS,
+            onSuccess: (state, action) => {
+                const { followingBoards } = action.payload.data
+                let boards = []
+
+                if (followingBoards.length !== 0) {
+                    followingBoards.forEach(followBoard => {
+                        boards.push({
+                            ...followBoard.board,
+                            following: true
+                        })
+                    })
+                }
+
+                if (boards.length < NUM_BOARD) {
+                    return produce(state, draft => {
+                        draft.following.boards = state.following.boards.concat(
+                            boards
+                        )
+                        draft.following.end = true
+                    })
+                } else {
+                    return produce(state, draft => {
+                        draft.following.boards = state.following.boards.concat(
+                            boards
+                        )
+                        draft.following.page++
+                    })
+                }
+            },
+            onFailure: (state, action) => {
+                return produce(state, draft => {
+                    draft.following.error = true
                 })
             }
         }),

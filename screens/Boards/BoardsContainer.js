@@ -11,10 +11,6 @@ class BoardsContainer extends Component {
 
     componentDidMount() {
         this._initialize()
-        NetInfo.isConnected.addEventListener(
-            "connectionChange",
-            this.handleConnectivityChange
-        )
     }
 
     componentWillUnmount() {
@@ -24,11 +20,6 @@ class BoardsContainer extends Component {
         )
     }
 
-    _initialize = async () => {
-        this._fetchCategoryList()
-        this._fetchBoardList()
-    }
-
     handleConnectivityChange = isConnected => {
         if (isConnected) {
             BaseActions.changeIsNetworkConnected(true)
@@ -36,6 +27,15 @@ class BoardsContainer extends Component {
         } else {
             BaseActions.changeIsNetworkConnected(false)
         }
+    }
+
+    _initialize = () => {
+        this._fetchCategoryList()
+        this._fetchBoardList()
+        NetInfo.isConnected.addEventListener(
+            "connectionChange",
+            this.handleConnectivityChange
+        )
     }
 
     _refetchAll = () => {

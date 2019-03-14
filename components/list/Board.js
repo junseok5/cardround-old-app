@@ -84,8 +84,11 @@ class Board extends PureComponent {
                                     }}
                                 />
                             </Thumbnail>
-                            <BoardName>{name}</BoardName>
-                            <WebsiteName> - {websiteName}</WebsiteName>
+                            <BoardName numberOfLines={1}>{name}</BoardName>
+                            {/* <WebsiteName numberOfLines={1}>
+                                {" "}
+                                - {websiteName}
+                            </WebsiteName> */}
                         </BoardInfo>
                     </TouchableWithoutFeedback>
                     {data.following ? (

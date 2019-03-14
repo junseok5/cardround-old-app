@@ -7,7 +7,7 @@ import {
 import { fromLeft, zoomIn, zoomOut } from "react-navigation-transitions"
 import Colors from "../constants/Colors"
 import TabBarIcon from "../components/common/TabBarIcon"
-import HomeScreen from "../screens/HomeScreen"
+import HomeScreen from "../screens/Home"
 import BoardsScreen from "../screens/Boards"
 import WebsitesScreen from "../screens/Websites"
 import ProfileScreen from "../screens/Profile"
@@ -35,14 +35,14 @@ const handleCustomTransition = ({ scenes }) => {
     ) {
         return fromLeft()
     }
-        return fromLeft()
+    return fromLeft()
 }
 
 const TabNavigation = createBottomTabNavigator(
     {
         Home: {
             screen: createStackNavigator({
-                Home: ProfileScreen
+                Home: HomeScreen
             }),
             navigationOptions: {
                 tabBarLabel: "홈",

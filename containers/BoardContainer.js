@@ -27,6 +27,7 @@ class BoardContainer extends Component {
             BoardsActions.changeFollowingStatus({
                 target,
                 index,
+                boardId,
                 isFollowing: true
             })
         } catch (error) {
@@ -43,6 +44,7 @@ class BoardContainer extends Component {
             BoardsActions.changeFollowingStatus({
                 target,
                 index,
+                boardId,
                 isFollowing: false
             })
         } catch (error) {

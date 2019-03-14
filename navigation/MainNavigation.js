@@ -17,9 +17,6 @@ const MainNavigation = createStackNavigator(
                 header: null
             }
         },
-        // DetailBoard: {
-        //     screen: DetailBoard
-        // },
         DetailWebsite: {
             screen: DetailWebsite
         },
