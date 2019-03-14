@@ -24,7 +24,7 @@ class BoardsContainer extends Component {
         )
     }
 
-    _initialize = () => {
+    _initialize = async () => {
         this._fetchCategoryList()
         this._fetchBoardList()
     }

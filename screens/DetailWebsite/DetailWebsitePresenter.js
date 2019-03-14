@@ -3,7 +3,7 @@ import { FlatList, ScrollView } from "react-native"
 import styled from "styled-components"
 import Colors from "../../constants/Colors"
 import Loading from "../../components/common/Loading"
-import Board from "../../components/list/Board"
+import BoardContainer from "../../containers/BoardContainer"
 
 const Container = styled.View``
 
@@ -70,8 +70,13 @@ const DetailWebsitePresenter = ({
                     <FlatList
                         data={boards}
                         keyExtractor={keyExtractor}
-                        renderItem={({ item }) => (
-                            <Board data={item} key={item._id} />
+                        renderItem={({ item, index }) => (
+                            <BoardContainer
+                                data={item}
+                                target="website"
+                                index={index}
+                                key={item._id}
+                            />
                         )}
                         onEndReachedThreshold={0.6}
                         onEndReached={onEndReached}

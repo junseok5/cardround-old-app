@@ -6,14 +6,15 @@ import * as UserAPI from "../../api/user"
 import { NUM_BOARD } from "../../constants/NumPerPage"
 
 const INITIALIZE = "boards/INITIALIZE"
+const CHANGE_FOLLOWING_STATUS = "boards/CHANGE_FOLLOWING_STATUS"
 const GET_WEBSITE_BOARDS = "boards/GET_WEBSITE_BOARDS"
 const GET_NORMAL_BOARDS = "boards/GET_NORMAL_BOARDS"
 const GET_PREVIEW_BOARDS = "boards/GET_PREVIEW_BOARDS"
 const GET_SEARCH_BOARDS = "boards/GET_SEARCH_BOARDS"
 const GET_FOLLOWING_PREVIEW_BOARDS = "boards/GET_FOLLOWING_PREVIEW_BOARDS"
-const CHANGE_FOLLOWING_STATUS = "boards/CHANGE_FOLLOWING_STATUS"
 
 export const initialize = createAction(INITIALIZE)
+export const changeFollowingStatus = createAction(CHANGE_FOLLOWING_STATUS)
 export const getWebsiteBoards = createAction(
     GET_WEBSITE_BOARDS,
     BoardAPI.getBoardList
@@ -34,7 +35,6 @@ export const getFollowingPreviewBoards = createAction(
     GET_FOLLOWING_PREVIEW_BOARDS,
     UserAPI.getFollowingPreviewBoards
 )
-export const changeFollowingStatus = createAction(CHANGE_FOLLOWING_STATUS)
 
 const initialBoards = {
     boards: [],
@@ -58,6 +58,14 @@ export default handleActions(
             const target = action.payload
             return produce(state, draft => {
                 draft[target] = initialBoards
+            })
+        },
+        [CHANGE_FOLLOWING_STATUS]: (state, action) => {
+            const { target, index, isFollowing } = action.payload
+            // const { following, website, normal, search } = state
+
+            return produce(state, draft => {
+                draft[target].boards[index].following = isFollowing
             })
         },
         ...pender({
@@ -188,13 +196,7 @@ export default handleActions(
                     draft.followingPreview = followingBoards
                 })
             }
-        }),
-        [CHANGE_FOLLOWING_STATUS]: (state, action) => {
-            const status = action.payload
-            return produce(state, draft => {
-                
-            })
-        }
+        })
     },
     initialState
 )

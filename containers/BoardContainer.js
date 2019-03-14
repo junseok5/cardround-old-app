@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { AsyncStorage } from "react-native"
 import { withNavigation } from "react-navigation"
 import Board from "../components/list/Board"
-import { FollowActions } from "../store/actionCreator"
+import { FollowActions, BoardsActions } from "../store/actionCreator"
 
 class BoardContainer extends Component {
     _moveToDetailBoard = () => {
@@ -20,9 +20,15 @@ class BoardContainer extends Component {
 
     _followBoard = async boardId => {
         const token = await AsyncStorage.getItem("accessToken")
+        const { target, index } = this.props
 
         try {
-            await FollowActions.followBoard({ token, boardId })
+            FollowActions.followBoard({ token, boardId })
+            BoardsActions.changeFollowingStatus({
+                target,
+                index,
+                isFollowing: true
+            })
         } catch (error) {
             console.log(error.message)
         }
@@ -30,9 +36,15 @@ class BoardContainer extends Component {
 
     _unfollowBoard = async boardId => {
         const token = await AsyncStorage.getItem("accessToken")
+        const { target, index } = this.props
 
         try {
-            await FollowActions.unfollowBoard({ token, boardId })
+            FollowActions.unfollowBoard({ token, boardId })
+            BoardsActions.changeFollowingStatus({
+                target,
+                index,
+                isFollowing: false
+            })
         } catch (error) {
             console.log(error)
         }

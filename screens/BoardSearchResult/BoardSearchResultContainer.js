@@ -98,6 +98,7 @@ class BoardSearchResultContainer extends Component {
                     keyExtractor={this._keyExtractor}
                     onEndReached={this._onEndReached}
                     ListItem={BoardContainer}
+                    target="search"
                     isPadding={false}
                 />
             )
