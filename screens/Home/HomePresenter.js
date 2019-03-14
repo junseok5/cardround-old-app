@@ -6,10 +6,11 @@ import BoardContainer from "../../containers/BoardContainer"
 
 const Container = styled.View`
     flex: 1;
-    padding-top: 40px;
+    padding-top: 24px;
 `
 
 const PageTitle = styled.Text`
+    padding-top: 15px;
     padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 15px;
@@ -24,7 +25,6 @@ const Main = styled.View`
 const HomePresenter = ({ loading, boards, keyExtractor, onEndReached }) => {
     return (
         <Container>
-            <PageTitle>팔로우 보드</PageTitle>
             {loading && boards.length === 0 ? (
                 <Loading />
             ) : (
@@ -32,6 +32,7 @@ const HomePresenter = ({ loading, boards, keyExtractor, onEndReached }) => {
                     <FlatList
                         data={boards}
                         keyExtractor={keyExtractor}
+                        ListHeaderComponent={<PageTitle>팔로우 보드</PageTitle>}
                         renderItem={({ item, index }) => (
                             <BoardContainer
                                 data={item}

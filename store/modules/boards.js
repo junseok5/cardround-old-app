@@ -72,6 +72,20 @@ export default handleActions(
             return produce(state, draft => {
                 draft[target].boards[index].following = isFollowing
 
+                // 보드 팔로우 시, 홈에 보드 추가
+                if (target !== "following" && following.end && isFollowing) {
+                    const exists = following.boards.some(followBoard => {
+                        return followBoard._id === boardId
+                    })
+
+                    if (!exists) {
+                        draft.following.boards.push({
+                            ...state[target].boards[index],
+                            following: true
+                        })
+                    }
+                }
+
                 if (isFollowing) {
                     draft.followingPreview.push({ board: boardId })
                 } else {
