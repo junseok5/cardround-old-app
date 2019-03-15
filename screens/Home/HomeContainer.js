@@ -90,6 +90,7 @@ class HomeContainer extends Component {
                     boards={boards}
                     keyExtractor={this._keyExtractor}
                     onEndReached={this._onEndReached}
+                    onRefresh={this._refetchBoardList}
                 />
             )
         }

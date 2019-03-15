@@ -29,7 +29,8 @@ const BoardsPresenter = ({
     selected,
     keyExtractor,
     onEndReached,
-    changeSelectedCategory
+    changeSelectedCategory,
+    onRefresh
 }) => {
     return (
         <Container>
@@ -60,6 +61,8 @@ const BoardsPresenter = ({
                         )}
                         onEndReachedThreshold={0.6}
                         onEndReached={onEndReached}
+                        refreshing={false}
+                        onRefresh={onRefresh}
                         showsVerticalScrollIndicator={false}
                     />
                 </Main>

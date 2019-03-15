@@ -1,5 +1,5 @@
 import React from "react"
-import { FlatList } from "react-native"
+import { FlatList, ScrollView } from "react-native"
 import styled from "styled-components"
 import Loading from "../../components/common/Loading"
 import BoardContainer from "../../containers/BoardContainer"
@@ -22,7 +22,13 @@ const Main = styled.View`
     flex: 1;
 `
 
-const HomePresenter = ({ loading, boards, keyExtractor, onEndReached }) => {
+const HomePresenter = ({
+    loading,
+    boards,
+    keyExtractor,
+    onEndReached,
+    onRefresh
+}) => {
     return (
         <Container>
             {loading && boards.length === 0 ? (
@@ -43,6 +49,8 @@ const HomePresenter = ({ loading, boards, keyExtractor, onEndReached }) => {
                         )}
                         onEndReachedThreshold={0.6}
                         onEndReached={onEndReached}
+                        refreshing={false}
+                        onRefresh={onRefresh}
                         showsVerticalScrollIndicator={false}
                     />
                 </Main>

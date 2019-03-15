@@ -110,7 +110,7 @@ class DetailWebsiteContainer extends Component {
                     boards={boards}
                     keyExtractor={this._keyExtractor}
                     onEndReached={this._onEndReached}
-                    onRefresh={this._refetchPreviewboardList}
+                    onRefresh={this._refetchBoardList}
                 />
             )
         }

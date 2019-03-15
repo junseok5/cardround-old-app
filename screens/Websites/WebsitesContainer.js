@@ -142,6 +142,7 @@ class WebsitesContainer extends Component {
                     keyExtractor={this._keyExtractor}
                     onEndReached={this._onEndReached}
                     changeSelectedCategory={this._changeSelectedCategory}
+                    onRefresh={this._refetchWebsiteList}
                 />
             )
         }
