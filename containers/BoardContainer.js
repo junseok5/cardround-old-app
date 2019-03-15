@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { AsyncStorage } from "react-native"
 import { withNavigation } from "react-navigation"
 import Board from "../components/list/Board"
-import { FollowActions, BoardsActions } from "../store/actionCreator"
+import { BoardsActions, FollowActions } from "../store/actionCreator"
 
 class BoardContainer extends Component {
     _moveToDetailBoard = () => {
@@ -12,8 +12,7 @@ class BoardContainer extends Component {
             routeName: "ExternalWebsite",
             params: {
                 link: data.link,
-                name: data.name,
-                websiteName: data.websiteName
+                name: data.name
             }
         })
     }
