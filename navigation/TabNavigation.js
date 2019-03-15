@@ -87,7 +87,7 @@ const TabNavigation = createBottomTabNavigator(
     },
     {
         tabBarOptions: {
-            activeTintColor: "#000",
+            activeTintColor: Colors.mainColor,
             inactiveTintColor: Colors.supportColor
         },
         transitionConfig: nav => handleCustomTransition(nav)

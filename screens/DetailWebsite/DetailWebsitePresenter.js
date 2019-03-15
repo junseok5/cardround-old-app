@@ -4,6 +4,7 @@ import styled from "styled-components"
 import Colors from "../../constants/Colors"
 import Loading from "../../components/common/Loading"
 import BoardContainer from "../../containers/BoardContainer"
+import DefaultWebsiteThumbnail from "../../components/common/DefaultWebsiteThumbnail"
 
 const Container = styled.View``
 
@@ -19,9 +20,9 @@ const WebsiteInfo = styled.View`
 const Thumbnail = styled.Image`
     width: 80px;
     height: 80px;
-    border-width: 0.5px;
+    /* border-width: 0.5px;
     border-radius: 4;
-    border-color: ${Colors.thickBorder};
+    border-color: ${Colors.thickBorder}; */
 `
 
 const MetaWrap = styled.View`
@@ -52,12 +53,22 @@ const DetailWebsitePresenter = ({
         <ScrollView showsVerticalScrollIndicator={false}>
             <Container>
                 <WebsiteInfo>
-                    <Thumbnail
-                        source={{
-                            uri: website.thumbnail
-                        }}
-                        resizeMode="contain"
-                    />
+                    {website.thumbnail ? (
+                        <Thumbnail
+                            source={{
+                                uri: website.thumbnail
+                            }}
+                            resizeMode="contain"
+                        />
+                    ) : (
+                        <DefaultWebsiteThumbnail
+                            websiteName={website.name}
+                            width={80}
+                            height={80}
+                            fontSize={13}
+                        />
+                    )}
+
                     <MetaWrap>
                         <Meta>
                             <WebsiteName>{website.name}</WebsiteName>

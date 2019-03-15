@@ -3,6 +3,8 @@ import { FlatList } from "react-native"
 import styled from "styled-components"
 import Loading from "../../components/common/Loading"
 import BoardContainer from "../../containers/BoardContainer"
+import { Icon } from "expo"
+import Colors from "../../constants/Colors"
 
 const Container = styled.View`
     flex: 1;
@@ -22,6 +24,17 @@ const Main = styled.View`
     flex: 1;
 `
 
+const NotExists = styled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+`
+
+const Text = styled.Text`
+    margin-top: 10px;
+    font-size: 18px;
+`
+
 const HomePresenter = ({
     loading,
     boards,
@@ -33,6 +46,17 @@ const HomePresenter = ({
         <Container>
             {loading && boards.length === 0 ? (
                 <Loading />
+            ) : boards.length === 0 ? (
+                <Main>
+                    <NotExists>
+                        <Icon.AntDesign
+                            name="smileo"
+                            size={45}
+                            color={Colors.mainColor}
+                        />
+                        <Text>관심있는 보드를 팔로우 해보세요.</Text>
+                    </NotExists>
+                </Main>
             ) : (
                 <Main>
                     <FlatList

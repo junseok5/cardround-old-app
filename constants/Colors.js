@@ -8,7 +8,7 @@ export default {
     supportColor: supportColor,
     title: thickColor,
     tabIconDefault: supportColor,
-    tabIconSelected: "#000",
+    tabIconSelected: mainColor,
     tabBar: "#fff",
     errorBackground: "red",
     errorText: "#fff",

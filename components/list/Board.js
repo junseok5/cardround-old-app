@@ -9,6 +9,7 @@ import Bamboo from "../board_layout_type/Bamboo"
 import MovieChart from "../board_layout_type/MovieChart"
 import MusicChart from "../board_layout_type/MusicChart"
 import FollowButton from "../common/FollowButton"
+import DefaultWebsiteThumbnail from "../common/DefaultWebsiteThumbnail"
 
 const Container = styled.View`
     margin-top: 15px;
@@ -66,7 +67,14 @@ class Board extends PureComponent {
             followBoard,
             unfollowBoard
         } = this.props
-        const { _id, name, websiteThumbnail, layoutType, cards } = data
+        const {
+            _id,
+            name,
+            websiteName,
+            websiteThumbnail,
+            layoutType,
+            cards
+        } = data
 
         return (
             <Container>
@@ -74,17 +82,26 @@ class Board extends PureComponent {
                     <TouchableWithoutFeedback onPress={moveToDetailBoard}>
                         <BoardInfo>
                             <Thumbnail>
-                                <Image
-                                    source={{
-                                        uri: websiteThumbnail
-                                    }}
-                                    style={{
-                                        width: 35,
-                                        height: 35,
-                                        borderRadius: 50,
-                                        resizeMode: "contain"
-                                    }}
-                                />
+                                {websiteThumbnail ? (
+                                    <Image
+                                        source={{
+                                            uri: websiteThumbnail
+                                        }}
+                                        style={{
+                                            width: 35,
+                                            height: 35,
+                                            borderRadius: 50,
+                                            resizeMode: "contain"
+                                        }}
+                                    />
+                                ) : (
+                                    <DefaultWebsiteThumbnail
+                                        websiteName={websiteName}
+                                        width={35}
+                                        height={35}
+                                        fontSize={8}
+                                    />
+                                )}
                             </Thumbnail>
                             <BoardName numberOfLines={1}>{name}</BoardName>
                         </BoardInfo>

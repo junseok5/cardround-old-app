@@ -3,6 +3,7 @@ import { Image, TouchableWithoutFeedback } from "react-native"
 import { withNavigation } from "react-navigation"
 import styled from "styled-components"
 import Colors from "../../constants/Colors"
+import DefaultWebsiteThumbnail from "../common/DefaultWebsiteThumbnail"
 
 const Container = styled.View`
     padding-top: 5px;
@@ -14,9 +15,9 @@ const Container = styled.View`
 const Thumbnail = styled.View`
     width: 64px;
     height: 64px;
-    border-radius: 4;
+    /* border-radius: 4;
     border-width: 0.5px;
-    border-color: ${Colors.thickBorder};
+    border-color: ${Colors.thickBorder}; */
 `
 
 const MetaInfo = styled.View`
@@ -45,15 +46,19 @@ const Website = ({ data, navigation }) => (
     >
         <Container>
             <Thumbnail>
-                <Image
-                    style={{
-                        width: 64,
-                        height: 64,
-                        borderRadius: 4,
-                        resizeMode: "contain"
-                    }}
-                    source={{ uri: data.thumbnail }}
-                />
+                {data.thumbnail ? (
+                    <Image
+                        style={{
+                            width: 64,
+                            height: 64,
+                            borderRadius: 4,
+                            resizeMode: "contain"
+                        }}
+                        source={{ uri: data.thumbnail }}
+                    />
+                ) : (
+                    <DefaultWebsiteThumbnail websiteName={data.name} />
+                )}
             </Thumbnail>
             <MetaInfo>
                 <Name>{data.name}</Name>
