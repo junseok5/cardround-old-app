@@ -1,9 +1,9 @@
 import React, { PureComponent } from "react"
 import { TouchableWithoutFeedback } from "react-native"
-import { withNavigation } from "react-navigation"
 import styled from "styled-components"
 import { Icon } from "expo"
 import Colors from "../../constants/Colors"
+import withCard from "../../containers/withCard"
 
 const Container = styled.View`
     width: ${props => props.layoutWidth};
@@ -58,21 +58,11 @@ class CardBamboo extends PureComponent {
             horizontal,
             numberOfLines = 10,
             isFb = false,
-            navigation
+            onClick
         } = this.props
         const { title, firstAddedInfo, secondAddedInfo } = card
         return (
-            <TouchableWithoutFeedback
-                onPress={() =>
-                    navigation.navigate({
-                        routeName: "DetailCard",
-                        params: {
-                            title: card.title,
-                            link: card.link
-                        }
-                    })
-                }
-            >
+            <TouchableWithoutFeedback onPress={onClick}>
                 <Container layoutWidth={layoutWidth} horizontal={horizontal}>
                     <Title numberOfLines={numberOfLines}>{title}</Title>
 
@@ -97,4 +87,4 @@ class CardBamboo extends PureComponent {
     }
 }
 
-export default withNavigation(CardBamboo)
+export default withCard(CardBamboo)

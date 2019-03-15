@@ -1,9 +1,9 @@
 import React, { PureComponent } from "react"
 import { TouchableWithoutFeedback } from "react-native"
-import { withNavigation } from "react-navigation"
 import styled from "styled-components"
 import Colors from "../../constants/Colors"
 import { moderateScale } from "react-native-size-matters"
+import withCard from "../../containers/withCard"
 
 const Container = styled.View`
     padding-top: ${moderateScale(8)};
@@ -37,20 +37,10 @@ const PublishedDate = styled.Text`
 
 class CardText extends PureComponent {
     render() {
-        const { card, numberOfLines = 2, navigation } = this.props
+        const { card, numberOfLines = 2, onClick } = this.props
         const { title, publishedDate, firstAddedInfo } = card
         return (
-            <TouchableWithoutFeedback
-                onPress={() =>
-                    navigation.navigate({
-                        routeName: "DetailCard",
-                        params: {
-                            title: card.title,
-                            link: card.link
-                        }
-                    })
-                }
-            >
+            <TouchableWithoutFeedback onPress={onClick}>
                 <Container>
                     <Title numberOfLines={numberOfLines}>{title}</Title>
 
@@ -67,4 +57,4 @@ class CardText extends PureComponent {
     }
 }
 
-export default withNavigation(CardText)
+export default withCard(CardText)

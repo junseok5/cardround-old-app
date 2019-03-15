@@ -47,3 +47,15 @@ export const unfollowBoard = ({ token, boardId }) =>
             "X-JWT": token
         }
     })
+
+// [PATCH]
+export const updateFollowingBoardScore = ({ token, boardId }) =>
+    api.patch(
+        `/v1.0/users/following/${boardId}/score`,
+        {},
+        {
+            headers: {
+                "X-JWT": token
+            }
+        }
+    )

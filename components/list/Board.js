@@ -43,28 +43,30 @@ const BoardName = styled.Text`
     font-weight: bold;
 `
 
-const WebsiteName = styled.Text`
-    font-size: 14px;
+const Main = styled.View``
+
+const WaitingUpdate = styled.View`
+    padding: 20px 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    background: ${Colors.textLayout};
+    border-radius: 4px;
 `
 
-const Main = styled.View``
+const WaitingUpdateText = styled.Text`
+    font-size: 15px;
+`
 
 class Board extends PureComponent {
     render() {
         const {
             data,
+            target,
             moveToDetailBoard,
             followBoard,
             unfollowBoard
         } = this.props
-        const {
-            _id,
-            name,
-            websiteThumbnail,
-            websiteName,
-            layoutType,
-            cards
-        } = data
+        const { _id, name, websiteThumbnail, layoutType, cards } = data
 
         return (
             <Container>
@@ -85,10 +87,6 @@ class Board extends PureComponent {
                                 />
                             </Thumbnail>
                             <BoardName numberOfLines={1}>{name}</BoardName>
-                            {/* <WebsiteName numberOfLines={1}>
-                                {" "}
-                                - {websiteName}
-                            </WebsiteName> */}
                         </BoardInfo>
                     </TouchableWithoutFeedback>
                     {data.following ? (
@@ -105,18 +103,60 @@ class Board extends PureComponent {
                         />
                     )}
                 </Header>
-                <Main>
-                    {layoutType === "NEWS_PHOTO" && <NewsPhoto data={cards} />}
-                    {layoutType === "OLD_BOARD" && <OldBoard data={cards} />}
-                    {layoutType === "SHOP_PHOTO" && <ShopPhoto data={cards} />}
-                    {layoutType === "MOVIE_CHART" && (
-                        <MovieChart data={cards} />
-                    )}
-                    {layoutType === "MUSIC_CHART" && (
-                        <MusicChart data={cards} />
-                    )}
-                    {layoutType === "BAMBOO" && <Bamboo data={cards} />}
-                </Main>
+                {cards.length === 0 ? (
+                    <Main>
+                        <WaitingUpdate>
+                            <WaitingUpdateText>
+                                업데이트를 기다리는 중입니다.
+                            </WaitingUpdateText>
+                        </WaitingUpdate>
+                    </Main>
+                ) : (
+                    <Main>
+                        {layoutType === "NEWS_PHOTO" && (
+                            <NewsPhoto
+                                data={cards}
+                                boardId={_id}
+                                target={target}
+                            />
+                        )}
+                        {layoutType === "OLD_BOARD" && (
+                            <OldBoard
+                                data={cards}
+                                boardId={_id}
+                                target={target}
+                            />
+                        )}
+                        {layoutType === "SHOP_PHOTO" && (
+                            <ShopPhoto
+                                data={cards}
+                                boardId={_id}
+                                target={target}
+                            />
+                        )}
+                        {layoutType === "MOVIE_CHART" && (
+                            <MovieChart
+                                data={cards}
+                                boardId={_id}
+                                target={target}
+                            />
+                        )}
+                        {layoutType === "MUSIC_CHART" && (
+                            <MusicChart
+                                data={cards}
+                                boardId={_id}
+                                target={target}
+                            />
+                        )}
+                        {layoutType === "BAMBOO" && (
+                            <Bamboo
+                                data={cards}
+                                boardId={_id}
+                                target={target}
+                            />
+                        )}
+                    </Main>
+                )}
             </Container>
         )
     }

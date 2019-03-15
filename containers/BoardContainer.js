@@ -52,11 +52,12 @@ class BoardContainer extends Component {
     }
 
     render() {
-        const { data } = this.props
+        const { data, target } = this.props
 
         return (
             <Board
                 data={data}
+                target={target}
                 moveToDetailBoard={this._moveToDetailBoard}
                 followBoard={this._followBoard}
                 unfollowBoard={this._unfollowBoard}

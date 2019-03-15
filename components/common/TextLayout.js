@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 import CardText from "../card/CardText"
-import Colors from '../../constants/Colors'
+import Colors from "../../constants/Colors"
 
 const Container = styled.View`
     background: ${Colors.textLayout};
@@ -9,11 +9,16 @@ const Container = styled.View`
     border-top-color: ${Colors.thickBorder};
 `
 
-const TextLayout = ({ data }) => {
+const TextLayout = ({ data, boardId, target }) => {
     return (
         <Container>
             {data.map(card => (
-                <CardText card={card} key={card.code} />
+                <CardText
+                    boardId={boardId}
+                    target={target}
+                    card={card}
+                    key={card.code}
+                />
             ))}
         </Container>
     )

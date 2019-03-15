@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react"
 import { TouchableWithoutFeedback } from "react-native"
-import { withNavigation } from "react-navigation"
 import styled from "styled-components"
 import Colors from "../../constants/Colors"
+import withCard from "../../containers/withCard"
 
 const Container = styled.View`
     width: ${props => props.layoutWidth};
@@ -78,21 +78,11 @@ class CardPhoto extends PureComponent {
             secondAddedInfoSize,
             textAlign,
             numberOfLines,
-            navigation
+            onClick
         } = this.props
 
         return (
-            <TouchableWithoutFeedback
-                onPress={() =>
-                    navigation.navigate({
-                        routeName: "DetailCard",
-                        params: {
-                            title: card.title,
-                            link: card.link
-                        }
-                    })
-                }
-            >
+            <TouchableWithoutFeedback onPress={onClick}>
                 <Container layoutWidth={layoutWidth}>
                     <Thumbnail
                         layoutWidth={layoutWidth}
@@ -148,4 +138,4 @@ class CardPhoto extends PureComponent {
     }
 }
 
-export default withNavigation(CardPhoto)
+export default withCard(CardPhoto)

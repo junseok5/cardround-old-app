@@ -1,5 +1,5 @@
 import React from "react"
-import { FlatList, ScrollView } from "react-native"
+import { FlatList } from "react-native"
 import styled from "styled-components"
 import Loading from "../../components/common/Loading"
 import BoardContainer from "../../containers/BoardContainer"

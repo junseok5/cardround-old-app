@@ -13,6 +13,7 @@ const GET_PREVIEW_BOARDS = "boards/GET_PREVIEW_BOARDS"
 const GET_SEARCH_BOARDS = "boards/GET_SEARCH_BOARDS"
 const GET_FOLLOWING_BOARDS = "boards/GET_FOLLOWING_BOARDS"
 const GET_FOLLOWING_PREVIEW_BOARDS = "boards/GET_FOLLOWING_PREVIEW_BOARDS"
+const UPDATE_BOARD_SCORE = "boards/UPDATE_BOARD_SCORE"
 
 export const initialize = createAction(INITIALIZE)
 export const changeFollowingStatus = createAction(CHANGE_FOLLOWING_STATUS)
@@ -39,6 +40,10 @@ export const getFollowingBoards = createAction(
 export const getFollowingPreviewBoards = createAction(
     GET_FOLLOWING_PREVIEW_BOARDS,
     UserAPI.getFollowingPreviewBoards
+)
+export const updateBoardScore = createAction(
+    UPDATE_BOARD_SCORE,
+    BoardAPI.updateBoardScore
 )
 
 const initialBoards = {

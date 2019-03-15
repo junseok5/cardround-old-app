@@ -23,3 +23,7 @@ export const getBoardSearchPreviewList = keyword =>
             keyword
         })}`
     )
+
+// [PATCH]
+export const updateBoardScore = boardId =>
+    api.patch(`/v1.0/boards/${boardId}/score`)

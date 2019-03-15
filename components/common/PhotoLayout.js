@@ -12,7 +12,8 @@ const Container = styled.View`
 class PhotoLayout extends PureComponent {
     render() {
         const {
-            scrollHost,
+            boardId,
+            target,
             layoutWidth = scale(150),
             layoutHeight = verticalScale(150),
             isRank = false,
@@ -34,9 +35,10 @@ class PhotoLayout extends PureComponent {
                 >
                     {this.props.data.map(card => (
                         <CardPhoto
+                            boardId={boardId}
+                            target={target}
                             card={card}
                             key={card.code}
-                            scrollHost={scrollHost}
                             layoutWidth={layoutWidth}
                             layoutHeight={layoutHeight}
                             isRank={isRank}
