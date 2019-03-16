@@ -11,5 +11,6 @@ export default connect(state => ({
     categories: state.category.boardCategories,
     selected: state.category.selected.board,
     loadingCategories: state.pender.pending["category/GET_BOARD_CATEGORY_LIST"],
-    loadingBoards: state.pender.pending["boards/GET_NORMAL_BOARDS"]
+    loadingBoards: state.pender.pending["boards/GET_NORMAL_BOARDS"],
+    loadingInitial: state.pender.pending["base/GET_INITIAL_DATA"]
 }))(BoardsContainer)

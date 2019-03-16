@@ -26,11 +26,16 @@ class ProfileContainer extends Component {
     }
 
     _initialize = () => {
-        this._fetchMyProfile()
         NetInfo.isConnected.addEventListener(
             "connectionChange",
             this.handleConnectivityChange
         )
+
+        const { loadingInitial } = this.props
+
+        if (loadingInitial) return
+
+        this._fetchMyProfile()
     }
 
     handleConnectivityChange = isConnected => {

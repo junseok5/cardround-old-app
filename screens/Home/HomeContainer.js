@@ -31,8 +31,6 @@ class HomeContainer extends Component {
 
     _initialize = async () => {
         this._fetchBoardList()
-        const token = await AsyncStorage.getItem("accessToken")
-        BoardsActions.getFollowingPreviewBoards(token)
     }
 
     _fetchBoardList = async () => {

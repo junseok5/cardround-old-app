@@ -30,12 +30,19 @@ class BoardsContainer extends Component {
     }
 
     _initialize = () => {
-        this._fetchCategoryList()
-        this._fetchBoardList()
         NetInfo.isConnected.addEventListener(
             "connectionChange",
             this.handleConnectivityChange
         )
+
+        const { loadingInitial, boards } = this.props
+
+        if (loadingInitial) return
+        
+        this._fetchCategoryList()
+        if (boards.length === 0) {
+            this._fetchBoardList()
+        }
     }
 
     _refetchAll = () => {
@@ -71,6 +78,10 @@ class BoardsContainer extends Component {
     }
 
     _fetchCategoryList = async () => {
+        const { categories } = this.props
+
+        if (categories.length !== 0) return
+
         try {
             await CategoryActions.getBoardCategoryList("BOARD")
         } catch (error) {
@@ -79,7 +90,6 @@ class BoardsContainer extends Component {
     }
 
     _refetchCategoryList = async () => {
-        await CategoryActions.initializeBoardCategories()
         this._fetchCategoryList()
     }
 

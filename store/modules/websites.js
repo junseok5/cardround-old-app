@@ -5,11 +5,13 @@ import * as WebsiteAPI from "../../api/website"
 import { NUM_WEBSITE } from "../../constants/NumPerPage"
 
 const INITIALIZE = "websites/INITIALIZE"
+const RECEIVE_INITIAL_DATA = "websites/RECEIVE_INITIAL_DATA"
 const GET_NORMAL_WEBSITES = "websites/GET_NORMAL_WEBSITES"
 const GET_SEARCH_WEBSITES = "websites/GET_SEARCH_WEBSITES"
 const GET_PREVIEW_WEBSITES = "websites/GET_PREVIEW_WEBSITES"
 
 export const initialize = createAction(INITIALIZE)
+export const receiveInitialData = createAction(RECEIVE_INITIAL_DATA)
 export const getNormalWebsites = createAction(
     GET_NORMAL_WEBSITES,
     WebsiteAPI.getWebsiteList
@@ -43,6 +45,21 @@ export default handleActions(
             return produce(state, draft => {
                 draft[target] = initialWebsites
             })
+        },
+        [RECEIVE_INITIAL_DATA]: (state, action) => {
+            const { normalWebsites } = action.payload
+
+            if (normalWebsites.length < NUM_WEBSITE) {
+                return produce(state, draft => {
+                    draft.normal.websites = normalWebsites
+                    draft.normal.end = true
+                })
+            } else {
+                return produce(state, draft => {
+                    draft.normal.websites = normalWebsites
+                    draft.normal.page++
+                })
+            }
         },
         ...pender({
             type: GET_NORMAL_WEBSITES,

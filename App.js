@@ -1,11 +1,11 @@
-import React from "react"
+import React, { Component } from "react"
 import { AppLoading, Asset, Font, Icon } from "expo"
 import { AsyncStorage } from "react-native"
 import { Provider } from "react-redux"
 import store from "./store"
 import AppContainer from "./components/AppContainer"
 
-class App extends React.Component {
+class App extends Component {
     state = {
         isLoadingComplete: false
     }

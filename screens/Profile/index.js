@@ -6,5 +6,6 @@ export default connect(state => ({
     errorMessage: state.base.errorMessage,
     profile: state.user.profile,
     readError: state.user.readError,
-    loading: state.user.loading
+    loading: state.user.loading,
+    loadingInitial: state.pender.pending["base/GET_INITIAL_DATA"]
 }))(ProfileContainer)

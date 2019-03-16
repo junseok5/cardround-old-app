@@ -6,6 +6,7 @@ import * as UserAPI from "../../api/user"
 import { NUM_BOARD } from "../../constants/NumPerPage"
 
 const INITIALIZE = "boards/INITIALIZE"
+const RECEIVE_INITIAL_DATA = "boards/RECEIVE_INITIAL_DATA"
 const CHANGE_FOLLOWING_STATUS = "boards/CHANGE_FOLLOWING_STATUS"
 const GET_WEBSITE_BOARDS = "boards/GET_WEBSITE_BOARDS"
 const GET_NORMAL_BOARDS = "boards/GET_NORMAL_BOARDS"
@@ -16,6 +17,7 @@ const GET_FOLLOWING_PREVIEW_BOARDS = "boards/GET_FOLLOWING_PREVIEW_BOARDS"
 const UPDATE_BOARD_SCORE = "boards/UPDATE_BOARD_SCORE"
 
 export const initialize = createAction(INITIALIZE)
+export const receiveInitialData = createAction(RECEIVE_INITIAL_DATA)
 export const changeFollowingStatus = createAction(CHANGE_FOLLOWING_STATUS)
 export const getWebsiteBoards = createAction(
     GET_WEBSITE_BOARDS,
@@ -68,6 +70,34 @@ export default handleActions(
             const target = action.payload
             return produce(state, draft => {
                 draft[target] = initialBoards
+            })
+        },
+        [RECEIVE_INITIAL_DATA]: (state, action) => {
+            const { followingPreviewBoards, normalBoards } = action.payload
+
+            return produce(state, draft => {
+                draft.followingPreview = followingPreviewBoards
+
+                if (
+                    normalBoards.length !== 0 &&
+                    followingPreviewBoards.length !== 0
+                ) {
+                    normalBoards.forEach(board => {
+                        followingPreviewBoards.forEach(preview => {
+                            if (board._id === preview.board) {
+                                board.following = true
+                            }
+                        })
+                    })
+                }
+
+                if (normalBoards.length < NUM_BOARD) {
+                    draft.normal.boards = normalBoards
+                    draft.normal.end = true
+                } else {
+                    draft.normal.boards = normalBoards
+                    draft.normal.page++
+                }
             })
         },
         [CHANGE_FOLLOWING_STATUS]: (state, action) => {

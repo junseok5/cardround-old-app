@@ -8,5 +8,6 @@ export default connect(state => ({
     error: state.boards.following.error,
     page: state.boards.following.page,
     end: state.boards.following.end,
+    followingPreview: state.boards.followingPreview,
     loading: state.pender.pending["boards/GET_FOLLOWING_BOARDS"]
 }))(HomeContainer)

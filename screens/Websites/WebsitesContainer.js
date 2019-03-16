@@ -15,10 +15,6 @@ class WebsitesContainer extends Component {
 
     componentDidMount() {
         this._initialize()
-        NetInfo.isConnected.addEventListener(
-            "connectionChange",
-            this.handleConnectivityChange
-        )
     }
 
     componentWillUnmount() {
@@ -29,8 +25,19 @@ class WebsitesContainer extends Component {
     }
 
     _initialize = () => {
+        NetInfo.isConnected.addEventListener(
+            "connectionChange",
+            this.handleConnectivityChange
+        )
+
+        const { loadingInitial, websites } = this.props
+
+        if (loadingInitial) return
+
         this._fetchCategoryList()
-        this._fetchWebsiteList()
+        if (websites.length === 0) {
+            this._fetchWebsiteList()
+        }
     }
 
     handleConnectivityChange = isConnected => {
@@ -75,6 +82,10 @@ class WebsitesContainer extends Component {
     }
 
     _fetchCategoryList = async () => {
+        const { categories } = this.props
+
+        if (categories.length !== 0) return
+
         try {
             await CategoryActions.getWebsiteCategoryList("WEBSITE")
         } catch (error) {
@@ -83,7 +94,6 @@ class WebsitesContainer extends Component {
     }
 
     _refetchCategoryList = async () => {
-        await CategoryActions.initializeWebsiteCategories()
         this._fetchCategoryList()
     }
 

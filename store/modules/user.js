@@ -4,10 +4,12 @@ import { pender } from "redux-pender"
 import * as UserAPI from "../../api/user"
 
 const INITIALIZE = "user/INITIALIZE"
+const RECEIVE_INITIAL_DATA = "user/RECEIVE_INITIAL_DATA"
 const GET_MY_INFO = "user/GET_MY_INFO"
 const CHANGE_LOADING = "user/CHANGE_LOADING"
 
 export const initialize = createAction(INITIALIZE)
+export const receiveInitialData = createAction(RECEIVE_INITIAL_DATA)
 export const getMyInfo = createAction(GET_MY_INFO, UserAPI.getMyInfo)
 export const changeLoading = createAction(CHANGE_LOADING)
 
@@ -24,6 +26,12 @@ const initialState = {
 export default handleActions(
     {
         [INITIALIZE]: (state, action) => initialState,
+        [RECEIVE_INITIAL_DATA]: (state, action) => {
+            const { profile } = action.payload
+            return produce(state, draft => {
+                draft.profile = profile
+            })
+        },
         ...pender({
             type: GET_MY_INFO,
             onSuccess: (state, action) => {

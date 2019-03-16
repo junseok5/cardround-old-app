@@ -4,7 +4,14 @@ import { AsyncStorage, NetInfo, Platform, StatusBar } from "react-native"
 import { connect } from "react-redux"
 import MainNavigation from "../navigation/MainNavigation"
 import LoginNavigation from "../navigation/LoginNavigation"
-import { AuthActions, BaseActions } from "../store/actionCreator"
+import {
+    AuthActions,
+    BaseActions,
+    BoardsActions,
+    CategoryActions,
+    WebsitesActions,
+    UserActions
+} from "../store/actionCreator"
 
 const Container = styled.View`
     flex: 1;
@@ -13,17 +20,7 @@ const Container = styled.View`
 
 class AppContainer extends Component {
     componentDidMount() {
-        this.initialize()
-    }
-
-    initialize = async () => {
-        const token = await AsyncStorage.getItem("accessToken")
-
-        if (token) {
-            AuthActions.changeLogged(true)
-        }
-
-        this.handleFirstConnectivityChange()
+        this._initialize()
     }
 
     handleFirstConnectivityChange = () => {
@@ -34,6 +31,48 @@ class AppContainer extends Component {
                 BaseActions.changeIsNetworkConnected(true)
             }
         })
+    }
+
+    _initialize = async () => {
+        const token = await AsyncStorage.getItem("accessToken")
+
+        if (token) {
+            AuthActions.changeLogged(true)
+        }
+
+        this.handleFirstConnectivityChange()
+        this._getInitialData()
+    }
+
+    _getInitialData = async () => {
+        const token = await AsyncStorage.getItem("accessToken")
+
+        try {
+            await BaseActions.getInitialData(token)
+
+            const { initialData } = this.props
+            const {
+                followingPreviewBoards,
+                boardCategories,
+                boards,
+                websiteCategories,
+                websites,
+                profile
+            } = initialData
+
+            BoardsActions.receiveInitialData({
+                followingPreviewBoards,
+                normalBoards: boards
+            })
+            CategoryActions.receiveInitialData({
+                boardCategories,
+                websiteCategories
+            })
+            WebsitesActions.receiveInitialData({ normalWebsites: websites })
+            UserActions.receiveInitialData({ profile })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     render() {
@@ -48,5 +87,6 @@ class AppContainer extends Component {
 }
 
 export default connect(state => ({
-    logged: state.auth.logged
+    logged: state.auth.logged,
+    initialData: state.base.initialData
 }))(AppContainer)
