@@ -1,20 +1,13 @@
 import React, { Component } from "react"
 import { AsyncStorage } from "react-native"
-import { withNavigation } from "react-navigation"
 import Board from "../components/list/Board"
 import { BoardsActions, FollowActions } from "../store/actionCreator"
+import { WebBrowser } from "expo"
 
 class BoardContainer extends Component {
     _moveToDetailBoard = () => {
-        const { data, navigation } = this.props
-
-        navigation.navigate({
-            routeName: "ExternalWebsite",
-            params: {
-                link: data.link,
-                name: data.name
-            }
-        })
+        const { data } = this.props
+        WebBrowser.openBrowserAsync(data.link)
     }
 
     _followBoard = async boardId => {
@@ -66,4 +59,4 @@ class BoardContainer extends Component {
     }
 }
 
-export default withNavigation(BoardContainer)
+export default BoardContainer
